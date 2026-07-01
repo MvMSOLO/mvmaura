@@ -12,6 +12,22 @@ import {
   GradientBorder,
   GlitchText,
   SkeletonWave,
+  LiquidBlobButton,
+  TiltCard3D,
+  HolographicText,
+  CyberpunkBorder,
+  DNAHelixLoader,
+  RefractiveGlass,
+  MagneticTrailLink,
+  ElasticToggle,
+  MorphingShape,
+  ParticleField,
+  FloatingIsland,
+  GridPulse,
+  MagneticSocialBtn,
+  NeonScroll,
+  ScanlineText,
+  AuraBlob,
 } from "@/components/previews";
 
 export const STACKS = [
@@ -58,6 +74,206 @@ const shimmerCss = `.shimmer{
 
 export const SNIPPETS: Snippet[] = [
   // ---------- React ----------
+  {
+    id: "react-liquid-blob",
+    stack: "react",
+    category: "Buttons",
+    name: "Liquid Aura Blob",
+    tag: "button · liquid · svg-filter",
+    Preview: LiquidBlobButton,
+    code: `import { useState } from "react";
+
+export function LiquidBlobButton() {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <div className="relative group">
+      <div className="absolute -inset-4 bg-amber-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <button
+        className="relative px-8 py-3 rounded-2xl bg-neutral-900 text-white font-semibold overflow-hidden transition-transform duration-300 active:scale-95"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <span className="relative z-10">Liquid Aura</span>
+        <div className="absolute inset-0 z-0 opacity-40 transition-transform duration-700 ease-out"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, #f59e0b 0%, transparent 50%)",
+            transform: isHovered ? "scale(2.5)" : "scale(0)",
+          }}
+        />
+        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-50" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            </filter>
+          </defs>
+          <g filter="url(#goo)">
+            <circle cx="20" cy="20" r="15" fill="#f59e0b" className="animate-pulse" />
+            <circle cx="80" cy="20" r="12" fill="#f59e0b" style={{ animationDelay: "1s" }} className="animate-pulse" />
+            <circle cx="50" cy="80" r="18" fill="#f59e0b" style={{ animationDelay: "2s" }} className="animate-pulse" />
+          </g>
+        </svg>
+      </button>
+    </div>
+  );
+}`,
+  },
+  {
+    id: "react-tilt-3d",
+    stack: "react",
+    category: "Transitions",
+    name: "3D Elevation Card",
+    tag: "card · 3d · interactive",
+    Preview: TiltCard3D,
+    code: `import { useState } from "react";
+
+export function TiltCard3D() {
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left;
+    const y = e.clientY - box.top;
+    const centerX = box.width / 2;
+    const centerY = box.height / 2;
+    const rotateX = (y - centerY) / 8;
+    const rotateY = (centerX - x) / 8;
+
+    setRotate({ x: rotateX, y: rotateY });
+    setGlare({ x: (x / box.width) * 100, y: (y / box.height) * 100, opacity: 0.6 });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+    setGlare(prev => ({ ...prev, opacity: 0 }));
+  };
+
+  return (
+    <div className="perspective-[1000px] w-full" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+      <div
+        className="relative h-48 rounded-xl bg-neutral-900 border border-white/10 transition-transform duration-200 ease-out preserve-3d"
+        style={{ transform: \`rotateX(\${rotate.x}deg) rotateY(\${rotate.y}deg)\` }}
+      >
+        <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+          <div
+            className="absolute inset-0 transition-opacity duration-300"
+            style={{
+              opacity: glare.opacity,
+              background: \`radial-gradient(circle at \${glare.x}% \${glare.y}%, rgba(255,255,255,0.3) 0%, transparent 60%)\`
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-center h-full text-amber-500 font-mono">
+          3D::ELEVATE
+        </div>
+      </div>
+    </div>
+  );
+}`,
+  },
+  {
+    id: "react-holographic",
+    stack: "react",
+    category: "Text",
+    name: "Holographic Reveal",
+    tag: "text · shader-like · color",
+    Preview: HolographicText,
+    code: `export function HolographicText({ text = "HOLOGRAPH" }) {
+  return (
+    <div className="relative group cursor-default">
+      <h2 className="text-6xl font-black italic tracking-widest relative">
+        <span className="absolute inset-0 text-white blur-[2px] opacity-20 group-hover:opacity-40 transition-opacity">
+          {text}
+        </span>
+        <span
+          className="bg-clip-text text-transparent animate-[hologram_5s_linear_infinite]"
+          style={{
+            backgroundImage: "linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0000)",
+            backgroundSize: "400% 100%",
+          }}
+        >
+          {text}
+        </span>
+      </h2>
+      <style>{\`
+        @keyframes hologram {
+          0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+          100% { background-position: 400% 50%; filter: hue-rotate(360deg); }
+        }
+      \`}</style>
+    </div>
+  );
+}`,
+  },
+  {
+    id: "react-trail-link",
+    stack: "react",
+    category: "Cursors",
+    name: "Magnetic Trail",
+    tag: "cursor · interaction · trail",
+    Preview: MagneticTrailLink,
+    code: `import { useState, useRef } from "react";
+
+export function MagneticTrailLink() {
+  const [dots, setDots] = useState<{ x: number, y: number, id: number }[]>([]);
+  const nextId = useRef(0);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = nextId.current++;
+    setDots(prev => [...prev.slice(-10), { x, y, id }]);
+  };
+
+  return (
+    <div className="relative px-8 py-4" onMouseMove={handleMouseMove} onMouseLeave={() => setDots([])}>
+      {dots.map((dot, i) => (
+        <div key={dot.id} className="absolute size-2 rounded-full bg-amber-500 pointer-events-none"
+          style={{
+            left: dot.x, top: dot.y,
+            opacity: i / dots.length,
+            transform: \`scale(\${i / dots.length}) translate(-50%, -50%)\`,
+            transition: "opacity 0.2s, transform 0.2s"
+          }}
+        />
+      ))}
+      <span className="relative z-10 text-4xl font-serif italic">Trace Motion</span>
+    </div>
+  );
+}`,
+  },
+  {
+    id: "react-elastic-toggle",
+    stack: "react",
+    category: "Buttons",
+    name: "Elastic Aura Switch",
+    tag: "button · toggle · physics",
+    Preview: ElasticToggle,
+    code: `import { useState } from "react";
+
+export function ElasticToggle() {
+  const [active, setActive] = useState(false);
+  return (
+    <button
+      onClick={() => setActive(!active)}
+      className="relative w-20 h-10 rounded-full bg-neutral-800 border border-white/10 p-1 transition-colors duration-500"
+      style={{ backgroundColor: active ? "#f59e0b" : "" }}
+    >
+      <div
+        className="size-8 rounded-full bg-white transition-all duration-500"
+        style={{
+          transform: active ? "translateX(40px)" : "translateX(0)",
+          borderRadius: active ? "30% 70% 70% 30% / 30% 30% 70% 70%" : "50%",
+          boxShadow: active ? "0 0 20px rgba(255,255,255,0.4)" : ""
+        }}
+      />
+    </button>
+  );
+}`,
+  },
   {
     id: "react-shimmer",
     stack: "react",
@@ -223,6 +439,77 @@ export function FadeSlideCycle({ items }: { items: string[] }) {
 
   // ---------- TypeScript ----------
   {
+    id: "ts-particle-field",
+    stack: "typescript",
+    category: "Backgrounds",
+    name: "Particle Domain",
+    tag: "bg · particles · math",
+    Preview: ParticleField,
+    code: `export function ParticleField({ count = 30 }) {
+  const particles = Array.from({ length: count }).map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    delay: Math.random() * 5,
+    duration: 5 + Math.random() * 10,
+    tx: Math.random() * 100 - 50,
+    ty: Math.random() * 100 - 50,
+  }));
+
+  return (
+    <div className="relative w-full h-64 bg-neutral-950 overflow-hidden rounded-xl">
+      {particles.map((p) => (
+        <div key={p.id} className="absolute size-1 bg-amber-500/40 rounded-full animate-float"
+          style={{
+            left: \`\${p.x}%\`, top: \`\${p.y}%\`,
+            animationDelay: \`\${p.delay}s\`,
+            animationDuration: \`\${p.duration}s\`,
+            '--tx': \`\${p.tx}px\`, '--ty': \`\${p.ty}px\`
+          } as any}
+        />
+      ))}
+      <style>{\`
+        @keyframes float {
+          0% { transform: translate(0, 0); opacity: 0; }
+          50% { opacity: 1; }
+          100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+      \`}</style>
+    </div>
+  );
+}`,
+  },
+  {
+    id: "ts-magnetic-social",
+    stack: "typescript",
+    category: "Buttons",
+    name: "Magnetic Social Aura",
+    tag: "button · magnetic · ts",
+    Preview: MagneticSocialBtn,
+    code: `import { useState } from "react";
+
+export function MagneticSocialBtn() {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const handleMove = (e: React.MouseEvent) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setPos({
+      x: (e.clientX - (r.left + r.width / 2)) * 0.4,
+      y: (e.clientY - (r.top + r.height / 2)) * 0.4
+    });
+  };
+  return (
+    <button
+      onMouseMove={handleMove}
+      onMouseLeave={() => setPos({ x: 0, y: 0 })}
+      className="size-16 rounded-2xl bg-neutral-900 border border-white/10 flex items-center justify-center transition-all duration-200 hover:border-amber-500/50 group"
+      style={{ transform: \`translate(\${pos.x}px, \${pos.y}px)\` }}
+    >
+      <div className="size-8 bg-amber-500/20 rounded-full group-hover:bg-amber-500 transition-colors animate-bounce" />
+    </button>
+  );
+}`,
+  },
+  {
     id: "ts-typewriter",
     stack: "typescript",
     category: "Text",
@@ -300,6 +587,62 @@ export function Marquee({ items, duration = 18 }: MarqueeProps) {
 
   // ---------- Tailwind ----------
   {
+    id: "tw-cyber-border",
+    stack: "tailwind",
+    category: "Buttons",
+    name: "Cyber Protocol",
+    tag: "border · cyberpunk · aura",
+    Preview: CyberpunkBorder,
+    code: `<div class="relative p-1 group">
+  <div class="absolute inset-0 bg-amber-500 opacity-20 group-hover:opacity-40 transition-opacity"></div>
+  <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-amber-500 animate-pulse"></div>
+  <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-amber-500 animate-pulse" style="animation-delay: 0.5s"></div>
+
+  <div class="relative bg-black px-6 py-3 border border-white/5 overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-amber-500/50 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+    <span class="font-mono text-xs tracking-tighter text-white group-hover:text-amber-500 transition-colors">
+      PROTOCOL_AURORA
+    </span>
+  </div>
+</div>`,
+  },
+  {
+    id: "tw-island-float",
+    stack: "tailwind",
+    category: "Transitions",
+    name: "Floating Island",
+    tag: "layout · 3d · float",
+    Preview: FloatingIsland,
+    code: `<div class="relative group perspective-[1000px]">
+  <div class="relative w-64 h-40 bg-gradient-to-b from-neutral-800 to-black rounded-[3rem] border border-white/10 shadow-2xl animate-[island-float_6s_ease-in-out_infinite] preserve-3d">
+    <div class="absolute -inset-4 bg-amber-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div class="absolute top-8 left-8 size-10 rounded-xl bg-amber-500/40 border border-amber-500/60 animate-pulse"></div>
+  </div>
+</div>
+<style>
+  @keyframes island-float {
+    0%, 100% { transform: translateY(0) rotateX(10deg) rotateY(-5deg); }
+    50% { transform: translateY(-20px) rotateX(15deg) rotateY(5deg); }
+  }
+</style>`,
+  },
+  {
+    id: "tw-grid-pulse",
+    stack: "tailwind",
+    category: "Backgrounds",
+    name: "Neural Grid",
+    tag: "bg · grid · pulse",
+    Preview: GridPulse,
+    code: `<div class="relative h-64 w-full overflow-hidden rounded-xl bg-black">
+  <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 32px 32px;"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-48 bg-amber-500/30 blur-[100px] animate-pulse"></div>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="size-2 bg-amber-500 rounded-full shadow-[0_0_30px_#f59e0b] animate-ping"></div>
+  </div>
+</div>`,
+  },
+  {
     id: "tw-gradient-border",
     stack: "tailwind",
     category: "Buttons",
@@ -344,6 +687,72 @@ export function Marquee({ items, duration = 18 }: MarqueeProps) {
   },
 
   // ---------- HTML / CSS ----------
+  {
+    id: "html-dna-helix",
+    stack: "html",
+    category: "Loaders",
+    name: "DNA Helix",
+    tag: "loader · math · css",
+    Preview: DNAHelixLoader,
+    code: `<div class="dna">
+  ${Array.from({ length: 12 })
+    .map(
+      (_, i) =>
+        `<div class="bar" style="animation-delay: ${i * 0.15}s"><span></span><span></span></div>`,
+    )
+    .join("\n  ")}
+</div>
+<style>
+.dna { display: flex; gap: 6px; height: 60px; align-items: center; }
+.bar { display: flex; flex-direction: column; justify-content: space-between; height: 100%; align-items: center; animation: dna-rotate 2s ease-in-out infinite; }
+.bar span:first-child { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
+.bar span:last-child { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+@keyframes dna-rotate {
+  0%, 100% { transform: scaleY(1); opacity: 0.3; }
+  50% { transform: scaleY(0.2); opacity: 1; }
+}
+</style>`,
+  },
+  {
+    id: "html-neon-scroll",
+    stack: "html",
+    category: "Transitions",
+    name: "Neon Scrollbar",
+    tag: "scroll · neon · light",
+    Preview: NeonScroll,
+    code: `<div class="scroll-track">
+  <div class="neon-thumb"></div>
+</div>
+<style>
+.scroll-track { position: relative; width: 4px; height: 100px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
+.neon-thumb { position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(transparent, #f59e0b, transparent); animation: neon-scroll 2s linear infinite; }
+@keyframes neon-scroll {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+</style>`,
+  },
+  {
+    id: "html-aura-blob",
+    stack: "html",
+    category: "Backgrounds",
+    name: "Morphing Aura",
+    tag: "bg · blob · morph",
+    Preview: AuraBlob,
+    code: `<div class="aura-blob"></div>
+<style>
+.aura-blob {
+  width: 150px; height: 150px;
+  background: #f59e0b; opacity: 0.3; filter: blur(40px);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: blob-morph 8s ease-in-out infinite;
+}
+@keyframes blob-morph {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: scale(1); }
+  50% { border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%; transform: scale(1.2); }
+}
+</style>`,
+  },
   {
     id: "html-shimmer",
     stack: "html",

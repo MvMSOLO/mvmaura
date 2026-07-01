@@ -16,9 +16,7 @@ function Index() {
 
   const visible = useMemo(
     () =>
-      SNIPPETS.filter(
-        (s) => s.stack === stack && (category === "All" || s.category === category),
-      ),
+      SNIPPETS.filter((s) => s.stack === stack && (category === "All" || s.category === category)),
     [stack, category],
   );
 
@@ -61,9 +59,9 @@ function Index() {
             <span className="relative size-2 rounded-full bg-aura shadow-[0_0_12px_var(--aura)]">
               <span className="absolute inset-0 rounded-full bg-aura animate-ping opacity-60" />
             </span>
-            <span className="font-display italic text-lg tracking-tight">MVMAURA</span>
+            <span className="font-display italic text-lg tracking-tight">MVMAI</span>
             <span className="hidden sm:inline text-[10px] font-mono text-text-muted uppercase tracking-widest ml-1">
-              v1 · aura pack
+              v1 · aura pack ©
             </span>
           </a>
 
@@ -96,8 +94,8 @@ function Index() {
             </h1>
           </div>
           <p className="mt-5 text-text-muted text-base md:text-lg max-w-[52ch] text-pretty">
-            A living library of aura-grade animation snippets. Tap any card to copy the
-            code, paste it into your stack, ship the feeling.
+            A living library of aura-grade animation snippets. Tap any card to copy the code, paste
+            it into your stack, ship the feeling.
           </p>
 
           <div className="mt-8 flex items-center gap-3 flex-wrap">
@@ -127,10 +125,7 @@ function Index() {
                   }
                 >
                   <span
-                    className={
-                      "size-1.5 rounded-full " +
-                      (active ? "bg-aura" : "bg-neutral-700")
-                    }
+                    className={"size-1.5 rounded-full " + (active ? "bg-aura" : "bg-neutral-700")}
                   />
                   {c}
                 </button>
@@ -223,10 +218,8 @@ function Index() {
         {/* Footer */}
         <footer className="max-w-6xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
-            <p className="font-display italic text-2xl">MVMAURA</p>
-            <p className="text-xs text-text-muted mt-1">
-              Copy. Paste. Feel the aura.
-            </p>
+            <p className="font-display italic text-2xl">MVMAI</p>
+            <p className="text-xs text-text-muted mt-1">Copy. Paste. Feel the aura. © MVMAI</p>
           </div>
           <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest">
             crafted for builders · {new Date().getFullYear()}
@@ -265,9 +258,7 @@ function Index() {
                 className="shrink-0 px-3 py-1.5 flex items-center gap-1.5 bg-aura/15 hover:bg-aura/25 text-aura ring-1 ring-aura/40 rounded-md transition-all active:scale-95"
               >
                 <Copy className="size-3" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider">
-                  Copy cmd
-                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-wider">Copy cmd</span>
               </button>
             </div>
           </div>

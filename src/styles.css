@@ -72,7 +72,7 @@
 
 :root {
   --radius: 0.75rem;
-  /* MVMAURA amber-dark system (dark by default) */
+  /* MVMAI amber-dark system (dark by default) */
   --background: oklch(0.145 0.006 60);
   --foreground: oklch(0.97 0.005 80);
   --surface: oklch(0.185 0.008 60);
@@ -161,34 +161,75 @@
   }
 }
 
-/* MVMAURA keyframes & utilities */
+/* MVMAI keyframes & utilities */
 @keyframes aura-pulse {
-  0%, 100% { opacity: 0.35; filter: blur(60px); transform: scale(1); }
-  50% { opacity: 0.6; filter: blur(80px); transform: scale(1.15); }
+  0%,
+  100% {
+    opacity: 0.35;
+    filter: blur(60px);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(80px);
+    transform: scale(1.15);
+  }
 }
 @keyframes text-shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 @keyframes float-y {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 @keyframes slide-up-in {
-  from { transform: translateY(120%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes aurora-drift {
-  0% { transform: translate(-10%, -10%) rotate(0deg); }
-  100% { transform: translate(10%, 10%) rotate(360deg); }
+  0% {
+    transform: translate(-10%, -10%) rotate(0deg);
+  }
+  100% {
+    transform: translate(10%, 10%) rotate(360deg);
+  }
 }
 @keyframes marquee-x {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 @keyframes glow-ring {
-  0%, 100% { box-shadow: 0 0 0 0 var(--aura-soft), 0 0 30px -8px var(--aura-soft); }
-  50% { box-shadow: 0 0 0 4px var(--aura-soft), 0 0 60px -4px var(--aura-soft); }
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 var(--aura-soft),
+      0 0 30px -8px var(--aura-soft);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px var(--aura-soft),
+      0 0 60px -4px var(--aura-soft);
+  }
 }
 
 @utility aura-radial {
@@ -196,7 +237,13 @@
   animation: aura-pulse 8s ease-in-out infinite;
 }
 @utility shimmer-text {
-  background: linear-gradient(90deg, oklch(0.55 0.02 70) 0%, oklch(0.98 0.01 80) 45%, var(--aura) 55%, oklch(0.55 0.02 70) 100%);
+  background: linear-gradient(
+    90deg,
+    oklch(0.55 0.02 70) 0%,
+    oklch(0.98 0.01 80) 45%,
+    var(--aura) 55%,
+    oklch(0.55 0.02 70) 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -210,5 +257,7 @@
 }
 @utility no-scrollbar {
   scrollbar-width: none;
-  &::-webkit-scrollbar { display: none; }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
