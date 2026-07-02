@@ -66,7 +66,7 @@ function Index() {
             </span>
             <span className="font-display italic text-lg tracking-tight">MVMAURA</span>
             <span className="hidden sm:inline text-[10px] font-mono text-text-muted uppercase tracking-widest ml-1">
-              v2 · aura pack ©
+              v3 · aura pack ©
             </span>
           </a>
 
