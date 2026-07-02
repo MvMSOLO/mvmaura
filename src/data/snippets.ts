@@ -1,6 +1,76 @@
 import type { ComponentType } from "react";
 import {
   ShimmerText,
+  FloatingIsland,
+  Floating3DCard,
+  NeonLine,
+  ElasticText,
+  LiquidLoader,
+  AuraStarfield,
+  MagneticAuraButton,
+  CyberPulse,
+  PrismLoader,
+  FloatingTags,
+  GlitchTextMedium,
+  InteractiveGridDots,
+  AuraSpinner,
+  CyberScan,
+  FloatingSphere,
+  WaveText,
+  BentoHover,
+  ParticleCircle,
+  CyberButton,
+  WarpDriveBg,
+  GooeyLoader,
+  RetroGrid,
+  SpotlightCard,
+  PixelText,
+  AuraRing,
+  CyberSwitch,
+  FloatingIcons,
+  RippleEffect,
+  PrismBorder,
+  MagneticGrid,
+  InfiniteTiles,
+  GlassMorphismCard,
+  HologramAvatar,
+  LiquidText,
+  BentoGridItem,
+  TextRevealScroll,
+  FloatingDock,
+  InteractiveDNA,
+  CyberLoader,
+  NoiseBg,
+  MagneticText,
+  GlowButton,
+  FloatingIslandSmall,
+  AuraGrid,
+  GlitchLogo,
+  HolographicCard,
+  WaveButton,
+  ScanTextLoader,
+  OrbitDots,
+  InteractiveBlob,
+  GridHover,
+  PixelLoader,
+  MagneticCard,
+  AuraTextFloat,
+  CyberPanel,
+  GridPulse,
+  MagneticSocialBtn,
+  NeonScroll,
+  ScanlineText,
+  AuraBlob,
+  LiquidBlobButton,
+  TiltCard3D,
+  HolographicText,
+  CyberpunkBorder,
+  DNAHelixLoader,
+  RefractiveGlass,
+  MagneticTrailLink,
+  ElasticToggle,
+  MorphingShape,
+  ParticleField,
   IonPulsar,
   MagneticButton,
   AuroraBg,
@@ -12,22 +82,6 @@ import {
   GradientBorder,
   GlitchText,
   SkeletonWave,
-  LiquidBlobButton,
-  TiltCard3D,
-  HolographicText,
-  CyberpunkBorder,
-  DNAHelixLoader,
-  RefractiveGlass,
-  MagneticTrailLink,
-  ElasticToggle,
-  MorphingShape,
-  ParticleField,
-  FloatingIsland,
-  GridPulse,
-  MagneticSocialBtn,
-  NeonScroll,
-  ScanlineText,
-  AuraBlob,
 } from "@/components/previews";
 
 export const STACKS = [
@@ -63,884 +117,743 @@ export interface Snippet {
   dependencies?: string[];
 }
 
-const shimmerCss = `.shimmer{
-  background: linear-gradient(90deg,#71717a 0%,#fafafa 50%,#71717a 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: shimmer 4s linear infinite;
-}
-@keyframes shimmer { to { background-position: 200% center; } }`;
-
 export const SNIPPETS: Snippet[] = [
-  // ---------- React ----------
   {
-    id: "react-liquid-blob",
+    id: "react-shimmertext",
     stack: "react",
-    category: "Buttons",
-    name: "Liquid Aura Blob",
-    tag: "button · liquid · svg-filter",
-    Preview: LiquidBlobButton,
-    code: `import { useState } from "react";
-
-export function LiquidBlobButton() {
-  const [isHovered, setIsHovered] = useState(false);
-  return (
-    <div className="relative group">
-      <div className="absolute -inset-4 bg-amber-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <button
-        className="relative px-8 py-3 rounded-2xl bg-neutral-900 text-white font-semibold overflow-hidden transition-transform duration-300 active:scale-95"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <span className="relative z-10">Liquid Aura</span>
-        <div className="absolute inset-0 z-0 opacity-40 transition-transform duration-700 ease-out"
-          style={{
-            background: "radial-gradient(circle at 50% 50%, #f59e0b 0%, transparent 50%)",
-            transform: isHovered ? "scale(2.5)" : "scale(0)",
-          }}
-        />
-        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-50" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-            </filter>
-          </defs>
-          <g filter="url(#goo)">
-            <circle cx="20" cy="20" r="15" fill="#f59e0b" className="animate-pulse" />
-            <circle cx="80" cy="20" r="12" fill="#f59e0b" style={{ animationDelay: "1s" }} className="animate-pulse" />
-            <circle cx="50" cy="80" r="18" fill="#f59e0b" style={{ animationDelay: "2s" }} className="animate-pulse" />
-          </g>
-        </svg>
-      </button>
-    </div>
-  );
-}`,
+    category: "Text",
+    name: "ShimmerText",
+    tag: "bespoke · special · aura",
+    Preview: ShimmerText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFNoaW1tZXJUZXh0KCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InRleHQtM3hsIGZvbnQtZGlzcGxheSBpdGFsaWMgdHJhY2tpbmctdGlnaHQgc2hpbW1lci10ZXh0Ij5hdXJhIHJlYWRpbmc8L2Rpdj4KICApOwp9",
   },
   {
-    id: "react-tilt-3d",
+    id: "react-floatingisland",
     stack: "react",
     category: "Transitions",
-    name: "3D Elevation Card",
-    tag: "card · 3d · interactive",
-    Preview: TiltCard3D,
-    code: `import { useState } from "react";
-
-export function TiltCard3D() {
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left;
-    const y = e.clientY - box.top;
-    const centerX = box.width / 2;
-    const centerY = box.height / 2;
-    const rotateX = (y - centerY) / 8;
-    const rotateY = (centerX - x) / 8;
-
-    setRotate({ x: rotateX, y: rotateY });
-    setGlare({ x: (x / box.width) * 100, y: (y / box.height) * 100, opacity: 0.6 });
-  };
-
-  const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 });
-    setGlare(prev => ({ ...prev, opacity: 0 }));
-  };
-
-  return (
-    <div className="perspective-[1000px] w-full" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-      <div
-        className="relative h-48 rounded-xl bg-neutral-900 border border-white/10 transition-transform duration-200 ease-out preserve-3d"
-        style={{ transform: \`rotateX(\${rotate.x}deg) rotateY(\${rotate.y}deg)\` }}
-      >
-        <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-          <div
-            className="absolute inset-0 transition-opacity duration-300"
-            style={{
-              opacity: glare.opacity,
-              background: \`radial-gradient(circle at \${glare.x}% \${glare.y}%, rgba(255,255,255,0.3) 0%, transparent 60%)\`
-            }}
-          />
-        </div>
-        <div className="flex items-center justify-center h-full text-amber-500 font-mono">
-          3D::ELEVATE
-        </div>
-      </div>
-    </div>
-  );
-}`,
+    name: "FloatingIsland",
+    tag: "bespoke · special · aura",
+    Preview: FloatingIsland,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nSXNsYW5kKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIGdyb3VwIHBlcnNwZWN0aXZlLVsxMDAwcHhdIj4KICAgICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHctNDAgaC0yNCBiZy1ncmFkaWVudC10by1iIGZyb20tc3VyZmFjZS0yIHRvLWJhY2tncm91bmQgcm91bmRlZC1bMnJlbV0gYm9yZGVyIGJvcmRlci13aGl0ZS8xMCBzaGFkb3ctMnhsIGFuaW1hdGUtW2lzbGFuZC1mbG9hdF82c19lYXNlLWluLW91dF9pbmZpbml0ZV0gcHJlc2VydmUtM2QiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSAtaW5zZXQtMiBiZy1hdXJhLzIwIGJsdXItMnhsIHJvdW5kZWQtZnVsbCBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAgdHJhbnNpdGlvbi1vcGFjaXR5IiAvPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtNCBsZWZ0LTQgc2l6ZS02IHJvdW5kZWQtbGcgYmctYXVyYS80MCBib3JkZXIgYm9yZGVyLWF1cmEvNjAgYW5pbWF0ZS1wdWxzZSIgLz4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTQgcmlnaHQtNCBzcGFjZS15LTEiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMS41IHctMTIgYmctd2hpdGUvMjAgcm91bmRlZC1mdWxsIiAvPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMS41IHctOCBiZy13aGl0ZS8xMCByb3VuZGVkLWZ1bGwiIC8+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGlzbGFuZC1mbG9hdCB7CiAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKSByb3RhdGVYKDEwZGVnKSByb3RhdGVZKC01ZGVnKTsgfQogICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0xNXB4KSByb3RhdGVYKDE1ZGVnKSByb3RhdGVZKDVkZWcpOyB9CiAgICAgICAgfQogICAgICBgfTwvc3R5bGU+CiAgICA8L2Rpdj4KICApOwp9",
   },
   {
-    id: "react-holographic",
+    id: "react-floating3dcard",
+    stack: "react",
+    category: "Transitions",
+    name: "Floating3DCard",
+    tag: "bespoke · special · aura",
+    Preview: Floating3DCard,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nM0RDYXJkKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHBlcnNwZWN0aXZlLVsxMDAwcHhdIGdyb3VwIj4KICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtMzIgYmctZ3JhZGllbnQtdG8tYnIgZnJvbS1hdXJhLzIwIHRvLXN1cmZhY2UtMiBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIHJvdW5kZWQtMnhsIGFuaW1hdGUtW2Zsb2F0LTNkXzZzX2luZmluaXRlX2Vhc2UtaW4tb3V0XSBwcmVzZXJ2ZS0zZCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctYXVyYSBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMCBibHVyLXhsIHRyYW5zaXRpb24tb3BhY2l0eSIgLz4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtNCBib3JkZXIgYm9yZGVyLWF1cmEvMjAgcm91bmRlZC14bCIgLz4KICAgICAgPC9kaXY+CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgZmxvYXQtM2QgewogICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCkgcm90YXRlWCgxMGRlZykgcm90YXRlWSgxMGRlZyk7IH0KICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMjBweCkgcm90YXRlWCgtMTBkZWcpIHJvdGF0ZVkoLTEwZGVnKTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-neonline",
+    stack: "react",
+    category: "Transitions",
+    name: "NeonLine",
+    tag: "bespoke · special · aura",
+    Preview: NeonLine,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE5lb25MaW5lKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHctZnVsbCBoLTEgYmctd2hpdGUvNSBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1mdWxsIj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctYXVyYSBzaGFkb3ctWzBfMF8xNXB4X3ZhcigtLWF1cmEpXSBhbmltYXRlLVtuZW9uLXN3ZWVwXzJzX2luZmluaXRlX2xpbmVhcl0iIC8+CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgbmVvbi1zd2VlcCB7CiAgICAgICAgICBmcm9tIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC0xMDAlKTsgfQogICAgICAgICAgdG8geyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMTAwJSk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-elastictext",
     stack: "react",
     category: "Text",
-    name: "Holographic Reveal",
-    tag: "text · shader-like · color",
-    Preview: HolographicText,
-    code: `export function HolographicText({ text = "HOLOGRAPH" }) {
-  return (
-    <div className="relative group cursor-default">
-      <h2 className="text-6xl font-black italic tracking-widest relative">
-        <span className="absolute inset-0 text-white blur-[2px] opacity-20 group-hover:opacity-40 transition-opacity">
-          {text}
-        </span>
-        <span
-          className="bg-clip-text text-transparent animate-[hologram_5s_linear_infinite]"
-          style={{
-            backgroundImage: "linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0000)",
-            backgroundSize: "400% 100%",
-          }}
-        >
-          {text}
-        </span>
-      </h2>
-      <style>{\`
-        @keyframes hologram {
-          0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
-          100% { background-position: 400% 50%; filter: hue-rotate(360deg); }
-        }
-      \`}</style>
-    </div>
-  );
-}`,
+    name: "ElasticText",
+    tag: "bespoke · special · aura",
+    Preview: ElasticText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEVsYXN0aWNUZXh0KCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTIgdGV4dC0zeGwgZm9udC1kaXNwbGF5IGl0YWxpYyI+CiAgICAgIHsiQk9VTkNFIi5zcGxpdCgiIikubWFwKChjLCBpKSA9PiAoCiAgICAgICAgPHNwYW4ga2V5PXtpfSBjbGFzc05hbWU9ImhvdmVyOmFuaW1hdGUtW2VsYXN0aWMtY2hhcl8wLjVzX2Vhc2Utb3V0XSIgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6IGAke2kgKiAwLjF9c2AgfX0+e2N9PC9zcGFuPgogICAgICApKX0KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBlbGFzdGljLWNoYXIgewogICAgICAgICAgMCUgeyB0cmFuc2Zvcm06IHNjYWxlWSgxKTsgfQogICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMS41KSBzY2FsZVgoMC44KTsgY29sb3I6IHZhcigtLWF1cmEpOyB9CiAgICAgICAgICAxMDAlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMSk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
   },
   {
-    id: "react-trail-link",
+    id: "react-liquidloader",
+    stack: "react",
+    category: "Loaders",
+    name: "LiquidLoader",
+    tag: "bespoke · special · aura",
+    Preview: LiquidLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIExpcXVpZExvYWRlcigpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJzaXplLTE2IHJlbGF0aXZlIG92ZXJmbG93LWhpZGRlbiByb3VuZGVkLWZ1bGwgYm9yZGVyLTIgYm9yZGVyLWF1cmEvMzAgZmxleCBpdGVtcy1lbmQiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1hdXJhLzEwIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0idy1mdWxsIGJnLWF1cmEgYW5pbWF0ZS1bbGlxdWlkLWZpbGxfNHNfaW5maW5pdGVfbGluZWFyXSIgc3R5bGU9e3sgaGVpZ2h0OiAiNjAlIiB9fSAvPgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGxpcXVpZC1maWxsIHsKICAgICAgICAgIDAlIHsgaGVpZ2h0OiAwJTsgZmlsdGVyOiBodWUtcm90YXRlKDBkZWcpOyB9CiAgICAgICAgICA1MCUgeyBoZWlnaHQ6IDEwMCU7IGZpbHRlcjogaHVlLXJvdGF0ZSg5MGRlZyk7IH0KICAgICAgICAgIDEwMCUgeyBoZWlnaHQ6IDAlOyBmaWx0ZXI6IGh1ZS1yb3RhdGUoMGRlZyk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-aurastarfield",
+    stack: "react",
+    category: "Backgrounds",
+    name: "AuraStarfield",
+    tag: "bespoke · special · aura",
+    Preview: AuraStarfield,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cmFTdGFyZmllbGQoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtZnVsbCBiZy1ibGFjayBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1sZyI+CiAgICAgIHtBcnJheS5mcm9tKHsgbGVuZ3RoOiA1MCB9KS5tYXAoKF8sIGkpID0+ICgKICAgICAgICA8ZGl2IAogICAgICAgICAga2V5PXtpfQogICAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBzaXplLTAuNSBiZy13aGl0ZSByb3VuZGVkLWZ1bGwgYW5pbWF0ZS1wdWxzZSIKICAgICAgICAgIHN0eWxlPXt7IAogICAgICAgICAgICBsZWZ0OiBgJHtNYXRoLnJhbmRvbSgpICogMTAwfSVgLCAKICAgICAgICAgICAgdG9wOiBgJHtNYXRoLnJhbmRvbSgpICogMTAwfSVgLAogICAgICAgICAgICBhbmltYXRpb25EZWxheTogYCR7TWF0aC5yYW5kb20oKSAqIDJ9c2AKICAgICAgICAgIH19CiAgICAgICAgLz4KICAgICAgKSl9CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLWdyYWRpZW50LXRvLXQgZnJvbS1hdXJhLzEwIHRvLXRyYW5zcGFyZW50IiAvPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-magneticaurabutton",
+    stack: "react",
+    category: "Buttons",
+    name: "MagneticAuraButton",
+    tag: "bespoke · special · aura",
+    Preview: MagneticAuraButton,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljQXVyYUJ1dHRvbigpIHsKCiAgY29uc3QgW3Bvcywgc2V0UG9zXSA9IHVzZVN0YXRlKHsgeDogMCwgeTogMCB9KTsKICByZXR1cm4gKAogICAgPGRpdiAKICAgICAgY2xhc3NOYW1lPSJyZWxhdGl2ZSBwLTgiCiAgICAgIG9uTW91c2VNb3ZlPXsoZSkgPT4gewogICAgICAgIGNvbnN0IHIgPSBlLmN1cnJlbnRUYXJnZXQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICAgICAgc2V0UG9zKHsgeDogKGUuY2xpZW50WCAtIChyLmxlZnQgKyByLndpZHRoLzIpKSowLjMsIHk6IChlLmNsaWVudFkgLSAoci50b3AgKyByLmhlaWdodC8yKSkqMC4zIH0pOwogICAgICB9fQogICAgICBvbk1vdXNlTGVhdmU9eygpID0+IHNldFBvcyh7IHg6IDAsIHk6IDAgfSl9CiAgICA+CiAgICAgIDxkaXYgCiAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLWF1cmEgb3BhY2l0eS0xMCBibHVyLTJ4bCByb3VuZGVkLWZ1bGwgdHJhbnNpdGlvbi10cmFuc2Zvcm0gZHVyYXRpb24tMzAwIgogICAgICAgIHN0eWxlPXt7IHRyYW5zZm9ybTogYHRyYW5zbGF0ZSgke3Bvcy54fXB4LCAke3Bvcy55fXB4KSBzY2FsZSgxLjIpYCB9fQogICAgICAvPgogICAgICA8YnV0dG9uIAogICAgICAgIGNsYXNzTmFtZT0icmVsYXRpdmUgcHgtNiBweS0yIGJnLXN1cmZhY2UtMiBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIHJvdW5kZWQtZnVsbCB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0yMDAiCiAgICAgICAgc3R5bGU9e3sgdHJhbnNmb3JtOiBgdHJhbnNsYXRlKCR7cG9zLnggKiAwLjV9cHgsICR7cG9zLnkgKiAwLjV9cHgpYCB9fQogICAgICA+CiAgICAgICAgQXVyYQogICAgICA8L2J1dHRvbj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-cyberpulse",
+    stack: "react",
+    category: "Transitions",
+    name: "CyberPulse",
+    tag: "bespoke · special · aura",
+    Preview: CyberPulse,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVyUHVsc2UoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgc2l6ZS0xNiBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJvcmRlciBib3JkZXItYXVyYS8yMCByb3VuZGVkLWxnIGFuaW1hdGUtcGluZyIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtMTIgYm9yZGVyIGJvcmRlci1hdXJhIHJvdW5kZWQtbWQgc2hhZG93LVswXzBfMjBweF92YXIoLS1hdXJhLXNvZnQpXSIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtNCBiZy1hdXJhIHJvdW5kZWQtc20gYW5pbWF0ZS1wdWxzZSIgLz4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-prismloader",
+    stack: "react",
+    category: "Loaders",
+    name: "PrismLoader",
+    tag: "bespoke · special · aura",
+    Preview: PrismLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFByaXNtTG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTIgaXRlbXMtZW5kIGgtOCI+CiAgICAgIHtbLi4uQXJyYXkoNSldLm1hcCgoXywgaSkgPT4gKAogICAgICAgIDxkaXYgCiAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICBjbGFzc05hbWU9InctMiBiZy1hdXJhIGFuaW1hdGUtW3ByaXNtLWdyb3dfMS41c19pbmZpbml0ZV9lYXNlLWluLW91dF0iCiAgICAgICAgICBzdHlsZT17eyAKICAgICAgICAgICAgYW5pbWF0aW9uRGVsYXk6IGAke2kgKiAwLjE1fXNgLAogICAgICAgICAgICBmaWx0ZXI6IGBodWUtcm90YXRlKCR7aSAqIDQ1fWRlZylgCiAgICAgICAgICB9fQogICAgICAgIC8+CiAgICAgICkpfQogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIHByaXNtLWdyb3cgewogICAgICAgICAgMCUsIDEwMCUgeyBoZWlnaHQ6IDIwJTsgb3BhY2l0eTogMC4zOyB9CiAgICAgICAgICA1MCUgeyBoZWlnaHQ6IDEwMCU7IG9wYWNpdHk6IDE7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-floatingtags",
+    stack: "react",
+    category: "Text",
+    name: "FloatingTags",
+    tag: "bespoke · special · aura",
+    Preview: FloatingTags,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nVGFncygpIHsKCiAgY29uc3QgdGFncyA9IFsiUmVhY3QiLCAiTW90aW9uIiwgIlRhaWx3aW5kIiwgIkF1cmEiXTsKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC13cmFwIGdhcC0yIGp1c3RpZnktY2VudGVyIj4KICAgICAge3RhZ3MubWFwKCh0LCBpKSA9PiAoCiAgICAgICAgPHNwYW4gCiAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICBjbGFzc05hbWU9InB4LTIgcHktMSBiZy1zdXJmYWNlLTIgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCByb3VuZGVkIHRleHQtWzEwcHhdIGZvbnQtbW9ubyBhbmltYXRlLVtmbG9hdC10YWdfM3NfaW5maW5pdGVfZWFzZS1pbi1vdXRdIgogICAgICAgICAgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6IGAke2kgKiAwLjR9c2AgfX0KICAgICAgICA+CiAgICAgICAgICB7dH0KICAgICAgICA8L3NwYW4+CiAgICAgICkpfQogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGZsb2F0LXRhZyB7CiAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKTsgfQogICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01cHgpOyB9CiAgICAgICAgfQogICAgICBgfTwvc3R5bGU+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-glitchtextmedium",
+    stack: "react",
+    category: "Text",
+    name: "GlitchTextMedium",
+    tag: "bespoke · special · aura",
+    Preview: GlitchTextMedium,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdsaXRjaFRleHRNZWRpdW0oKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgZm9udC1kaXNwbGF5IHRleHQtNHhsIGl0YWxpYyBncm91cCBvdmVyZmxvdy1oaWRkZW4iPgogICAgICA8c3BhbiBjbGFzc05hbWU9ImJsb2NrIGdyb3VwLWhvdmVyOnRyYW5zbGF0ZS14LTEgdHJhbnNpdGlvbi10cmFuc2Zvcm0iPkdMSVRDSDwvc3Bhbj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctcmVkLTUwMC8yMCBtaXgtYmxlbmQtc2NyZWVuIG9wYWNpdHktMCBncm91cC1ob3ZlcjpvcGFjaXR5LTEwMCBncm91cC1ob3ZlcjphbmltYXRlLXB1bHNlIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ibHVlLTUwMC8yMCBtaXgtYmxlbmQtc2NyZWVuIG9wYWNpdHktMCBncm91cC1ob3ZlcjpvcGFjaXR5LTEwMCBncm91cC1ob3ZlcjphbmltYXRlLXB1bHNlIiBzdHlsZT17eyBhbmltYXRpb25EZWxheTogIjAuMnMiIH19IC8+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-interactivegriddots",
+    stack: "react",
+    category: "Loaders",
+    name: "InteractiveGridDots",
+    tag: "bespoke · special · aura",
+    Preview: InteractiveGridDots,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEludGVyYWN0aXZlR3JpZERvdHMoKSB7CgogIGNvbnN0IFtob3ZlcmVkLCBzZXRIb3ZlcmVkXSA9IHVzZVN0YXRlPG51bWJlciB8IG51bGw+KG51bGwpOwogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBncmlkLWNvbHMtNiBnYXAtMiBwLTQiPgogICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogMzYgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdiAKICAgICAgICAgIGtleT17aX0KICAgICAgICAgIGNsYXNzTmFtZT17YHNpemUtMS41IHJvdW5kZWQtZnVsbCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgJHtob3ZlcmVkID09PSBpID8gImJnLWF1cmEgc2NhbGUtMTUwIHNoYWRvdy1bMF8wXzEwcHhfdmFyKC0tYXVyYSldIiA6ICJiZy13aGl0ZS8xMCJ9YH0KICAgICAgICAgIG9uTW91c2VFbnRlcj17KCkgPT4gc2V0SG92ZXJlZChpKX0KICAgICAgICAgIG9uTW91c2VMZWF2ZT17KCkgPT4gc2V0SG92ZXJlZChudWxsKX0KICAgICAgICAvPgogICAgICApKX0KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-auraspinner",
+    stack: "react",
+    category: "Loaders",
+    name: "AuraSpinner",
+    tag: "bespoke · special · aura",
+    Preview: AuraSpinner,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cmFTcGlubmVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InNpemUtMTIgYm9yZGVyLTQgYm9yZGVyLWF1cmEvMjAgYm9yZGVyLXQtYXVyYSByb3VuZGVkLWZ1bGwgYW5pbWF0ZS1zcGluIiAvPgogICk7Cn0=",
+  },
+  {
+    id: "react-cyberscan",
+    stack: "react",
+    category: "Transitions",
+    name: "CyberScan",
+    tag: "bespoke · special · aura",
+    Preview: CyberScan,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVyU2NhbigpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LTQ4IGgtMjggYmctc3VyZmFjZS0yIHJvdW5kZWQtbGcgb3ZlcmZsb3ctaGlkZGVuIGJvcmRlciBib3JkZXItd2hpdGUvNSI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLVtsaW5lYXItZ3JhZGllbnQodHJhbnNwYXJlbnRfNTAlLHJnYmEoMCwwLDAsMC4zKV81MCUpXSBiZy1bbGVuZ3RoOjEwMCVfNHB4XSIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIHRvcC0wIGxlZnQtMCB3LWZ1bGwgaC0wLjUgYmctYXVyYSBzaGFkb3ctWzBfMF8xNXB4X3ZhcigtLWF1cmEpXSBhbmltYXRlLVtzY2FuLXN3ZWVwXzRzX2luZmluaXRlX2xpbmVhcl0iIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJwLTQiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTIgdy0zLzQgYmctd2hpdGUvMTAgcm91bmRlZCBtYi0yIiAvPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTIgdy0xLzIgYmctd2hpdGUvMTAgcm91bmRlZCIgLz4KICAgICAgPC9kaXY+CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgc2Nhbi1zd2VlcCB7CiAgICAgICAgICAwJSB7IHRvcDogMCU7IH0KICAgICAgICAgIDEwMCUgeyB0b3A6IDEwMCU7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-floatingsphere",
+    stack: "react",
+    category: "Backgrounds",
+    name: "FloatingSphere",
+    tag: "bespoke · special · aura",
+    Preview: FloatingSphere,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nU3BoZXJlKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InNpemUtMjAgcm91bmRlZC1mdWxsIGJnLWdyYWRpZW50LXRvLWJyIGZyb20tYXVyYS80MCB0by10cmFuc3BhcmVudCByZWxhdGl2ZSBncm91cCI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLWF1cmEgb3BhY2l0eS0yMCBibHVyLXhsIGdyb3VwLWhvdmVyOm9wYWNpdHktNDAgdHJhbnNpdGlvbi1vcGFjaXR5IiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMiBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIHJvdW5kZWQtZnVsbCBhbmltYXRlLXB1bHNlIiAvPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-wavetext",
+    stack: "react",
+    category: "Text",
+    name: "WaveText",
+    tag: "bespoke · special · aura",
+    Preview: WaveText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFdhdmVUZXh0KCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTAuNSI+CiAgICAgIHsiV0FWSU5HIi5zcGxpdCgiIikubWFwKChjLCBpKSA9PiAoCiAgICAgICAgPHNwYW4gCiAgICAgICAgICBrZXk9e2l9IAogICAgICAgICAgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LWRpc3BsYXkgaXRhbGljIGFuaW1hdGUtW3RleHQtd2F2ZV8yc19pbmZpbml0ZV9lYXNlLWluLW91dF0iCiAgICAgICAgICBzdHlsZT17eyBhbmltYXRpb25EZWxheTogYCR7aSAqIDAuMX1zYCB9fQogICAgICAgID4KICAgICAgICAgIHtjfQogICAgICAgIDwvc3Bhbj4KICAgICAgKSl9CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgdGV4dC13YXZlIHsKICAgICAgICAgIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOyB9CiAgICAgICAgICA1MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLThweCk7IGNvbG9yOiB2YXIoLS1hdXJhKTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-bentohover",
     stack: "react",
     category: "Cursors",
-    name: "Magnetic Trail",
-    tag: "cursor · interaction · trail",
-    Preview: MagneticTrailLink,
-    code: `import { useState, useRef } from "react";
-
-export function MagneticTrailLink() {
-  const [dots, setDots] = useState<{ x: number, y: number, id: number }[]>([]);
-  const nextId = useRef(0);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const id = nextId.current++;
-    setDots(prev => [...prev.slice(-10), { x, y, id }]);
-  };
-
-  return (
-    <div className="relative px-8 py-4" onMouseMove={handleMouseMove} onMouseLeave={() => setDots([])}>
-      {dots.map((dot, i) => (
-        <div key={dot.id} className="absolute size-2 rounded-full bg-amber-500 pointer-events-none"
-          style={{
-            left: dot.x, top: dot.y,
-            opacity: i / dots.length,
-            transform: \`scale(\${i / dots.length}) translate(-50%, -50%)\`,
-            transition: "opacity 0.2s, transform 0.2s"
-          }}
-        />
-      ))}
-      <span className="relative z-10 text-4xl font-serif italic">Trace Motion</span>
-    </div>
-  );
-}`,
+    name: "BentoHover",
+    tag: "bespoke · special · aura",
+    Preview: BentoHover,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEJlbnRvSG92ZXIoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy00MCBoLTI4IGJnLXN1cmZhY2UtMiByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItd2hpdGUvNSBwLTQgb3ZlcmZsb3ctaGlkZGVuIGdyb3VwIj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctYXVyYSBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMCB0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tNTAwIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgei0xMCBzaXplLTggYmctYmFja2dyb3VuZCByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItd2hpdGUvMTAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgZ3JvdXAtaG92ZXI6c2NhbGUtMTEwIHRyYW5zaXRpb24tdHJhbnNmb3JtIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS0yIGJnLWF1cmEgcm91bmRlZC1mdWxsIiAvPgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTQgaC0xLjUgdy1mdWxsIGJnLXdoaXRlLzUgcm91bmRlZC1mdWxsIiAvPgogICAgPC9kaXY+CiAgKTsKfQ==",
   },
   {
-    id: "react-elastic-toggle",
+    id: "react-particlecircle",
+    stack: "react",
+    category: "Backgrounds",
+    name: "ParticleCircle",
+    tag: "bespoke · special · aura",
+    Preview: ParticleCircle,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFBhcnRpY2xlQ2lyY2xlKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMjQgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogMjAgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdiAKICAgICAgICAgIGtleT17aX0KICAgICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgc2l6ZS0xIGJnLWF1cmEgcm91bmRlZC1mdWxsIgogICAgICAgICAgc3R5bGU9e3sgCiAgICAgICAgICAgIHRyYW5zZm9ybTogYHJvdGF0ZSgke2kgKiAxOH1kZWcpIHRyYW5zbGF0ZVkoLTQwcHgpYCwKICAgICAgICAgICAgb3BhY2l0eTogTWF0aC5yYW5kb20oKSwKICAgICAgICAgICAgYW5pbWF0aW9uOiBgb3JiaXQtZmFkZSAycyBpbmZpbml0ZSBlYXNlLWluLW91dGAsCiAgICAgICAgICAgIGFuaW1hdGlvbkRlbGF5OiBgJHtpICogMC4xfXNgCiAgICAgICAgICB9fQogICAgICAgIC8+CiAgICAgICkpfQogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIG9yYml0LWZhZGUgewogICAgICAgICAgMCUsIDEwMCUgeyBvcGFjaXR5OiAwLjI7IHRyYW5zZm9ybTogcm90YXRlKHZhcigtLXJvdCkpIHRyYW5zbGF0ZVkoLTQwcHgpIHNjYWxlKDAuNSk7IH0KICAgICAgICAgIDUwJSB7IG9wYWNpdHk6IDE7IHRyYW5zZm9ybTogcm90YXRlKHZhcigtLXJvdCkpIHRyYW5zbGF0ZVkoLTUwcHgpIHNjYWxlKDEuMik7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-cyberbutton",
     stack: "react",
     category: "Buttons",
-    name: "Elastic Aura Switch",
-    tag: "button · toggle · physics",
-    Preview: ElasticToggle,
-    code: `import { useState } from "react";
-
-export function ElasticToggle() {
-  const [active, setActive] = useState(false);
-  return (
-    <button
-      onClick={() => setActive(!active)}
-      className="relative w-20 h-10 rounded-full bg-neutral-800 border border-white/10 p-1 transition-colors duration-500"
-      style={{ backgroundColor: active ? "#f59e0b" : "" }}
-    >
-      <div
-        className="size-8 rounded-full bg-white transition-all duration-500"
-        style={{
-          transform: active ? "translateX(40px)" : "translateX(0)",
-          borderRadius: active ? "30% 70% 70% 30% / 30% 30% 70% 70%" : "50%",
-          boxShadow: active ? "0 0 20px rgba(255,255,255,0.4)" : ""
-        }}
-      />
-    </button>
-  );
-}`,
+    name: "CyberButton",
+    tag: "bespoke · special · aura",
+    Preview: CyberButton,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVyQnV0dG9uKCkgewoKICByZXR1cm4gKAogICAgPGJ1dHRvbiBjbGFzc05hbWU9InJlbGF0aXZlIHB4LTggcHktMyBiZy10cmFuc3BhcmVudCB0ZXh0LWF1cmEgZm9udC1tb25vIHVwcGVyY2FzZSB0cmFja2luZy13aWRlc3Qgb3ZlcmZsb3ctaGlkZGVuIGdyb3VwIj4KICAgICAgPHNwYW4gY2xhc3NOYW1lPSJyZWxhdGl2ZSB6LTEwIGdyb3VwLWhvdmVyOnRleHQtd2hpdGUgdHJhbnNpdGlvbi1jb2xvcnMgZHVyYXRpb24tMzAwIj5Jbml0aWF0ZTwvc3Bhbj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYm9yZGVyIGJvcmRlci1hdXJhLzMwIGdyb3VwLWhvdmVyOmJvcmRlci1hdXJhIHRyYW5zaXRpb24tY29sb3JzIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgdG9wLTAgbGVmdC0wIHctMiBoLTIgYm9yZGVyLXQtMiBib3JkZXItbC0yIGJvcmRlci1hdXJhIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTAgcmlnaHQtMCB3LTIgaC0yIGJvcmRlci1iLTIgYm9yZGVyLXItMiBib3JkZXItYXVyYSIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctYXVyYS8wIGdyb3VwLWhvdmVyOmJnLWF1cmEvMTAgdHJhbnNpdGlvbi1jb2xvcnMiIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMCBsZWZ0LTAgdy1mdWxsIGgtWzJweF0gYmctZ3JhZGllbnQtdG8tciBmcm9tLXRyYW5zcGFyZW50IHZpYS1hdXJhIHRvLXRyYW5zcGFyZW50IC10cmFuc2xhdGUteC1mdWxsIGdyb3VwLWhvdmVyOnRyYW5zbGF0ZS14LWZ1bGwgdHJhbnNpdGlvbi10cmFuc2Zvcm0gZHVyYXRpb24tMTAwMCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGJvdHRvbS0wIGxlZnQtMCB3LWZ1bGwgaC1bMnB4XSBiZy1ncmFkaWVudC10by1yIGZyb20tdHJhbnNwYXJlbnQgdmlhLWF1cmEgdG8tdHJhbnNwYXJlbnQgdHJhbnNsYXRlLXgtZnVsbCBncm91cC1ob3ZlcjotdHJhbnNsYXRlLXgtZnVsbCB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0xMDAwIiAvPgogICAgPC9idXR0b24+CiAgKTsKfQ==",
   },
   {
-    id: "react-shimmer",
+    id: "react-warpdrivebg",
+    stack: "react",
+    category: "Backgrounds",
+    name: "WarpDriveBg",
+    tag: "bespoke · special · aura",
+    Preview: WarpDriveBg,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFdhcnBEcml2ZUJnKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHctZnVsbCBoLWZ1bGwgYmctYmxhY2sgb3ZlcmZsb3ctaGlkZGVuIHJvdW5kZWQtbGciPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCI+CiAgICAgICAge0FycmF5LmZyb20oeyBsZW5ndGg6IDQwIH0pLm1hcCgoXywgaSkgPT4gKAogICAgICAgICAgPGRpdgogICAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgYmctd2hpdGUgcm91bmRlZC1mdWxsIGFuaW1hdGUtW3dhcnBfMnNfbGluZWFyX2luZmluaXRlXSIKICAgICAgICAgICAgc3R5bGU9e3sKICAgICAgICAgICAgICBsZWZ0OiBgJHtNYXRoLnJhbmRvbSgpICogMTAwfSVgLAogICAgICAgICAgICAgIHRvcDogYCR7TWF0aC5yYW5kb20oKSAqIDEwMH0lYCwKICAgICAgICAgICAgICB3aWR0aDogIjFweCIsCiAgICAgICAgICAgICAgaGVpZ2h0OiBgJHsyMCArIE1hdGgucmFuZG9tKCkgKiA1MH1weGAsCiAgICAgICAgICAgICAgb3BhY2l0eTogTWF0aC5yYW5kb20oKSwKICAgICAgICAgICAgICBhbmltYXRpb25EZWxheTogYCR7TWF0aC5yYW5kb20oKSAqIDJ9c2AsCiAgICAgICAgICAgIH19CiAgICAgICAgICAvPgogICAgICAgICkpfQogICAgICA8L2Rpdj4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyB3YXJwIHsKICAgICAgICAgIDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0xMDAlKSBzY2FsZVkoMCk7IG9wYWNpdHk6IDA7IH0KICAgICAgICAgIDUwJSB7IG9wYWNpdHk6IDE7IH0KICAgICAgICAgIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMjAwJSkgc2NhbGVZKDIpOyBvcGFjaXR5OiAwOyB9CiAgICAgICAgfQogICAgICBgfTwvc3R5bGU+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-gooeyloader",
+    stack: "react",
+    category: "Loaders",
+    name: "GooeyLoader",
+    tag: "bespoke · special · aura",
+    Preview: GooeyLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdvb2V5TG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMTYgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgICA8c3ZnIGNsYXNzTmFtZT0iYWJzb2x1dGUgaW52aXNpYmxlIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgIDxmaWx0ZXIgaWQ9Imdvby1sb2FkZXIiPgogICAgICAgICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iNiIgcmVzdWx0PSJibHVyIiAvPgogICAgICAgICAgICA8ZmVDb2xvck1hdHJpeCBpbj0iYmx1ciIgbW9kZT0ibWF0cml4IiB2YWx1ZXM9IjEgMCAwIDAgMCAgMCAxIDAgMCAwICAwIDAgMSAwIDAgIDAgMCAwIDE4IC03IiAvPgogICAgICAgICAgPC9maWx0ZXI+CiAgICAgICAgPC9kZWZzPgogICAgICA8L3N2Zz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTQgZmlsdGVyLVt1cmwoI2dvby1sb2FkZXIpXSI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtNiByb3VuZGVkLWZ1bGwgYmctYXVyYSBhbmltYXRlLVtnb28tbGVmdF8xLjVzX2luZmluaXRlX2Vhc2UtaW4tb3V0XSIgLz4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS02IHJvdW5kZWQtZnVsbCBiZy1hdXJhIGFuaW1hdGUtW2dvby1yaWdodF8xLjVzX2luZmluaXRlX2Vhc2UtaW4tb3V0XSIgLz4KICAgICAgPC9kaXY+CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgZ29vLWxlZnQgewogICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMCk7IH0KICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCgyMHB4KTsgfQogICAgICAgIH0KICAgICAgICBAa2V5ZnJhbWVzIGdvby1yaWdodCB7CiAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCgwKTsgfQogICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC0yMHB4KTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-retrogrid",
+    stack: "react",
+    category: "Backgrounds",
+    name: "RetroGrid",
+    tag: "bespoke · special · aura",
+    Preview: RetroGrid,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFJldHJvR3JpZCgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LWZ1bGwgaC1mdWxsIGJnLWJhY2tncm91bmQgb3ZlcmZsb3ctaGlkZGVuIHJvdW5kZWQtbGcgcGVyc3BlY3RpdmUtWzIwMHB4XSI+CiAgICAgIDxkaXYgCiAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLVtsaW5lYXItZ3JhZGllbnQodG9fcmlnaHQsdmFyKC0tbGluZSlfMXB4LHRyYW5zcGFyZW50XzFweCksbGluZWFyLWdyYWRpZW50KHRvX2JvdHRvbSx2YXIoLS1saW5lKV8xcHgsdHJhbnNwYXJlbnRfMXB4KV0gYmctW2xlbmd0aDoyMHB4XzIwcHhdIgogICAgICAgIHN0eWxlPXt7IHRyYW5zZm9ybTogInJvdGF0ZVgoNjBkZWcpIHRyYW5zbGF0ZVkoLTIwcHgpIiwgdHJhbnNmb3JtT3JpZ2luOiAidG9wIiB9fQogICAgICAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by10IGZyb20tYmFja2dyb3VuZCB0by10cmFuc3BhcmVudCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIHRvcC0xLzIgbGVmdC0xLzIgLXRyYW5zbGF0ZS14LTEvMiAtdHJhbnNsYXRlLXktMS8yIHNpemUtMjQgYmctYXVyYS8yMCBibHVyLTN4bCBhbmltYXRlLXB1bHNlIiAvPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-spotlightcard",
+    stack: "react",
+    category: "Transitions",
+    name: "SpotlightCard",
+    tag: "bespoke · special · aura",
+    Preview: SpotlightCard,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFNwb3RsaWdodENhcmQoKSB7CgogIGNvbnN0IFtwb3MsIHNldFBvc10gPSB1c2VTdGF0ZSh7IHg6IDUwLCB5OiA1MCB9KTsKICByZXR1cm4gKAogICAgPGRpdiAKICAgICAgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LTQ4IGgtMjggYmctc3VyZmFjZS0yIHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci13aGl0ZS81IG92ZXJmbG93LWhpZGRlbiBncm91cCIKICAgICAgb25Nb3VzZU1vdmU9eyhlKSA9PiB7CiAgICAgICAgY29uc3QgciA9IGUuY3VycmVudFRhcmdldC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKTsKICAgICAgICBzZXRQb3MoeyB4OiAoKGUuY2xpZW50WCAtIHIubGVmdCkvci53aWR0aCkqMTAwLCB5OiAoKGUuY2xpZW50WSAtIHIudG9wKS9yLmhlaWdodCkqMTAwIH0pOwogICAgICB9fQogICAgPgogICAgICA8ZGl2IAogICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAgdHJhbnNpdGlvbi1vcGFjaXR5IGR1cmF0aW9uLTUwMCIKICAgICAgICBzdHlsZT17eyAKICAgICAgICAgIGJhY2tncm91bmQ6IGByYWRpYWwtZ3JhZGllbnQoY2lyY2xlIGF0ICR7cG9zLnh9JSAke3Bvcy55fSUsIHZhcigtLWF1cmEtc29mdCkgMCUsIHRyYW5zcGFyZW50IDYwJSlgIAogICAgICAgIH19CiAgICAgIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJwLTQgcmVsYXRpdmUgei0xMCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtNiBiZy13aGl0ZS8xMCByb3VuZGVkIGdyb3VwLWhvdmVyOmJnLWF1cmEvMjAgdHJhbnNpdGlvbi1jb2xvcnMiIC8+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTIgaC0yIHctMjAgYmctd2hpdGUvNSByb3VuZGVkIiAvPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-pixeltext",
     stack: "react",
     category: "Text",
-    name: "Prism Reveal",
-    tag: "text · shimmer",
-    Preview: ShimmerText,
-    code: `export function ShimmerText({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      className="bg-clip-text text-transparent animate-[shimmer_4s_linear_infinite]"
-      style={{
-        backgroundImage:
-          "linear-gradient(90deg,#71717a 0%,#fafafa 50%,#71717a 100%)",
-        backgroundSize: "200% auto",
-      }}
-    >
-      {children}
-    </span>
-  );
-}`,
+    name: "PixelText",
+    tag: "bespoke · special · aura",
+    Preview: PixelText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFBpeGVsVGV4dCgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGdhcC0xIj4KICAgICAgeyJQSVhFTFMiLnNwbGl0KCIiKS5tYXAoKGNoYXIsIGkpID0+ICgKICAgICAgICA8c3BhbiBrZXk9e2l9IGNsYXNzTmFtZT0iZm9udC1tb25vIHRleHQtMnhsIHRleHQtYXVyYSBhbmltYXRlLVtwaXhlbC1mYWRlXzJzX2luZmluaXRlXSIgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6IGAke2kgKiAwLjJ9c2AgfX0+CiAgICAgICAgICB7Y2hhcn0KICAgICAgICA8L3NwYW4+CiAgICAgICkpfQogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIHBpeGVsLWZhZGUgewogICAgICAgICAgMCUsIDEwMCUgeyBvcGFjaXR5OiAwLjI7IGZpbHRlcjogYmx1cigycHgpOyB9CiAgICAgICAgICA1MCUgeyBvcGFjaXR5OiAxOyBmaWx0ZXI6IGJsdXIoMHB4KTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
   },
   {
-    id: "react-magnetic",
+    id: "react-auraring",
+    stack: "react",
+    category: "Backgrounds",
+    name: "AuraRing",
+    tag: "bespoke · special · aura",
+    Preview: AuraRing,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cmFSaW5nKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMjQgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBib3JkZXItMiBib3JkZXItYXVyYS8zMCByb3VuZGVkLWZ1bGwgYW5pbWF0ZS1bc3Bpbl80c19saW5lYXJfaW5maW5pdGVdIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMiBib3JkZXItMiBib3JkZXItY3lhbi01MDAvMzAgcm91bmRlZC1mdWxsIGFuaW1hdGUtW3NwaW5fM3NfbGluZWFyX2luZmluaXRlX3JldmVyc2VdIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtNCBib3JkZXItMiBib3JkZXItcHVycGxlLTUwMC8zMCByb3VuZGVkLWZ1bGwgYW5pbWF0ZS1bc3Bpbl8yc19saW5lYXJfaW5maW5pdGVdIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS0yIGJnLXdoaXRlIHJvdW5kZWQtZnVsbCBzaGFkb3ctWzBfMF8xNXB4X3doaXRlXSIgLz4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-cyberswitch",
+    stack: "react",
+    category: "Transitions",
+    name: "CyberSwitch",
+    tag: "bespoke · special · aura",
+    Preview: CyberSwitch,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVyU3dpdGNoKCkgewoKICBjb25zdCBbb24sIHNldE9uXSA9IHVzZVN0YXRlKGZhbHNlKTsKICByZXR1cm4gKAogICAgPGJ1dHRvbiAKICAgICAgb25DbGljaz17KCkgPT4gc2V0T24oIW9uKX0KICAgICAgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LTE2IGgtOCBiZy1ibGFjayBib3JkZXIgYm9yZGVyLWF1cmEvMjAgcm91bmRlZCBmbGV4IGl0ZW1zLWNlbnRlciBweC0xIHRyYW5zaXRpb24tY29sb3JzIgogICAgICBzdHlsZT17eyBib3JkZXJDb2xvcjogb24gPyAidmFyKC0tYXVyYSkiIDogIiIgfX0KICAgID4KICAgICAgPGRpdiAKICAgICAgICBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctYXVyYS81IG9wYWNpdHktMCB0cmFuc2l0aW9uLW9wYWNpdHkiCiAgICAgICAgc3R5bGU9e3sgb3BhY2l0eTogb24gPyAxIDogMCB9fQogICAgICAvPgogICAgICA8ZGl2IAogICAgICAgIGNsYXNzTmFtZT0ic2l6ZS01IGJnLWF1cmEvMjAgYm9yZGVyIGJvcmRlci1hdXJhLzQwIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMCByZWxhdGl2ZSB6LTEwIgogICAgICAgIHN0eWxlPXt7IHRyYW5zZm9ybTogb24gPyAidHJhbnNsYXRlWCgzMnB4KSIgOiAidHJhbnNsYXRlWCgwKSIsIGJhY2tncm91bmRDb2xvcjogb24gPyAidmFyKC0tYXVyYSkiIDogIiIgfX0KICAgICAgPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLXdoaXRlLzQwIGFuaW1hdGUtcHVsc2UiIHN0eWxlPXt7IGRpc3BsYXk6IG9uID8gImJsb2NrIiA6ICJub25lIiB9fSAvPgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIHJpZ2h0LTIgdGV4dC1bOHB4XSBmb250LW1vbm8gdGV4dC1hdXJhLzQwIiBzdHlsZT17eyBkaXNwbGF5OiBvbiA/ICJub25lIiA6ICJibG9jayIgfX0+T0ZGPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBsZWZ0LTIgdGV4dC1bOHB4XSBmb250LW1vbm8gdGV4dC13aGl0ZSIgc3R5bGU9e3sgZGlzcGxheTogb24gPyAiYmxvY2siIDogIm5vbmUiIH19Pk9OPC9kaXY+CiAgICA8L2J1dHRvbj4KICApOwp9",
+  },
+  {
+    id: "react-floatingicons",
+    stack: "react",
+    category: "Transitions",
+    name: "FloatingIcons",
+    tag: "bespoke · special · aura",
+    Preview: FloatingIcons,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nSWNvbnMoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtZnVsbCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAtNCI+CiAgICAgIHtbMSwgMiwgM10ubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdiAKICAgICAgICAgIGtleT17aX0KICAgICAgICAgIGNsYXNzTmFtZT0ic2l6ZS0xMCBiZy1zdXJmYWNlLTIgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCByb3VuZGVkLWxnIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGFuaW1hdGUtW2Zsb2F0LWljb25fNHNfaW5maW5pdGVfZWFzZS1pbi1vdXRdIgogICAgICAgICAgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6IGAke2kgKiAwLjV9c2AgfX0KICAgICAgICA+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS00IGJnLWF1cmEvNDAgcm91bmRlZC1zbSIgLz4KICAgICAgICA8L2Rpdj4KICAgICAgKSl9CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgZmxvYXQtaWNvbiB7CiAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKSByb3RhdGUoMGRlZyk7IH0KICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTVweCkgcm90YXRlKDEwZGVnKTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-rippleeffect",
+    stack: "react",
+    category: "Cursors",
+    name: "RippleEffect",
+    tag: "bespoke · special · aura",
+    Preview: RippleEffect,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFJpcHBsZUVmZmVjdCgpIHsKCiAgY29uc3QgW3JpcHBsZXMsIHNldFJpcHBsZXNdID0gdXNlU3RhdGU8eyB4OiBudW1iZXI7IHk6IG51bWJlcjsgaWQ6IG51bWJlciB9W10+KFtdKTsKICByZXR1cm4gKAogICAgPGRpdiAKICAgICAgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LTQ4IGgtMjggYmctc3VyZmFjZS0yIHJvdW5kZWQteGwgb3ZlcmZsb3ctaGlkZGVuIGN1cnNvci1wb2ludGVyIgogICAgICBvbkNsaWNrPXsoZSkgPT4gewogICAgICAgIGNvbnN0IHIgPSBlLmN1cnJlbnRUYXJnZXQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICAgICAgc2V0UmlwcGxlcyhbLi4ucmlwcGxlcywgeyB4OiBlLmNsaWVudFggLSByLmxlZnQsIHk6IGUuY2xpZW50WSAtIHIudG9wLCBpZDogRGF0ZS5ub3coKSB9XSk7CiAgICAgIH19CiAgICA+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRleHQtWzEwcHhdIGZvbnQtbW9ubyB0ZXh0LXRleHQtbXV0ZWQiPkNMSUNLIE1FPC9kaXY+CiAgICAgIHtyaXBwbGVzLm1hcChyaXAgPT4gKAogICAgICAgIDxkaXYgCiAgICAgICAgICBrZXk9e3JpcC5pZH0KICAgICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgc2l6ZS00IGJnLWF1cmEvMzAgcm91bmRlZC1mdWxsIC10cmFuc2xhdGUteC0xLzIgLXRyYW5zbGF0ZS15LTEvMiBhbmltYXRlLVtyaXBwbGVfMXNfZWFzZS1vdXRfZm9yd2FyZHNdIgogICAgICAgICAgc3R5bGU9e3sgbGVmdDogcmlwLngsIHRvcDogcmlwLnkgfX0KICAgICAgICAgIG9uQW5pbWF0aW9uRW5kPXsoKSA9PiBzZXRSaXBwbGVzKHByZXYgPT4gcHJldi5maWx0ZXIociA9PiByLmlkICE9PSByaXAuaWQpKX0KICAgICAgICAvPgogICAgICApKX0KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyByaXBwbGUgewogICAgICAgICAgZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMCk7IG9wYWNpdHk6IDE7IH0KICAgICAgICAgIHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgzMCk7IG9wYWNpdHk6IDA7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-prismborder",
+    stack: "react",
+    category: "Transitions",
+    name: "PrismBorder",
+    tag: "bespoke · special · aura",
+    Preview: PrismBorder,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFByaXNtQm9yZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHAtMSByb3VuZGVkLWxnIG92ZXJmbG93LWhpZGRlbiBncm91cCI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSAtaW5zZXQtWzEwMCVdIGFuaW1hdGUtW3NwaW5fM3NfbGluZWFyX2luZmluaXRlXSBiZy1bY29uaWMtZ3JhZGllbnQoZnJvbV8wZGVnLCNmZjAwMDAsI2ZmZmYwMCwjMDBmZjAwLCMwMGZmZmYsIzAwMDBmZiwjZmYwMGZmLCNmZjAwMDApXSBvcGFjaXR5LTQwIGdyb3VwLWhvdmVyOm9wYWNpdHktMTAwIHRyYW5zaXRpb24tb3BhY2l0eSIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIGJnLWJhY2tncm91bmQgcm91bmRlZC1bNHB4XSBweC02IHB5LTIgdGV4dC14cyBmb250LW1vbm8iPgogICAgICAgIHByaXNtOjphY3RpdmUKICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-magneticgrid",
+    stack: "react",
+    category: "Backgrounds",
+    name: "MagneticGrid",
+    tag: "bespoke · special · aura",
+    Preview: MagneticGrid,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljR3JpZCgpIHsKCiAgY29uc3QgW21vdXNlLCBzZXRNb3VzZV0gPSB1c2VTdGF0ZSh7IHg6IC0xMDAsIHk6IC0xMDAgfSk7CiAgcmV0dXJuICgKICAgIDxkaXYgCiAgICAgIGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtZnVsbCBiZy1ibGFjayBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1sZyBncmlkIGdyaWQtY29scy0xMCBncmlkLXJvd3MtNiBnYXAtMiBwLTIiCiAgICAgIG9uTW91c2VNb3ZlPXsoZSkgPT4gewogICAgICAgIGNvbnN0IHIgPSBlLmN1cnJlbnRUYXJnZXQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICAgICAgc2V0TW91c2UoeyB4OiBlLmNsaWVudFggLSByLmxlZnQsIHk6IGUuY2xpZW50WSAtIHIudG9wIH0pOwogICAgICB9fQogICAgPgogICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogNjAgfSkubWFwKChfLCBpKSA9PiB7CiAgICAgICAgY29uc3QgeCA9IChpICUgMTApICogMjAgKyAxMDsKICAgICAgICBjb25zdCB5ID0gTWF0aC5mbG9vcihpIC8gMTApICogMjAgKyAxMDsKICAgICAgICBjb25zdCBkeCA9IG1vdXNlLnggLSB4OwogICAgICAgIGNvbnN0IGR5ID0gbW91c2UueSAtIHk7CiAgICAgICAgY29uc3QgZGlzdCA9IE1hdGguc3FydChkeCpkeCArIGR5KmR5KTsKICAgICAgICBjb25zdCBmb3JjZSA9IE1hdGgubWF4KDAsICgxMDAgLSBkaXN0KSAvIDEwKTsKICAgICAgICByZXR1cm4gKAogICAgICAgICAgPGRpdiAKICAgICAgICAgICAga2V5PXtpfSAKICAgICAgICAgICAgY2xhc3NOYW1lPSJzaXplLTEgYmctd2hpdGUvMjAgcm91bmRlZC1mdWxsIHRyYW5zaXRpb24tdHJhbnNmb3JtIGR1cmF0aW9uLTEwMCIKICAgICAgICAgICAgc3R5bGU9e3sgdHJhbnNmb3JtOiBgdHJhbnNsYXRlKCR7ZHggKiBmb3JjZSAqIDAuMX1weCwgJHtkeSAqIGZvcmNlICogMC4xfXB4KWAsIGJhY2tncm91bmRDb2xvcjogZGlzdCA8IDUwID8gInZhcigtLWF1cmEpIiA6ICIiIH19CiAgICAgICAgICAvPgogICAgICAgICk7CiAgICAgIH0pfQogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-infinitetiles",
+    stack: "react",
+    category: "Transitions",
+    name: "InfiniteTiles",
+    tag: "bespoke · special · aura",
+    Preview: InfiniteTiles,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEluZmluaXRlVGlsZXMoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtMjQgb3ZlcmZsb3ctaGlkZGVuIGJvcmRlci15IGJvcmRlci13aGl0ZS81Ij4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTQgYW5pbWF0ZS1bc2Nyb2xsLXRpbGVzXzEwc19saW5lYXJfaW5maW5pdGVdIj4KICAgICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogMjAgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgICA8ZGl2IGtleT17aX0gY2xhc3NOYW1lPSJzaHJpbmstMCBzaXplLTE2IGJnLXN1cmZhY2UtMiByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItd2hpdGUvMTAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS04IGJnLWF1cmEvMTAgcm91bmRlZCIgLz4KICAgICAgICAgIDwvZGl2PgogICAgICAgICkpfQogICAgICA8L2Rpdj4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBzY3JvbGwtdGlsZXMgewogICAgICAgICAgZnJvbSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCgwKTsgfQogICAgICAgICAgdG8geyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTUwJSk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-glassmorphismcard",
+    stack: "react",
+    category: "Transitions",
+    name: "GlassMorphismCard",
+    tag: "bespoke · special · aura",
+    Preview: GlassMorphismCard,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdsYXNzTW9ycGhpc21DYXJkKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHctNDggaC0yOCByb3VuZGVkLTJ4bCBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIGJnLXdoaXRlLzUgYmFja2Ryb3AtYmx1ci1tZCBvdmVyZmxvdy1oaWRkZW4gZ3JvdXAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgdG9wLTAgbGVmdC0wIHctZnVsbCBoLWZ1bGwgYmctZ3JhZGllbnQtdG8tYnIgZnJvbS13aGl0ZS8xMCB0by10cmFuc3BhcmVudCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIC10b3AtMTAgLXJpZ2h0LTEwIHNpemUtMjAgYmctYXVyYS8yMCBibHVyLTJ4bCBncm91cC1ob3ZlcjpiZy1hdXJhLzQwIHRyYW5zaXRpb24tY29sb3JzIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0icC00Ij4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS04IHJvdW5kZWQtZnVsbCBiZy13aGl0ZS8xMCBib3JkZXIgYm9yZGVyLXdoaXRlLzIwIiAvPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC00IHNwYWNlLXktMiI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0xLjUgdy0yNCBiZy13aGl0ZS8yMCByb3VuZGVkLWZ1bGwiIC8+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0xLjUgdy0xNiBiZy13aGl0ZS8xMCByb3VuZGVkLWZ1bGwiIC8+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-hologramavatar",
+    stack: "react",
+    category: "Transitions",
+    name: "HologramAvatar",
+    tag: "bespoke · special · aura",
+    Preview: HologramAvatar,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEhvbG9ncmFtQXZhdGFyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMjAgcm91bmRlZC1mdWxsIG92ZXJmbG93LWhpZGRlbiBib3JkZXItMiBib3JkZXItYXVyYS8zMCBncm91cCI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLWF1cmEvMjAgYW5pbWF0ZS1wdWxzZSIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctW3JlcGVhdGluZy1saW5lYXItZ3JhZGllbnQodHJhbnNwYXJlbnQsdHJhbnNwYXJlbnRfMnB4LHJnYmEoMjQ1LDE1OCwxMSwwLjEpXzJweCxyZ2JhKDI0NSwxNTgsMTEsMC4xKV80cHgpXSBhbmltYXRlLVtob2xvZ3JhbS1zY2FuXzRzX2xpbmVhcl9pbmZpbml0ZV0iIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS0xMiByb3VuZGVkLWZ1bGwgYmctYXVyYS80MCBibHVyLXNtIGdyb3VwLWhvdmVyOmJsdXItbWQgdHJhbnNpdGlvbi1hbGwiIC8+CiAgICAgIDwvZGl2PgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGhvbG9ncmFtLXNjYW4gewogICAgICAgICAgZnJvbSB7IGJhY2tncm91bmQtcG9zaXRpb246IDAgMDsgfQogICAgICAgICAgdG8geyBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAwIDEwMCU7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-liquidtext",
+    stack: "react",
+    category: "Text",
+    name: "LiquidText",
+    tag: "bespoke · special · aura",
+    Preview: LiquidText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIExpcXVpZFRleHQoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdGV4dC00eGwgZm9udC1kaXNwbGF5IGl0YWxpYyB0cmFja2luZy13aWRlc3QgdGV4dC1hdXJhIG92ZXJmbG93LWhpZGRlbiBncm91cCI+CiAgICAgIDxzcGFuIGNsYXNzTmFtZT0icmVsYXRpdmUgei0xMCI+TElRVUlEPC9zcGFuPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1hdXJhLzIwIHRyYW5zbGF0ZS15LWZ1bGwgZ3JvdXAtaG92ZXI6dHJhbnNsYXRlLXktMCB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi01MDAgZWFzZS1pbi1vdXQiIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMCBsZWZ0LTAgdy1mdWxsIGgtZnVsbCBwb2ludGVyLWV2ZW50cy1ub25lIG9wYWNpdHktNDAiPgogICAgICAgIDxzdmcgdmlld0JveD0iMCAwIDEwMCAyMCIgY2xhc3NOYW1lPSJ3LWZ1bGwgYW5pbWF0ZS1bbGlxdWlkLXdhdmVfM3NfaW5maW5pdGVfbGluZWFyXSI+CiAgICAgICAgICA8cGF0aCBkPSJNMCAxMCBRIDI1IDIwIDUwIDEwIFQgMTAwIDEwIFYgMjAgSCAwIFoiIGZpbGw9InZhcigtLWF1cmEpIiAvPgogICAgICAgIDwvc3ZnPgogICAgICA8L2Rpdj4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBsaXF1aWQtd2F2ZSB7CiAgICAgICAgICBmcm9tIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC0xMDAlKTsgfQogICAgICAgICAgdG8geyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMTAwJSk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-bentogriditem",
+    stack: "react",
+    category: "Backgrounds",
+    name: "BentoGridItem",
+    tag: "bespoke · special · aura",
+    Preview: BentoGridItem,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEJlbnRvR3JpZEl0ZW0oKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy00OCBoLTMyIGJnLXN1cmZhY2UtMiByb3VuZGVkLTJ4bCBib3JkZXIgYm9yZGVyLXdoaXRlLzUgcC00IG92ZXJmbG93LWhpZGRlbiBncm91cCBob3Zlcjpib3JkZXItYXVyYS8zMCB0cmFuc2l0aW9uLWNvbG9ycyI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMiByaWdodC0yIHNpemUtNiByb3VuZGVkLWZ1bGwgYmctYmFja2dyb3VuZCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtMiBiZy1hdXJhIHJvdW5kZWQtZnVsbCBhbmltYXRlLXBpbmciIC8+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iaC1mdWxsIGZsZXggZmxleC1jb2wganVzdGlmeS1lbmQiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTEuNSB3LTEyIGJnLWF1cmEvNDAgcm91bmRlZC1mdWxsIG1iLTIiIC8+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMS41IHctMjQgYmctd2hpdGUvNSByb3VuZGVkLWZ1bGwiIC8+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by10ciBmcm9tLWF1cmEvNSB0by10cmFuc3BhcmVudCBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAgdHJhbnNpdGlvbi1vcGFjaXR5IiAvPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-textrevealscroll",
+    stack: "react",
+    category: "Text",
+    name: "TextRevealScroll",
+    tag: "bespoke · special · aura",
+    Preview: TextRevealScroll,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFRleHRSZXZlYWxTY3JvbGwoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgaC0xMiBvdmVyZmxvdy1oaWRkZW4gZ3JvdXAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBmbGV4LWNvbCB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi03MDAgZ3JvdXAtaG92ZXI6LXRyYW5zbGF0ZS15LWZ1bGwiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTEyIGZsZXggaXRlbXMtY2VudGVyIHRleHQtMnhsIGZvbnQtbW9ubyB0ZXh0LXRleHQtbXV0ZWQiPkhvdmVyIHRvIHJldmVhbDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTEyIGZsZXggaXRlbXMtY2VudGVyIHRleHQtMnhsIGZvbnQtbW9ubyB0ZXh0LWF1cmEiPkhJRERFTiBQUk9UT0NPTDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-floatingdock",
+    stack: "react",
+    category: "Transitions",
+    name: "FloatingDock",
+    tag: "bespoke · special · aura",
+    Preview: FloatingDock,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nRG9jaygpIHsKCiAgY29uc3QgW2hvdmVyZWQsIHNldEhvdmVyZWRdID0gdXNlU3RhdGU8bnVtYmVyIHwgbnVsbD4obnVsbCk7CiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWVuZCBnYXAtMiBiZy13aGl0ZS81IGJhY2tkcm9wLWJsdXItbWQgcC0yIHJvdW5kZWQtMnhsIGJvcmRlciBib3JkZXItd2hpdGUvMTAgaC0xNiI+CiAgICAgIHtbMCwgMSwgMiwgMywgNF0ubWFwKGkgPT4gKAogICAgICAgIDxkaXYgCiAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICBjbGFzc05hbWU9InNpemUtOCBiZy1zdXJmYWNlLTIgcm91bmRlZC1sZyBib3JkZXIgYm9yZGVyLXdoaXRlLzUgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMzAwIgogICAgICAgICAgc3R5bGU9e3sgCiAgICAgICAgICAgIGhlaWdodDogaG92ZXJlZCA9PT0gaSA/ICI0OHB4IiA6IGhvdmVyZWQgPT09IGktMSB8fCBob3ZlcmVkID09PSBpKzEgPyAiNDBweCIgOiAiMzJweCIsCiAgICAgICAgICAgIHdpZHRoOiBob3ZlcmVkID09PSBpID8gIjQ4cHgiIDogaG92ZXJlZCA9PT0gaS0xIHx8IGhvdmVyZWQgPT09IGkrMSA/ICI0MHB4IiA6ICIzMnB4IiwKICAgICAgICAgICAgYmFja2dyb3VuZENvbG9yOiBob3ZlcmVkID09PSBpID8gInZhcigtLWF1cmEpIiA6ICIiCiAgICAgICAgICB9fQogICAgICAgICAgb25Nb3VzZUVudGVyPXsoKSA9PiBzZXRIb3ZlcmVkKGkpfQogICAgICAgICAgb25Nb3VzZUxlYXZlPXsoKSA9PiBzZXRIb3ZlcmVkKG51bGwpfQogICAgICAgIC8+CiAgICAgICkpfQogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-interactivedna",
+    stack: "react",
+    category: "Transitions",
+    name: "InteractiveDNA",
+    tag: "bespoke · special · aura",
+    Preview: InteractiveDNA,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEludGVyYWN0aXZlRE5BKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTIgaC0yMCBpdGVtcy1jZW50ZXIgcm90YXRlLTQ1Ij4KICAgICAge0FycmF5LmZyb20oeyBsZW5ndGg6IDEwIH0pLm1hcCgoXywgaSkgPT4gKAogICAgICAgIDxkaXYgCiAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICBjbGFzc05hbWU9ImZsZXggZmxleC1jb2wganVzdGlmeS1iZXR3ZWVuIGgtZnVsbCBpdGVtcy1jZW50ZXIgYW5pbWF0ZS1bZG5hLXB1bHNlXzJzX2luZmluaXRlXSIKICAgICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkRlbGF5OiBgJHtpICogMC4yfXNgIH19CiAgICAgICAgPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtMiByb3VuZGVkLWZ1bGwgYmctYXVyYSBzaGFkb3ctWzBfMF8xMHB4X3ZhcigtLWF1cmEpXSBob3ZlcjpzY2FsZS0xNTAgdHJhbnNpdGlvbi10cmFuc2Zvcm0iIC8+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idy1bMXB4XSBmbGV4LTEgYmctd2hpdGUvMTAiIC8+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS0yIHJvdW5kZWQtZnVsbCBiZy13aGl0ZS80MCBob3ZlcjpzY2FsZS0xNTAgdHJhbnNpdGlvbi10cmFuc2Zvcm0iIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICkpfQogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGRuYS1wdWxzZSB7CiAgICAgICAgICAwJSwgMTAwJSB7IGhlaWdodDogMTAwJTsgb3BhY2l0eTogMC41OyB9CiAgICAgICAgICA1MCUgeyBoZWlnaHQ6IDYwJTsgb3BhY2l0eTogMTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-cyberloader",
+    stack: "react",
+    category: "Loaders",
+    name: "CyberLoader",
+    tag: "bespoke · special · aura",
+    Preview: CyberLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVyTG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMTYiPgogICAgICA8c3ZnIGNsYXNzTmFtZT0ic2l6ZS1mdWxsIGFuaW1hdGUtc3BpbiBbYW5pbWF0aW9uLWR1cmF0aW9uOjRzXSIgdmlld0JveD0iMCAwIDEwMCAxMDAiPgogICAgICAgIDxjaXJjbGUKICAgICAgICAgIGN4PSI1MCIKICAgICAgICAgIGN5PSI1MCIKICAgICAgICAgIHI9IjQ1IgogICAgICAgICAgZmlsbD0ibm9uZSIKICAgICAgICAgIHN0cm9rZT0idmFyKC0tYXVyYSkiCiAgICAgICAgICBzdHJva2VXaWR0aD0iMC41IgogICAgICAgICAgc3Ryb2tlRGFzaGFycmF5PSIxIDUiCiAgICAgICAgLz4KICAgICAgICA8Y2lyY2xlCiAgICAgICAgICBjeD0iNTAiCiAgICAgICAgICBjeT0iNTAiCiAgICAgICAgICByPSI0MCIKICAgICAgICAgIGZpbGw9Im5vbmUiCiAgICAgICAgICBzdHJva2U9IndoaXRlIgogICAgICAgICAgc3Ryb2tlV2lkdGg9IjIiCiAgICAgICAgICBzdHJva2VEYXNoYXJyYXk9IjYwIDE4MCIKICAgICAgICAgIHN0cm9rZUxpbmVjYXA9InJvdW5kIgogICAgICAgIC8+CiAgICAgIDwvc3ZnPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBmb250LW1vbm8gdGV4dC1bOHB4XSB0ZXh0LWF1cmEgYW5pbWF0ZS1wdWxzZSI+CiAgICAgICAgTERSXzk5CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-noisebg",
+    stack: "react",
+    category: "Backgrounds",
+    name: "NoiseBg",
+    tag: "bespoke · special · aura",
+    Preview: NoiseBg,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE5vaXNlQmcoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtZnVsbCBiZy1uZXV0cmFsLTkwMCBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1sZyI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIG5vaXNlLW92ZXJsYXkgb3BhY2l0eS0yMCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctZ3JhZGllbnQtdG8tYnIgZnJvbS1hdXJhLzEwIHZpYS10cmFuc3BhcmVudCB0by10cmFuc3BhcmVudCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGJvdHRvbS00IGxlZnQtNCBoLTEuNSB3LTEvMiBiZy13aGl0ZS81IHJvdW5kZWQtZnVsbCBvdmVyZmxvdy1oaWRkZW4iPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLWZ1bGwgYmctYXVyYSBhbmltYXRlLVtub2lzZS1wcm9ncmVzc18zc19pbmZpbml0ZV9lYXNlLWluLW91dF0iIC8+CiAgICAgIDwvZGl2PgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIG5vaXNlLXByb2dyZXNzIHsKICAgICAgICAgIDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC0xMDAlKTsgfQogICAgICAgICAgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCgyMDAlKTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-magnetictext",
+    stack: "react",
+    category: "Text",
+    name: "MagneticText",
+    tag: "bespoke · special · aura",
+    Preview: MagneticText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljVGV4dCgpIHsKCiAgY29uc3QgW3Bvcywgc2V0UG9zXSA9IHVzZVN0YXRlKHsgeDogMCwgeTogMCB9KTsKICByZXR1cm4gKAogICAgPGRpdgogICAgICBjbGFzc05hbWU9InJlbGF0aXZlIGN1cnNvci1wb2ludGVyIHB5LTQiCiAgICAgIG9uTW91c2VNb3ZlPXsoZSkgPT4gewogICAgICAgIGNvbnN0IHIgPSBlLmN1cnJlbnRUYXJnZXQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICAgICAgc2V0UG9zKHsKICAgICAgICAgIHg6IChlLmNsaWVudFggLSAoci5sZWZ0ICsgci53aWR0aCAvIDIpKSAqIDAuNSwKICAgICAgICAgIHk6IChlLmNsaWVudFkgLSAoci50b3AgKyByLmhlaWdodCAvIDIpKSAqIDAuNSwKICAgICAgICB9KTsKICAgICAgfX0KICAgICAgb25Nb3VzZUxlYXZlPXsoKSA9PiBzZXRQb3MoeyB4OiAwLCB5OiAwIH0pfQogICAgPgogICAgICA8c3BhbgogICAgICAgIGNsYXNzTmFtZT0iYmxvY2sgdGV4dC0zeGwgZm9udC1kaXNwbGF5IGl0YWxpYyB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0yMDAiCiAgICAgICAgc3R5bGU9e3sgdHJhbnNmb3JtOiBgdHJhbnNsYXRlKCR7cG9zLnh9cHgsICR7cG9zLnl9cHgpYCB9fQogICAgICA+CiAgICAgICAgUHVsbCA8c3BhbiBjbGFzc05hbWU9InRleHQtYXVyYSI+Q2xvc2VyPC9zcGFuPgogICAgICA8L3NwYW4+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-glowbutton",
     stack: "react",
     category: "Buttons",
-    name: "Magnetic Aura",
-    tag: "button · magnetic",
+    name: "GlowButton",
+    tag: "bespoke · special · aura",
+    Preview: GlowButton,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdsb3dCdXR0b24oKSB7CgogIHJldHVybiAoCiAgICA8YnV0dG9uIGNsYXNzTmFtZT0icmVsYXRpdmUgcHgtNiBweS0yIGJnLWJhY2tncm91bmQgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCByb3VuZGVkLWxnIGdyb3VwIG92ZXJmbG93LWhpZGRlbiI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLWF1cmEgb3BhY2l0eS0wIGdyb3VwLWhvdmVyOm9wYWNpdHktMjAgYmx1ci14bCB0cmFuc2l0aW9uLW9wYWNpdHkiIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSAtaW5zZXQtWzUwMCVdIGdyb3VwLWhvdmVyOmFuaW1hdGUtW2dsb3ctc3Bpbl80c19saW5lYXJfaW5maW5pdGVdIGJnLVtjb25pYy1ncmFkaWVudChmcm9tXzBkZWcsdHJhbnNwYXJlbnQsdmFyKC0tYXVyYSksdHJhbnNwYXJlbnQpXSBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAiIC8+CiAgICAgIDxzcGFuIGNsYXNzTmFtZT0icmVsYXRpdmUgei0xMCBmb250LW1lZGl1bSBncm91cC1ob3Zlcjp0ZXh0LXdoaXRlIHRyYW5zaXRpb24tY29sb3JzIj5TdXJnZTwvc3Bhbj4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBnbG93LXNwaW4gewogICAgICAgICAgZnJvbSB7IHRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9CiAgICAgICAgICB0byB7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvYnV0dG9uPgogICk7Cn0=",
+  },
+  {
+    id: "react-floatingislandsmall",
+    stack: "react",
+    category: "Transitions",
+    name: "FloatingIslandSmall",
+    tag: "bespoke · special · aura",
+    Preview: FloatingIslandSmall,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZsb2F0aW5nSXNsYW5kU21hbGwoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgYW5pbWF0ZS1bZmxvYXQtaXNsYW5kLXNfNHNfaW5maW5pdGVfZWFzZS1pbi1vdXRdIj4KICAgICAgPGRpdiBjbGFzc05hbWU9InctMjQgaC00IGJnLXN1cmZhY2UtMiByb3VuZGVkLWZ1bGwgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCBzaGFkb3ctMnhsIHJlbGF0aXZlIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgLXRvcC02IGxlZnQtNCBzaXplLTQgYmctYXVyYSByb3VuZGVkIHJvdGF0ZS00NSBhbmltYXRlLWJvdW5jZSIgLz4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSAtYm90dG9tLTYgbGVmdC0xLzIgLXRyYW5zbGF0ZS14LTEvMiB3LTEyIGgtMSBiZy1ibGFjay80MCBibHVyLW1kIGFuaW1hdGUtW3NoYWRvdy1zY2FsZV80c19pbmZpbml0ZV9lYXNlLWluLW91dF0iIC8+CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgZmxvYXQtaXNsYW5kLXMgewogICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7IH0KICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTBweCk7IH0KICAgICAgICB9CiAgICAgICAgQGtleWZyYW1lcyBzaGFkb3ctc2NhbGUgewogICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTUwJSkgc2NhbGUoMSk7IG9wYWNpdHk6IDAuNDsgfQogICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC01MCUpIHNjYWxlKDEuNSk7IG9wYWNpdHk6IDAuMjsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-auragrid",
+    stack: "react",
+    category: "Backgrounds",
+    name: "AuraGrid",
+    tag: "bespoke · special · aura",
+    Preview: AuraGrid,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cmFHcmlkKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHctZnVsbCBoLWZ1bGwgYmctYmFja2dyb3VuZCBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1sZyBncmlkIGdyaWQtY29scy00IGdhcC0xIHAtMSI+CiAgICAgIHtBcnJheS5mcm9tKHsgbGVuZ3RoOiAxNiB9KS5tYXAoKF8sIGkpID0+ICgKICAgICAgICA8ZGl2CiAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICBjbGFzc05hbWU9ImJnLXN1cmZhY2UtMiByb3VuZGVkIGJvcmRlciBib3JkZXItd2hpdGUvWzAuMDNdIGFuaW1hdGUtcHVsc2UiCiAgICAgICAgICBzdHlsZT17eyBhbmltYXRpb25EZWxheTogYCR7aSAqIDAuMX1zYCB9fQogICAgICAgID4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzaXplLWZ1bGwgYmctYXVyYSBvcGFjaXR5LTAgaG92ZXI6b3BhY2l0eS0xMCB0cmFuc2l0aW9uLW9wYWNpdHkiIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICkpfQogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-glitchlogo",
+    stack: "react",
+    category: "Text",
+    name: "GlitchLogo",
+    tag: "bespoke · special · aura",
+    Preview: GlitchLogo,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdsaXRjaExvZ28oKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgZ3JvdXAiPgogICAgICA8c3BhbiBjbGFzc05hbWU9ImZvbnQtZGlzcGxheSBpdGFsaWMgdGV4dC01eGwgcmVsYXRpdmUgei0xMCBncm91cC1ob3ZlcjphbmltYXRlLWdsaXRjaC1wcmltYXJ5Ij4KICAgICAgICBNVk0KICAgICAgPC9zcGFuPgogICAgICA8c3BhbiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgdGV4dC1jeWFuLTUwMCBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAgZ3JvdXAtaG92ZXI6YW5pbWF0ZS1nbGl0Y2gtc2VjLTEiPgogICAgICAgIE1WTQogICAgICA8L3NwYW4+CiAgICAgIDxzcGFuIGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCB0ZXh0LXJlZC01MDAgb3BhY2l0eS0wIGdyb3VwLWhvdmVyOm9wYWNpdHktMTAwIGdyb3VwLWhvdmVyOmFuaW1hdGUtZ2xpdGNoLXNlYy0yIj4KICAgICAgICBNVk0KICAgICAgPC9zcGFuPgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGdsaXRjaC1wcmltYXJ5IHsKICAgICAgICAgIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMCk7IH0KICAgICAgICAgIDIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0ycHgsIDJweCk7IH0KICAgICAgICAgIDQwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0ycHgsIC0ycHgpOyB9CiAgICAgICAgICA2MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgycHgsIDJweCk7IH0KICAgICAgICAgIDgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDJweCwgLTJweCk7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-holographiccard",
+    stack: "react",
+    category: "Transitions",
+    name: "HolographicCard",
+    tag: "bespoke · special · aura",
+    Preview: HolographicCard,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEhvbG9ncmFwaGljQ2FyZCgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LTQwIGgtMjQgcm91bmRlZC1sZyBiZy1zdXJmYWNlLTIgb3ZlcmZsb3ctaGlkZGVuIGJvcmRlciBib3JkZXItd2hpdGUvMTAgZ3JvdXAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by10ciBmcm9tLWF1cmEvMTAgdmlhLXRyYW5zcGFyZW50IHRvLWN5YW4tNTAwLzEwIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBvcGFjaXR5LTAgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAgdHJhbnNpdGlvbi1vcGFjaXR5IGJnLVtyZXBlYXRpbmctbGluZWFyLWdyYWRpZW50KDkwZGVnLHRyYW5zcGFyZW50LHRyYW5zcGFyZW50XzJweCxyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpXzJweCxyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpXzRweCldIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0icC00IGZsZXggZmxleC1jb2wganVzdGlmeS1lbmQgaC1mdWxsIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0xIHctMTIgYmctYXVyYSByb3VuZGVkLWZ1bGwgbWItMSIgLz4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0xIHctOCBiZy13aGl0ZS8yMCByb3VuZGVkLWZ1bGwiIC8+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-wavebutton",
+    stack: "react",
+    category: "Buttons",
+    name: "WaveButton",
+    tag: "bespoke · special · aura",
+    Preview: WaveButton,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFdhdmVCdXR0b24oKSB7CgogIHJldHVybiAoCiAgICA8YnV0dG9uIGNsYXNzTmFtZT0icmVsYXRpdmUgcHgtNiBweS0yIGJnLWF1cmEgdGV4dC1ibGFjayBmb250LXNlbWlib2xkIHJvdW5kZWQtbGcgb3ZlcmZsb3ctaGlkZGVuIGdyb3VwIj4KICAgICAgPHNwYW4gY2xhc3NOYW1lPSJyZWxhdGl2ZSB6LTEwIj5XQVZFPC9zcGFuPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTAgbGVmdC0wIHctZnVsbCBoLTAgYmctYmxhY2svMjAgZ3JvdXAtaG92ZXI6aC1mdWxsIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMCBlYXNlLWluLW91dCIgLz4KICAgICAgPHN2ZwogICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgdG9wLTEvMiBsZWZ0LTAgdy1mdWxsIGgtOCAtdHJhbnNsYXRlLXktMS8yIG9wYWNpdHktMCBncm91cC1ob3ZlcjpvcGFjaXR5LTEwMCB0cmFuc2l0aW9uLW9wYWNpdHkiCiAgICAgICAgdmlld0JveD0iMCAwIDEwMCAyMCIKICAgICAgPgogICAgICAgIDxwYXRoCiAgICAgICAgICBkPSJNMCAxMCBRIDI1IDIwIDUwIDEwIFQgMTAwIDEwIgogICAgICAgICAgZmlsbD0ibm9uZSIKICAgICAgICAgIHN0cm9rZT0id2hpdGUiCiAgICAgICAgICBzdHJva2VXaWR0aD0iMiIKICAgICAgICAgIGNsYXNzTmFtZT0iYW5pbWF0ZS1bbGlxdWlkLXdhdmVfMnNfaW5maW5pdGVfbGluZWFyXSIKICAgICAgICAvPgogICAgICA8L3N2Zz4KICAgIDwvYnV0dG9uPgogICk7Cn0=",
+  },
+  {
+    id: "react-scantextloader",
+    stack: "react",
+    category: "Loaders",
+    name: "ScanTextLoader",
+    tag: "bespoke · special · aura",
+    Preview: ScanTextLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFNjYW5UZXh0TG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZvbnQtbW9ubyB0ZXh0LXhzIHRyYWNraW5nLVswLjJlbV0gcmVsYXRpdmUgb3ZlcmZsb3ctaGlkZGVuIGdyb3VwIj4KICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LXdoaXRlLzIwIGdyb3VwLWhvdmVyOnRleHQtd2hpdGUgdHJhbnNpdGlvbi1jb2xvcnMiPgogICAgICAgIElOSVRJQUxJWklOR19QUk9UT0NPTAogICAgICA8L3NwYW4+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIHRleHQtYXVyYSBhbmltYXRlLVtzY2FuLWxvYWRlcl8zc19pbmZpbml0ZV9zdGVwcygyMCldIG92ZXJmbG93LWhpZGRlbiB3LTAgd2hpdGVzcGFjZS1ub3dyYXAiPgogICAgICAgIElOSVRJQUxJWklOR19QUk9UT0NPTAogICAgICA8L2Rpdj4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBzY2FuLWxvYWRlciB7CiAgICAgICAgICAwJSB7IHc6IDA7IH0KICAgICAgICAgIDEwMCUgeyB3aWR0aDogMTAwJTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-orbitdots",
+    stack: "react",
+    category: "Loaders",
+    name: "OrbitDots",
+    tag: "bespoke · special · aura",
+    Preview: OrbitDots,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE9yYml0RG90cygpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBzaXplLTE2Ij4KICAgICAge0FycmF5LmZyb20oeyBsZW5ndGg6IDggfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdgogICAgICAgICAga2V5PXtpfQogICAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGFuaW1hdGUtc3BpbiIKICAgICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkR1cmF0aW9uOiBgJHsyICsgaSAqIDAuM31zYCwgdHJhbnNmb3JtOiBgcm90YXRlKCR7aSAqIDQ1fWRlZylgIH19CiAgICAgICAgPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtMSBiZy1hdXJhIHJvdW5kZWQtZnVsbCBhYnNvbHV0ZSB0b3AtMCBsZWZ0LTEvMiAtdHJhbnNsYXRlLXgtMS8yIG9wYWNpdHktNjAiIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICkpfQogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-interactiveblob",
+    stack: "react",
+    category: "Cursors",
+    name: "InteractiveBlob",
+    tag: "bespoke · special · aura",
+    Preview: InteractiveBlob,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEludGVyYWN0aXZlQmxvYigpIHsKCiAgY29uc3QgW3NjYWxlLCBzZXRTY2FsZV0gPSB1c2VTdGF0ZSgxKTsKICByZXR1cm4gKAogICAgPGRpdgogICAgICBjbGFzc05hbWU9InNpemUtMjAgYmctYXVyYSBvcGFjaXR5LTMwIGJsdXItMnhsIHJvdW5kZWQtZnVsbCB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi01MDAgY3Vyc29yLXBvaW50ZXIiCiAgICAgIHN0eWxlPXt7IHRyYW5zZm9ybTogYHNjYWxlKCR7c2NhbGV9KWAgfX0KICAgICAgb25Nb3VzZUVudGVyPXsoKSA9PiBzZXRTY2FsZSgxLjUpfQogICAgICBvbk1vdXNlTGVhdmU9eygpID0+IHNldFNjYWxlKDEpfQogICAgLz4KICApOwp9",
+  },
+  {
+    id: "react-gridhover",
+    stack: "react",
+    category: "Backgrounds",
+    name: "GridHover",
+    tag: "bespoke · special · aura",
+    Preview: GridHover,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdyaWRIb3ZlcigpIHsKCiAgY29uc3QgW2FjdGl2ZSwgc2V0QWN0aXZlXSA9IHVzZVN0YXRlPG51bWJlciB8IG51bGw+KG51bGwpOwogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBncmlkLWNvbHMtNCBnYXAtMSBwLTEgYmctc3VyZmFjZS0yIHJvdW5kZWQtbGciPgogICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogMTYgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdgogICAgICAgICAga2V5PXtpfQogICAgICAgICAgY2xhc3NOYW1lPXtgc2l6ZS04IHJvdW5kZWQgdHJhbnNpdGlvbi1jb2xvcnMgJHthY3RpdmUgPT09IGkgPyAiYmctYXVyYSIgOiAiYmctYmFja2dyb3VuZC80MCJ9YH0KICAgICAgICAgIG9uTW91c2VFbnRlcj17KCkgPT4gc2V0QWN0aXZlKGkpfQogICAgICAgICAgb25Nb3VzZUxlYXZlPXsoKSA9PiBzZXRBY3RpdmUobnVsbCl9CiAgICAgICAgLz4KICAgICAgKSl9CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-pixelloader",
+    stack: "react",
+    category: "Loaders",
+    name: "PixelLoader",
+    tag: "bespoke · special · aura",
+    Preview: PixelLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFBpeGVsTG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTMgZ2FwLTAuNSBhbmltYXRlLXB1bHNlIj4KICAgICAge0FycmF5LmZyb20oeyBsZW5ndGg6IDkgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdiBrZXk9e2l9IGNsYXNzTmFtZT0ic2l6ZS0yIGJnLWF1cmEiIHN0eWxlPXt7IG9wYWNpdHk6IE1hdGgucmFuZG9tKCkgfX0gLz4KICAgICAgKSl9CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-magneticcard",
+    stack: "react",
+    category: "Transitions",
+    name: "MagneticCard",
+    tag: "bespoke · special · aura",
+    Preview: MagneticCard,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljQ2FyZCgpIHsKCiAgY29uc3QgW3JvdCwgc2V0Um90XSA9IHVzZVN0YXRlKHsgeDogMCwgeTogMCB9KTsKICByZXR1cm4gKAogICAgPGRpdgogICAgICBjbGFzc05hbWU9InJlbGF0aXZlIHctNDAgaC0yNCBwZXJzcGVjdGl2ZS1bODAwcHhdIGN1cnNvci1wb2ludGVyIgogICAgICBvbk1vdXNlTW92ZT17KGUpID0+IHsKICAgICAgICBjb25zdCByID0gZS5jdXJyZW50VGFyZ2V0LmdldEJvdW5kaW5nQ2xpZW50UmVjdCgpOwogICAgICAgIHNldFJvdCh7CiAgICAgICAgICB4OiAoZS5jbGllbnRZIC0gKHIudG9wICsgci5oZWlnaHQgLyAyKSkgLyA1LAogICAgICAgICAgeTogLShlLmNsaWVudFggLSAoci5sZWZ0ICsgci53aWR0aCAvIDIpKSAvIDUsCiAgICAgICAgfSk7CiAgICAgIH19CiAgICAgIG9uTW91c2VMZWF2ZT17KCkgPT4gc2V0Um90KHsgeDogMCwgeTogMCB9KX0KICAgID4KICAgICAgPGRpdgogICAgICAgIGNsYXNzTmFtZT0ic2l6ZS1mdWxsIGJnLXN1cmZhY2UtMiByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItd2hpdGUvMTAgdHJhbnNpdGlvbi10cmFuc2Zvcm0gZHVyYXRpb24tMTAwIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIgogICAgICAgIHN0eWxlPXt7IHRyYW5zZm9ybTogYHJvdGF0ZVgoJHtyb3QueH1kZWcpIHJvdGF0ZVkoJHtyb3QueX1kZWcpYCB9fQogICAgICA+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtOCBiZy1hdXJhLzIwIHJvdW5kZWQgcm90YXRlLTQ1IGJvcmRlciBib3JkZXItYXVyYS80MCIgLz4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-auratextfloat",
+    stack: "react",
+    category: "Text",
+    name: "AuraTextFloat",
+    tag: "bespoke · special · aura",
+    Preview: AuraTextFloat,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cmFUZXh0RmxvYXQoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC0yeGwgZm9udC1kaXNwbGF5IGl0YWxpYyBhbmltYXRlLVthdXJhLWZsb2F0XzRzX2luZmluaXRlX2Vhc2UtaW4tb3V0XSBzaGltbWVyLXRleHQiPgogICAgICBGbG9hdGluZyBBdXJhCiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgYXVyYS1mbG9hdCB7CiAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKSByb3RhdGUoLTFkZWcpOyB9CiAgICAgICAgICA1MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTEwcHgpIHJvdGF0ZSgxZGVnKTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-cyberpanel",
+    stack: "react",
+    category: "Backgrounds",
+    name: "CyberPanel",
+    tag: "bespoke · special · aura",
+    Preview: CyberPanel,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVyUGFuZWwoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy00OCBoLTI4IGJnLWJsYWNrLzQwIGJvcmRlci1sLTQgYm9yZGVyLWF1cmEgcC00IG92ZXJmbG93LWhpZGRlbiBncm91cCI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMCByaWdodC0wIHAtMSBiZy1hdXJhLzEwIHRleHQtWzhweF0gZm9udC1tb25vIHRleHQtYXVyYSI+CiAgICAgICAgU0VDXzAxCiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0ic3BhY2UteS0yIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0xIHctZnVsbCBiZy13aGl0ZS81IHJvdW5kZWQiIC8+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMSB3LTMvNCBiZy13aGl0ZS81IHJvdW5kZWQiIC8+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMSB3LTEvMiBiZy1hdXJhLzIwIHJvdW5kZWQiIC8+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTIgcmlnaHQtMiBzaXplLTIgYmctYXVyYSBhbmltYXRlLXBpbmciIC8+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-gridpulse",
+    stack: "react",
+    category: "Backgrounds",
+    name: "GridPulse",
+    tag: "bespoke · special · aura",
+    Preview: GridPulse,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdyaWRQdWxzZSgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LWZ1bGwgaC1mdWxsIG92ZXJmbG93LWhpZGRlbiByb3VuZGVkLWxnIGJnLXN1cmZhY2UiPgogICAgICA8ZGl2CiAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIG9wYWNpdHktMjAiCiAgICAgICAgc3R5bGU9e3sKICAgICAgICAgIGJhY2tncm91bmRJbWFnZToKICAgICAgICAgICAgImxpbmVhci1ncmFkaWVudCh2YXIoLS1saW5lKSAxcHgsIHRyYW5zcGFyZW50IDFweCksIGxpbmVhci1ncmFkaWVudCg5MGRlZywgdmFyKC0tbGluZSkgMXB4LCB0cmFuc3BhcmVudCAxcHgpIiwKICAgICAgICAgIGJhY2tncm91bmRTaXplOiAiMjBweCAyMHB4IiwKICAgICAgICB9fQogICAgICAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by10IGZyb20tYmFja2dyb3VuZCB2aWEtdHJhbnNwYXJlbnQgdG8tdHJhbnNwYXJlbnQiIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMS8yIGxlZnQtMS8yIC10cmFuc2xhdGUteC0xLzIgLXRyYW5zbGF0ZS15LTEvMiBzaXplLTMyIGJnLWF1cmEvMzAgYmx1ci1bODBweF0gYW5pbWF0ZS1wdWxzZSIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzaXplLTEgYmctYXVyYSByb3VuZGVkLWZ1bGwgc2hhZG93LVswXzBfMjBweF92YXIoLS1hdXJhKV0gYW5pbWF0ZS1waW5nIiAvPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-magneticsocialbtn",
+    stack: "react",
+    category: "Transitions",
+    name: "MagneticSocialBtn",
+    tag: "bespoke · special · aura",
+    Preview: MagneticSocialBtn,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljU29jaWFsQnRuKCkgewoKICBjb25zdCBbcG9zLCBzZXRQb3NdID0gdXNlU3RhdGUoeyB4OiAwLCB5OiAwIH0pOwogIGNvbnN0IGhhbmRsZU1vdmUgPSAoZTogUmVhY3QuTW91c2VFdmVudCkgPT4gewogICAgY29uc3QgciA9IGUuY3VycmVudFRhcmdldC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKTsKICAgIHNldFBvcyh7CiAgICAgIHg6IChlLmNsaWVudFggLSAoci5sZWZ0ICsgci53aWR0aCAvIDIpKSAqIDAuNCwKICAgICAgeTogKGUuY2xpZW50WSAtIChyLnRvcCArIHIuaGVpZ2h0IC8gMikpICogMC40LAogICAgfSk7CiAgfTsKICByZXR1cm4gKAogICAgPGJ1dHRvbgogICAgICBvbk1vdXNlTW92ZT17aGFuZGxlTW92ZX0KICAgICAgb25Nb3VzZUxlYXZlPXsoKSA9PiBzZXRQb3MoeyB4OiAwLCB5OiAwIH0pfQogICAgICBjbGFzc05hbWU9InNpemUtMTQgcm91bmRlZC0yeGwgYmctc3VyZmFjZS0yIGJvcmRlciBib3JkZXItd2hpdGUvMTAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwIGhvdmVyOmJvcmRlci1hdXJhLzUwIGdyb3VwIgogICAgICBzdHlsZT17eyB0cmFuc2Zvcm06IGB0cmFuc2xhdGUoJHtwb3MueH1weCwgJHtwb3MueX1weClgIH19CiAgICA+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJzaXplLTYgYmctd2hpdGUvMjAgcm91bmRlZC1mdWxsIGdyb3VwLWhvdmVyOmJnLWF1cmEgdHJhbnNpdGlvbi1jb2xvcnMgYW5pbWF0ZS1ib3VuY2UiIC8+CiAgICA8L2J1dHRvbj4KICApOwp9",
+  },
+  {
+    id: "react-neonscroll",
+    stack: "react",
+    category: "Transitions",
+    name: "NeonScroll",
+    tag: "bespoke · special · aura",
+    Preview: NeonScroll,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE5lb25TY3JvbGwoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy0xIGgtMjAgYmctd2hpdGUvNSByb3VuZGVkLWZ1bGwgb3ZlcmZsb3ctaGlkZGVuIj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIHRvcC0wIGxlZnQtMCB3LWZ1bGwgaC0xLzIgYmctZ3JhZGllbnQtdG8tYiBmcm9tLXRyYW5zcGFyZW50IHZpYS1hdXJhIHRvLXRyYW5zcGFyZW50IGFuaW1hdGUtW25lb24tc2Nyb2xsXzJzX2xpbmVhcl9pbmZpbml0ZV0iIC8+CiAgICAgIDxzdHlsZT57YAogICAgICAgIEBrZXlmcmFtZXMgbmVvbi1zY3JvbGwgewogICAgICAgICAgMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTEwMCUpOyB9CiAgICAgICAgICAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDIwMCUpOyB9CiAgICAgICAgfQogICAgICBgfTwvc3R5bGU+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-scanlinetext",
+    stack: "react",
+    category: "Text",
+    name: "ScanlineText",
+    tag: "bespoke · special · aura",
+    Preview: ScanlineText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFNjYW5saW5lVGV4dCgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBncm91cCBvdmVyZmxvdy1oaWRkZW4gcHgtNCBweS0yIGJnLWJsYWNrLzQwIHJvdW5kZWQgYm9yZGVyIGJvcmRlci13aGl0ZS81Ij4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctW2xpbmVhci1ncmFkaWVudCh0cmFuc3BhcmVudF81MCUscmdiYSgwLDAsMCwwLjUpXzUwJSldIGJnLVtsZW5ndGg6MTAwJV80cHhdIHBvaW50ZXItZXZlbnRzLW5vbmUgei0xMCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctYXVyYS81IG9wYWNpdHktMCBncm91cC1ob3ZlcjpvcGFjaXR5LTEwMCB0cmFuc2l0aW9uLW9wYWNpdHkiIC8+CiAgICAgIDxzcGFuIGNsYXNzTmFtZT0iZm9udC1tb25vIHRleHQteGwgdHJhY2tpbmctd2lkZXN0IHRleHQtYXVyYS84MCB1cHBlcmNhc2UgZ3JvdXAtaG92ZXI6dGV4dC1hdXJhIHRyYW5zaXRpb24tY29sb3JzIj4KICAgICAgICBBdXRoZW50aWNhdGluZy4uLgogICAgICA8L3NwYW4+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMCBsZWZ0LTAgdy1mdWxsIGgtMC41IGJnLWF1cmEvNDAgYW5pbWF0ZS1bc2NhbmxpbmVfM3NfbGluZWFyX2luZmluaXRlXSIgLz4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBzY2FubGluZSB7CiAgICAgICAgICAwJSB7IHRvcDogMCU7IG9wYWNpdHk6IDA7IH0KICAgICAgICAgIDUlIHsgb3BhY2l0eTogMTsgfQogICAgICAgICAgOTUlIHsgb3BhY2l0eTogMTsgfQogICAgICAgICAgMTAwJSB7IHRvcDogMTAwJTsgb3BhY2l0eTogMDsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-aurablob",
+    stack: "react",
+    category: "Backgrounds",
+    name: "AuraBlob",
+    tag: "bespoke · special · aura",
+    Preview: AuraBlob,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cmFCbG9iKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMzIiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1hdXJhIG9wYWNpdHktMzAgYmx1ci0zeGwgYW5pbWF0ZS1bYmxvYi1wdWxzZV84c19pbmZpbml0ZV0iIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJvcmRlci0yIGJvcmRlci1hdXJhLzIwIHJvdW5kZWQtWzQwJV82MCVfNzAlXzMwJS80MCVfNTAlXzYwJV81MCVdIGFuaW1hdGUtW3NwaW5fMTBzX2xpbmVhcl9pbmZpbml0ZV0iIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC00IGJvcmRlciBib3JkZXItd2hpdGUvMTAgcm91bmRlZC1bNjAlXzQwJV8zMCVfNzAlLzUwJV8zMCVfNzAlXzUwJV0gYW5pbWF0ZS1bc3Bpbl8xNXNfbGluZWFyX2luZmluaXRlX3JldmVyc2VdIiAvPgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGJsb2ItcHVsc2UgewogICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEpOyBmaWx0ZXI6IGJsdXIoMzBweCk7IH0KICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogc2NhbGUoMS40KTsgZmlsdGVyOiBibHVyKDUwcHgpOyB9CiAgICAgICAgfQogICAgICBgfTwvc3R5bGU+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-liquidblobbutton",
+    stack: "react",
+    category: "Buttons",
+    name: "LiquidBlobButton",
+    tag: "bespoke · special · aura",
+    Preview: LiquidBlobButton,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIExpcXVpZEJsb2JCdXR0b24oKSB7CgogIGNvbnN0IFtpc0hvdmVyZWQsIHNldElzSG92ZXJlZF0gPSB1c2VTdGF0ZShmYWxzZSk7CiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBncm91cCI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSAtaW5zZXQtNCBiZy1hdXJhLzIwIGJsdXIteGwgcm91bmRlZC1mdWxsIG9wYWNpdHktMCBncm91cC1ob3ZlcjpvcGFjaXR5LTEwMCB0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tNTAwIiAvPgogICAgICA8YnV0dG9uCiAgICAgICAgY2xhc3NOYW1lPSJyZWxhdGl2ZSBweC04IHB5LTMgcm91bmRlZC0yeGwgYmctc3VyZmFjZS0yIHRleHQtZm9yZWdyb3VuZCBmb250LXNlbWlib2xkIG92ZXJmbG93LWhpZGRlbiB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0zMDAgYWN0aXZlOnNjYWxlLTk1IgogICAgICAgIG9uTW91c2VFbnRlcj17KCkgPT4gc2V0SXNIb3ZlcmVkKHRydWUpfQogICAgICAgIG9uTW91c2VMZWF2ZT17KCkgPT4gc2V0SXNIb3ZlcmVkKGZhbHNlKX0KICAgICAgPgogICAgICAgIDxzcGFuIGNsYXNzTmFtZT0icmVsYXRpdmUgei0xMCI+TGlxdWlkIEF1cmE8L3NwYW4+CiAgICAgICAgPGRpdgogICAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIHotMCBvcGFjaXR5LTQwIHRyYW5zaXRpb24tdHJhbnNmb3JtIGR1cmF0aW9uLTcwMCBlYXNlLW91dCIKICAgICAgICAgIHN0eWxlPXt7CiAgICAgICAgICAgIGJhY2tncm91bmQ6CiAgICAgICAgICAgICAgInJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgdmFyKC0teCwgNTAlKSB2YXIoLS15LCA1MCUpLCB2YXIoLS1hdXJhKSAwJSwgdHJhbnNwYXJlbnQgNTAlKSIsCiAgICAgICAgICAgIHRyYW5zZm9ybTogaXNIb3ZlcmVkID8gInNjYWxlKDIuNSkiIDogInNjYWxlKDApIiwKICAgICAgICAgIH19CiAgICAgICAgLz4KICAgICAgICA8c3ZnCiAgICAgICAgICBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgdy1mdWxsIGgtZnVsbCBwb2ludGVyLWV2ZW50cy1ub25lIG9wYWNpdHktNTAiCiAgICAgICAgICB2aWV3Qm94PSIwIDAgMTAwIDEwMCIKICAgICAgICAgIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiCiAgICAgICAgPgogICAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxmaWx0ZXIgaWQ9ImdvbyI+CiAgICAgICAgICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjEwIiByZXN1bHQ9ImJsdXIiIC8+CiAgICAgICAgICAgICAgPGZlQ29sb3JNYXRyaXgKICAgICAgICAgICAgICAgIGluPSJibHVyIgogICAgICAgICAgICAgICAgbW9kZT0ibWF0cml4IgogICAgICAgICAgICAgICAgdmFsdWVzPSIxIDAgMCAwIDAgIDAgMSAwIDAgMCAgMCAwIDEgMCAwICAwIDAgMCAxOCAtNyIKICAgICAgICAgICAgICAgIHJlc3VsdD0iZ29vIgogICAgICAgICAgICAgIC8+CiAgICAgICAgICAgIDwvZmlsdGVyPgogICAgICAgICAgPC9kZWZzPgogICAgICAgICAgPGcgZmlsdGVyPSJ1cmwoI2dvbykiPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxNSIgZmlsbD0idmFyKC0tYXVyYSkiIGNsYXNzTmFtZT0iYW5pbWF0ZS1wdWxzZSIgLz4KICAgICAgICAgICAgPGNpcmNsZQogICAgICAgICAgICAgIGN4PSI4MCIKICAgICAgICAgICAgICBjeT0iMjAiCiAgICAgICAgICAgICAgcj0iMTIiCiAgICAgICAgICAgICAgZmlsbD0idmFyKC0tYXVyYSkiCiAgICAgICAgICAgICAgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6ICIxcyIgfX0KICAgICAgICAgICAgICBjbGFzc05hbWU9ImFuaW1hdGUtcHVsc2UiCiAgICAgICAgICAgIC8+CiAgICAgICAgICAgIDxjaXJjbGUKICAgICAgICAgICAgICBjeD0iNTAiCiAgICAgICAgICAgICAgY3k9IjgwIgogICAgICAgICAgICAgIHI9IjE4IgogICAgICAgICAgICAgIGZpbGw9InZhcigtLWF1cmEpIgogICAgICAgICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkRlbGF5OiAiMnMiIH19CiAgICAgICAgICAgICAgY2xhc3NOYW1lPSJhbmltYXRlLXB1bHNlIgogICAgICAgICAgICAvPgogICAgICAgICAgPC9nPgogICAgICAgIDwvc3ZnPgogICAgICA8L2J1dHRvbj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-tiltcard3d",
+    stack: "react",
+    category: "Transitions",
+    name: "TiltCard3D",
+    tag: "bespoke · special · aura",
+    Preview: TiltCard3D,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFRpbHRDYXJkM0QoKSB7CgogIGNvbnN0IFtyb3RhdGUsIHNldFJvdGF0ZV0gPSB1c2VTdGF0ZSh7IHg6IDAsIHk6IDAgfSk7CiAgY29uc3QgW2dsYXJlLCBzZXRHbGFyZV0gPSB1c2VTdGF0ZSh7IHg6IDUwLCB5OiA1MCwgb3BhY2l0eTogMCB9KTsKCiAgY29uc3QgaGFuZGxlTW91c2VNb3ZlID0gKGU6IFJlYWN0Lk1vdXNlRXZlbnQ8SFRNTERpdkVsZW1lbnQ+KSA9PiB7CiAgICBjb25zdCBjYXJkID0gZS5jdXJyZW50VGFyZ2V0OwogICAgY29uc3QgYm94ID0gY2FyZC5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKTsKICAgIGNvbnN0IHggPSBlLmNsaWVudFggLSBib3gubGVmdDsKICAgIGNvbnN0IHkgPSBlLmNsaWVudFkgLSBib3gudG9wOwogICAgY29uc3QgY2VudGVyWCA9IGJveC53aWR0aCAvIDI7CiAgICBjb25zdCBjZW50ZXJZID0gYm94LmhlaWdodCAvIDI7CiAgICBjb25zdCByb3RhdGVYID0gKHkgLSBjZW50ZXJZKSAvIDg7CiAgICBjb25zdCByb3RhdGVZID0gKGNlbnRlclggLSB4KSAvIDg7CgogICAgc2V0Um90YXRlKHsgeDogcm90YXRlWCwgeTogcm90YXRlWSB9KTsKICAgIHNldEdsYXJlKHsgeDogKHggLyBib3gud2lkdGgpICogMTAwLCB5OiAoeSAvIGJveC5oZWlnaHQpICogMTAwLCBvcGFjaXR5OiAwLjYgfSk7CiAgfTsKCiAgY29uc3QgaGFuZGxlTW91c2VMZWF2ZSA9ICgpID0+IHsKICAgIHNldFJvdGF0ZSh7IHg6IDAsIHk6IDAgfSk7CiAgICBzZXRHbGFyZSgocHJldikgPT4gKHsgLi4ucHJldiwgb3BhY2l0eTogMCB9KSk7CiAgfTsKCiAgcmV0dXJuICgKICAgIDxkaXYKICAgICAgY2xhc3NOYW1lPSJwZXJzcGVjdGl2ZS1bMTAwMHB4XSB3LWZ1bGwgbWF4LXctWzIwMHB4XSIKICAgICAgb25Nb3VzZU1vdmU9e2hhbmRsZU1vdXNlTW92ZX0KICAgICAgb25Nb3VzZUxlYXZlPXtoYW5kbGVNb3VzZUxlYXZlfQogICAgPgogICAgICA8ZGl2CiAgICAgICAgY2xhc3NOYW1lPSJyZWxhdGl2ZSBoLTMyIHJvdW5kZWQteGwgYmctc3VyZmFjZS0yIGJvcmRlciBib3JkZXItd2hpdGUvMTAgdHJhbnNpdGlvbi10cmFuc2Zvcm0gZHVyYXRpb24tMjAwIGVhc2Utb3V0IHByZXNlcnZlLTNkIgogICAgICAgIHN0eWxlPXt7IHRyYW5zZm9ybTogYHJvdGF0ZVgoJHtyb3RhdGUueH1kZWcpIHJvdGF0ZVkoJHtyb3RhdGUueX1kZWcpYCB9fQogICAgICA+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgcm91bmRlZC14bCBvdmVyZmxvdy1oaWRkZW4gcG9pbnRlci1ldmVudHMtbm9uZSI+CiAgICAgICAgICA8ZGl2CiAgICAgICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by1iciBmcm9tLXdoaXRlLzIwIHRvLXRyYW5zcGFyZW50IHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0zMDAiCiAgICAgICAgICAgIHN0eWxlPXt7CiAgICAgICAgICAgICAgb3BhY2l0eTogZ2xhcmUub3BhY2l0eSwKICAgICAgICAgICAgICBiYWNrZ3JvdW5kOiBgcmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCAke2dsYXJlLnh9JSAke2dsYXJlLnl9JSwgcmdiYSgyNTUsMjU1LDI1NSwwLjMpIDAlLCB0cmFuc3BhcmVudCA2MCUpYCwKICAgICAgICAgICAgfX0KICAgICAgICAgIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGgtZnVsbCI+CiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtc20gZm9udC1tb25vIHRleHQtYXVyYSI+M0Q6OkVMRVZBVEU8L3NwYW4+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-holographictext",
+    stack: "react",
+    category: "Text",
+    name: "HolographicText",
+    tag: "bespoke · special · aura",
+    Preview: HolographicText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEhvbG9ncmFwaGljVGV4dCgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBncm91cCBjdXJzb3ItZGVmYXVsdCI+CiAgICAgIDxoMiBjbGFzc05hbWU9InRleHQtNHhsIGZvbnQtZGlzcGxheSBpdGFsaWMgdHJhY2tpbmctd2lkZXN0IHJlbGF0aXZlIj4KICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgdGV4dC13aGl0ZSBibHVyLVsycHhdIG9wYWNpdHktMjAgZ3JvdXAtaG92ZXI6b3BhY2l0eS00MCB0cmFuc2l0aW9uLW9wYWNpdHkiPgogICAgICAgICAgSE9MT0dSQVBICiAgICAgICAgPC9zcGFuPgogICAgICAgIDxzcGFuCiAgICAgICAgICBjbGFzc05hbWU9ImJnLWNsaXAtdGV4dCB0ZXh0LXRyYW5zcGFyZW50IGFuaW1hdGUtW2hvbG9ncmFtXzVzX2xpbmVhcl9pbmZpbml0ZV0iCiAgICAgICAgICBzdHlsZT17ewogICAgICAgICAgICBiYWNrZ3JvdW5kSW1hZ2U6CiAgICAgICAgICAgICAgImxpbmVhci1ncmFkaWVudCg5MGRlZywgI2ZmMDAwMCwgI2ZmODAwMCwgI2ZmZmYwMCwgIzAwZmYwMCwgIzAwZmZmZiwgIzAwMDBmZiwgIzgwMDBmZiwgI2ZmMDAwMCkiLAogICAgICAgICAgICBiYWNrZ3JvdW5kU2l6ZTogIjQwMCUgMTAwJSIsCiAgICAgICAgICB9fQogICAgICAgID4KICAgICAgICAgIEhPTE9HUkFQSAogICAgICAgIDwvc3Bhbj4KICAgICAgPC9oMj4KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBob2xvZ3JhbSB7CiAgICAgICAgICAwJSB7IGJhY2tncm91bmQtcG9zaXRpb246IDAlIDUwJTsgZmlsdGVyOiBodWUtcm90YXRlKDBkZWcpOyB9CiAgICAgICAgICAxMDAlIHsgYmFja2dyb3VuZC1wb3NpdGlvbjogNDAwJSA1MCU7IGZpbHRlcjogaHVlLXJvdGF0ZSgzNjBkZWcpOyB9CiAgICAgICAgfQogICAgICBgfTwvc3R5bGU+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-cyberpunkborder",
+    stack: "react",
+    category: "Transitions",
+    name: "CyberpunkBorder",
+    tag: "bespoke · special · aura",
+    Preview: CyberpunkBorder,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEN5YmVycHVua0JvcmRlcigpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBwLTEgZ3JvdXAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1hdXJhIG9wYWNpdHktMjAgZ3JvdXAtaG92ZXI6b3BhY2l0eS00MCB0cmFuc2l0aW9uLW9wYWNpdHkiIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSB0b3AtMCBsZWZ0LTAgdy00IGgtNCBib3JkZXItdC0yIGJvcmRlci1sLTIgYm9yZGVyLWF1cmEgYW5pbWF0ZS1wdWxzZSIgLz4KICAgICAgPGRpdgogICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgdG9wLTAgcmlnaHQtMCB3LTQgaC00IGJvcmRlci10LTIgYm9yZGVyLXItMiBib3JkZXItYXVyYSBhbmltYXRlLXB1bHNlIgogICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkRlbGF5OiAiMC41cyIgfX0KICAgICAgLz4KICAgICAgPGRpdgogICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTAgbGVmdC0wIHctNCBoLTQgYm9yZGVyLWItMiBib3JkZXItbC0yIGJvcmRlci1hdXJhIGFuaW1hdGUtcHVsc2UiCiAgICAgICAgc3R5bGU9e3sgYW5pbWF0aW9uRGVsYXk6ICIxcyIgfX0KICAgICAgLz4KICAgICAgPGRpdgogICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgYm90dG9tLTAgcmlnaHQtMCB3LTQgaC00IGJvcmRlci1iLTIgYm9yZGVyLXItMiBib3JkZXItYXVyYSBhbmltYXRlLXB1bHNlIgogICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkRlbGF5OiAiMS41cyIgfX0KICAgICAgLz4KCiAgICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBiZy1iYWNrZ3JvdW5kIHB4LTYgcHktMyBib3JkZXIgYm9yZGVyLXdoaXRlLzUgb3ZlcmZsb3ctaGlkZGVuIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgdG9wLTAgbGVmdC0wIHctZnVsbCBoLVsxcHhdIGJnLWF1cmEvNTAgLXRyYW5zbGF0ZS14LWZ1bGwgZ3JvdXAtaG92ZXI6dHJhbnNsYXRlLXgtZnVsbCB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0xMDAwIiAvPgogICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iZm9udC1tb25vIHRleHQteHMgdHJhY2tpbmctdGlnaHRlciBncm91cC1ob3Zlcjp0ZXh0LWF1cmEgdHJhbnNpdGlvbi1jb2xvcnMiPgogICAgICAgICAgUFJPVE9DT0xfQVVST1JBCiAgICAgICAgPC9zcGFuPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-dnahelixloader",
+    stack: "react",
+    category: "Loaders",
+    name: "DNAHelixLoader",
+    tag: "bespoke · special · aura",
+    Preview: DNAHelixLoader,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEROQUhlbGl4TG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZ2FwLTEgaC0xMiBpdGVtcy1jZW50ZXIiPgogICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogMTIgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgPGRpdgogICAgICAgICAga2V5PXtpfQogICAgICAgICAgY2xhc3NOYW1lPSJmbGV4IGZsZXgtY29sIGp1c3RpZnktYmV0d2VlbiBoLWZ1bGwgaXRlbXMtY2VudGVyIgogICAgICAgICAgc3R5bGU9e3sKICAgICAgICAgICAgYW5pbWF0aW9uOiBgZG5hLXJvdGF0ZSAycyBlYXNlLWluLW91dCBpbmZpbml0ZWAsCiAgICAgICAgICAgIGFuaW1hdGlvbkRlbGF5OiBgJHtpICogMC4xNX1zYCwKICAgICAgICAgIH19CiAgICAgICAgPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNpemUtMS41IHJvdW5kZWQtZnVsbCBiZy1hdXJhIHNoYWRvdy1bMF8wXzhweF92YXIoLS1hdXJhKV0iIC8+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idy1bMXB4XSBmbGV4LTEgYmctd2hpdGUvMTAiIC8+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS0xLjUgcm91bmRlZC1mdWxsIGJnLXdoaXRlLzQwIiAvPgogICAgICAgIDwvZGl2PgogICAgICApKX0KICAgICAgPHN0eWxlPntgCiAgICAgICAgQGtleWZyYW1lcyBkbmEtcm90YXRlIHsKICAgICAgICAgIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMSk7IG9wYWNpdHk6IDAuMzsgfQogICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMC4yKTsgb3BhY2l0eTogMTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-refractiveglass",
+    stack: "react",
+    category: "Transitions",
+    name: "RefractiveGlass",
+    tag: "bespoke · special · aura",
+    Preview: RefractiveGlass,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFJlZnJhY3RpdmVHbGFzcygpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSB3LTQ4IGgtMjggZ3JvdXAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by1iciBmcm9tLWF1cmEvMjAgdmlhLXRyYW5zcGFyZW50IHRvLWN5YW4tNTAwLzIwIGJsdXIteGwgb3BhY2l0eS0wIGdyb3VwLWhvdmVyOm9wYWNpdHktMTAwIHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi03MDAiIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGJnLXdoaXRlLzUgYmFja2Ryb3AtYmx1ci1tZCByb3VuZGVkLTJ4bCBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIHNoYWRvdy0yeGwgb3ZlcmZsb3ctaGlkZGVuIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgLWluc2V0LVsxMDAlXSBiZy1ncmFkaWVudC10by10ciBmcm9tLXRyYW5zcGFyZW50IHZpYS13aGl0ZS8xMCB0by10cmFuc3BhcmVudCB0cmFuc2xhdGUteC1bLTEwMCVdIGdyb3VwLWhvdmVyOnRyYW5zbGF0ZS14LVsxMDAlXSB0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0xMDAwIiAvPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJwLTQgZmxleCBmbGV4LWNvbCBqdXN0aWZ5LWJldHdlZW4gaC1mdWxsIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzaXplLTggcm91bmRlZC1sZyBiZy1hdXJhLzIwIGJvcmRlciBib3JkZXItYXVyYS8zMCBhbmltYXRlLXB1bHNlIiAvPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNwYWNlLXktMS41Ij4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMiB3LTI0IGJnLXdoaXRlLzIwIHJvdW5kZWQtZnVsbCIgLz4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMiB3LTE2IGJnLXdoaXRlLzEwIHJvdW5kZWQtZnVsbCIgLz4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-magnetictraillink",
+    stack: "react",
+    category: "Cursors",
+    name: "MagneticTrailLink",
+    tag: "bespoke · special · aura",
+    Preview: MagneticTrailLink,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljVHJhaWxMaW5rKCkgewoKICBjb25zdCBbZG90cywgc2V0RG90c10gPSB1c2VTdGF0ZTx7IHg6IG51bWJlcjsgeTogbnVtYmVyOyBpZDogbnVtYmVyIH1bXT4oW10pOwogIGNvbnN0IG5leHRJZCA9IHVzZVJlZigwKTsKCiAgY29uc3QgaGFuZGxlTW91c2VNb3ZlID0gKGU6IFJlYWN0Lk1vdXNlRXZlbnQpID0+IHsKICAgIGNvbnN0IHJlY3QgPSBlLmN1cnJlbnRUYXJnZXQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICBjb25zdCB4ID0gZS5jbGllbnRYIC0gcmVjdC5sZWZ0OwogICAgY29uc3QgeSA9IGUuY2xpZW50WSAtIHJlY3QudG9wOwoKICAgIGNvbnN0IGlkID0gbmV4dElkLmN1cnJlbnQrKzsKICAgIHNldERvdHMoKHByZXYpID0+IFsuLi5wcmV2LnNsaWNlKC0xMCksIHsgeCwgeSwgaWQgfV0pOwogIH07CgogIHJldHVybiAoCiAgICA8ZGl2CiAgICAgIGNsYXNzTmFtZT0icmVsYXRpdmUgcHgtOCBweS00IGN1cnNvci1wb2ludGVyIgogICAgICBvbk1vdXNlTW92ZT17aGFuZGxlTW91c2VNb3ZlfQogICAgICBvbk1vdXNlTGVhdmU9eygpID0+IHNldERvdHMoW10pfQogICAgPgogICAgICB7ZG90cy5tYXAoKGRvdCwgaSkgPT4gKAogICAgICAgIDxkaXYKICAgICAgICAgIGtleT17ZG90LmlkfQogICAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBzaXplLTEuNSByb3VuZGVkLWZ1bGwgYmctYXVyYSBwb2ludGVyLWV2ZW50cy1ub25lIgogICAgICAgICAgc3R5bGU9e3sKICAgICAgICAgICAgbGVmdDogZG90LngsCiAgICAgICAgICAgIHRvcDogZG90LnksCiAgICAgICAgICAgIG9wYWNpdHk6IGkgLyBkb3RzLmxlbmd0aCwKICAgICAgICAgICAgdHJhbnNmb3JtOiBgc2NhbGUoJHtpIC8gZG90cy5sZW5ndGh9KSB0cmFuc2xhdGUoLTUwJSwgLTUwJSlgLAogICAgICAgICAgICB0cmFuc2l0aW9uOiAib3BhY2l0eSAwLjJzLCB0cmFuc2Zvcm0gMC4ycyIsCiAgICAgICAgICB9fQogICAgICAgIC8+CiAgICAgICkpfQogICAgICA8c3BhbiBjbGFzc05hbWU9InJlbGF0aXZlIHotMTAgZm9udC1kaXNwbGF5IGl0YWxpYyB0ZXh0LTJ4bCBncm91cC1ob3Zlcjp0ZXh0LWF1cmEgdHJhbnNpdGlvbi1jb2xvcnMiPgogICAgICAgIFRyYWNlIE1vdGlvbgogICAgICA8L3NwYW4+CiAgICA8L2Rpdj4KICApOwp9",
+  },
+  {
+    id: "react-elastictoggle",
+    stack: "react",
+    category: "Transitions",
+    name: "ElasticToggle",
+    tag: "bespoke · special · aura",
+    Preview: ElasticToggle,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEVsYXN0aWNUb2dnbGUoKSB7CgogIGNvbnN0IFthY3RpdmUsIHNldEFjdGl2ZV0gPSB1c2VTdGF0ZShmYWxzZSk7CiAgcmV0dXJuICgKICAgIDxidXR0b24KICAgICAgb25DbGljaz17KCkgPT4gc2V0QWN0aXZlKCFhY3RpdmUpfQogICAgICBjbGFzc05hbWU9InJlbGF0aXZlIHctMTYgaC04IHJvdW5kZWQtZnVsbCBiZy1zdXJmYWNlLTIgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCBwLTEgdHJhbnNpdGlvbi1jb2xvcnMgZHVyYXRpb24tNTAwIgogICAgICBzdHlsZT17eyBiYWNrZ3JvdW5kQ29sb3I6IGFjdGl2ZSA/ICJ2YXIoLS1hdXJhKSIgOiAiIiB9fQogICAgPgogICAgICA8ZGl2CiAgICAgICAgY2xhc3NOYW1lPSJzaXplLTYgcm91bmRlZC1mdWxsIGJnLXdoaXRlIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTUwMCIKICAgICAgICBzdHlsZT17ewogICAgICAgICAgdHJhbnNmb3JtOiBhY3RpdmUgPyAidHJhbnNsYXRlWCgzMnB4KSIgOiAidHJhbnNsYXRlWCgwKSIsCiAgICAgICAgICBib3JkZXJSYWRpdXM6IGFjdGl2ZSA/ICIzMCUgNzAlIDcwJSAzMCUgLyAzMCUgMzAlIDcwJSA3MCUiIDogIjUwJSIsCiAgICAgICAgICBib3hTaGFkb3c6IGFjdGl2ZSA/ICIwIDAgMjBweCByZ2JhKDI1NSwyNTUsMjU1LDAuNCkiIDogIiIsCiAgICAgICAgfX0KICAgICAgLz4KICAgIDwvYnV0dG9uPgogICk7Cn0=",
+  },
+  {
+    id: "react-morphingshape",
+    stack: "react",
+    category: "Transitions",
+    name: "MorphingShape",
+    tag: "bespoke · special · aura",
+    Preview: MorphingShape,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1vcnBoaW5nU2hhcGUoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgZ3JvdXAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0ic2l6ZS0yMCBiZy1hdXJhIHNoYWRvdy1bMF8wXzQwcHhfdmFyKC0tYXVyYS1zb2Z0KV0gYW5pbWF0ZS1bbW9ycGhfOHNfZWFzZS1pbi1vdXRfaW5maW5pdGVdIiAvPgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIG1vcnBoIHsKICAgICAgICAgIDAlLCAxMDAlIHsgYm9yZGVyLXJhZGl1czogNjAlIDQwJSAzMCUgNzAlIC8gNjAlIDMwJSA3MCUgNDAlOyB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKSBzY2FsZSgxKTsgfQogICAgICAgICAgMzMlIHsgYm9yZGVyLXJhZGl1czogMzAlIDYwJSA3MCUgNDAlIC8gNTAlIDYwJSAzMCUgNjAlOyB0cmFuc2Zvcm06IHJvdGF0ZSgxMjBkZWcpIHNjYWxlKDEuMSk7IH0KICAgICAgICAgIDY2JSB7IGJvcmRlci1yYWRpdXM6IDEwMCUgMjAlIDUwJSA4MCUgLyA0MCUgMjAlIDgwJSA2MCU7IHRyYW5zZm9ybTogcm90YXRlKDI0MGRlZykgc2NhbGUoMC45KTsgfQogICAgICAgIH0KICAgICAgYH08L3N0eWxlPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-particlefield",
+    stack: "react",
+    category: "Backgrounds",
+    name: "ParticleField",
+    tag: "bespoke · special · aura",
+    Preview: ParticleField,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFBhcnRpY2xlRmllbGQoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtZnVsbCBiZy1iYWNrZ3JvdW5kLzQwIHJvdW5kZWQtbGcgb3ZlcmZsb3ctaGlkZGVuIj4KICAgICAge0FycmF5LmZyb20oeyBsZW5ndGg6IDIwIH0pLm1hcCgoXywgaSkgPT4gKAogICAgICAgIDxkaXYKICAgICAgICAgIGtleT17aX0KICAgICAgICAgIGNsYXNzTmFtZT0iYWJzb2x1dGUgc2l6ZS0xIGJnLWF1cmEvNDAgcm91bmRlZC1mdWxsIGFuaW1hdGUtZmxvYXQtcGFydGljbGUiCiAgICAgICAgICBzdHlsZT17ewogICAgICAgICAgICBsZWZ0OiBgJHtNYXRoLnJhbmRvbSgpICogMTAwfSVgLAogICAgICAgICAgICB0b3A6IGAke01hdGgucmFuZG9tKCkgKiAxMDB9JWAsCiAgICAgICAgICAgIGFuaW1hdGlvbkRlbGF5OiBgJHtNYXRoLnJhbmRvbSgpICogNX1zYCwKICAgICAgICAgICAgYW5pbWF0aW9uRHVyYXRpb246IGAkezUgKyBNYXRoLnJhbmRvbSgpICogMTB9c2AsCiAgICAgICAgICB9fQogICAgICAgIC8+CiAgICAgICkpfQogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciI+CiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LVsxMHB4XSBmb250LW1vbm8gdGV4dC10ZXh0LW11dGVkIj5QQVJUSUNMRV9ET01BSU48L3NwYW4+CiAgICAgIDwvZGl2PgogICAgICA8c3R5bGU+e2AKICAgICAgICBAa2V5ZnJhbWVzIGZsb2F0LXBhcnRpY2xlIHsKICAgICAgICAgIDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMCwgMCkgb3BhY2l0eSgwKTsgfQogICAgICAgICAgNTAlIHsgb3BhY2l0eTogMTsgfQogICAgICAgICAgMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKCR7TWF0aC5yYW5kb20oKSAqIDEwMCAtIDUwfXB4LCAke01hdGgucmFuZG9tKCkgKiAxMDAgLSA1MH1weCk7IG9wYWNpdHk6IDA7IH0KICAgICAgICB9CiAgICAgIGB9PC9zdHlsZT4KICAgIDwvZGl2PgogICk7Cn0=",
+  },
+  {
+    id: "react-ionpulsar",
+    stack: "react",
+    category: "Loaders",
+    name: "IonPulsar",
+    tag: "bespoke · special · aura",
+    Preview: IonPulsar,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIElvblB1bHNhcigpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIHNpemUtMTQgcm91bmRlZC1mdWxsIGJvcmRlciBib3JkZXItYXVyYS80MCBhbmltYXRlLXBpbmciIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJzaXplLTE0IHJvdW5kZWQtZnVsbCBib3JkZXItMiBib3JkZXItYXVyYSBzaGFkb3ctWzBfMF8zMHB4Xy00cHhfdmFyKC0tYXVyYSldIiAvPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-magneticbutton",
+    stack: "react",
+    category: "Buttons",
+    name: "MagneticButton",
+    tag: "bespoke · special · aura",
     Preview: MagneticButton,
-    dependencies: ["framer-motion", "clsx"],
-    code: `import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useRef } from "react";
-
-export function MagneticButton({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLButtonElement>(null);
-  const x = useSpring(useMotionValue(0), { stiffness: 200, damping: 15 });
-  const y = useSpring(useMotionValue(0), { stiffness: 200, damping: 15 });
-  return (
-    <motion.button
-      ref={ref}
-      style={{ x, y }}
-      onMouseMove={(e) => {
-        const r = ref.current!.getBoundingClientRect();
-        x.set((e.clientX - (r.left + r.width / 2)) * 0.3);
-        y.set((e.clientY - (r.top + r.height / 2)) * 0.3);
-      }}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
-      className="px-6 py-3 rounded-full bg-amber-500 text-black font-medium"
-    >
-      {children}
-    </motion.button>
-  );
-}`,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hZ25ldGljQnV0dG9uKCkgewoKICBjb25zdCByZWYgPSB1c2VSZWY8SFRNTEJ1dHRvbkVsZW1lbnQ+KG51bGwpOwogIGNvbnN0IFt0Ziwgc2V0VGZdID0gdXNlU3RhdGUoInRyYW5zbGF0ZSgwLDApIik7CiAgcmV0dXJuICgKICAgIDxkaXYKICAgICAgY2xhc3NOYW1lPSJ3LWZ1bGwgaC1mdWxsIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIgogICAgICBvbk1vdXNlTW92ZT17KGUpID0+IHsKICAgICAgICBjb25zdCBlbCA9IHJlZi5jdXJyZW50OwogICAgICAgIGlmICghZWwpIHJldHVybjsKICAgICAgICBjb25zdCByID0gZWwuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICAgICAgY29uc3QgeCA9IGUuY2xpZW50WCAtIChyLmxlZnQgKyByLndpZHRoIC8gMik7CiAgICAgICAgY29uc3QgeSA9IGUuY2xpZW50WSAtIChyLnRvcCArIHIuaGVpZ2h0IC8gMik7CiAgICAgICAgc2V0VGYoYHRyYW5zbGF0ZSgke3ggKiAwLjI1fXB4LCAke3kgKiAwLjI1fXB4KWApOwogICAgICB9fQogICAgICBvbk1vdXNlTGVhdmU9eygpID0+IHNldFRmKCJ0cmFuc2xhdGUoMCwwKSIpfQogICAgPgogICAgICA8YnV0dG9uCiAgICAgICAgcmVmPXtyZWZ9CiAgICAgICAgc3R5bGU9e3sgdHJhbnNmb3JtOiB0ZiB9fQogICAgICAgIGNsYXNzTmFtZT0icHgtNiBweS0yLjUgcm91bmRlZC1mdWxsIGJnLWF1cmEgdGV4dC1bY29sb3I6dmFyKC0tcHJpbWFyeS1mb3JlZ3JvdW5kKV0gZm9udC1tZWRpdW0gdGV4dC1zbSBzaGFkb3ctWzBfMF8zMHB4Xy02cHhfdmFyKC0tYXVyYSldIHRyYW5zaXRpb24tdHJhbnNmb3JtIGR1cmF0aW9uLTMwMCBlYXNlLW91dCIKICAgICAgPgogICAgICAgIEF1cmEg4oaSCiAgICAgIDwvYnV0dG9uPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-aurorabg",
+    stack: "react",
+    category: "Backgrounds",
+    name: "AuroraBg",
+    tag: "bespoke · special · aura",
+    Preview: AuroraBg,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEF1cm9yYUJnKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHctZnVsbCBoLWZ1bGwgb3ZlcmZsb3ctaGlkZGVuIHJvdW5kZWQtbWQiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1bY29uaWMtZ3JhZGllbnQoZnJvbV8wZGVnX2F0XzUwJV81MCUsI2Y1OWUwYl8wJSwjN2MzYWVkXzIwJSwjMjJkM2VlXzQ1JSwjZjU5ZTBiXzcwJSwjN2MzYWVkXzEwMCUpXSBvcGFjaXR5LTYwIGJsdXItMnhsIFthbmltYXRpb246YXVyb3JhLWRyaWZ0XzE0c19saW5lYXJfaW5maW5pdGVdIiAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBiZy1ncmFkaWVudC10by10IGZyb20tYmFja2dyb3VuZCB0by10cmFuc3BhcmVudCIgLz4KICAgIDwvZGl2PgogICk7Cn0=",
   },
   {
     id: "react-glowcursor",
     stack: "react",
     category: "Cursors",
-    name: "Aura Cursor",
-    tag: "cursor · follow",
+    name: "GlowCursor",
+    tag: "bespoke · special · aura",
     Preview: GlowCursor,
-    code: `import { useRef, useState } from "react";
-
-export function AuraCursor() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [p, setP] = useState({ x: 50, y: 50 });
-  return (
-    <div
-      ref={ref}
-      className="relative overflow-hidden rounded-xl bg-neutral-900 h-64"
-      onMouseMove={(e) => {
-        const r = ref.current!.getBoundingClientRect();
-        setP({
-          x: ((e.clientX - r.left) / r.width) * 100,
-          y: ((e.clientY - r.top) / r.height) * 100,
-        });
-      }}
-    >
-      <div
-        className="absolute size-56 rounded-full pointer-events-none blur-2xl"
-        style={{
-          left: p.x + "%",
-          top: p.y + "%",
-          transform: "translate(-50%,-50%)",
-          background: "radial-gradient(circle,#f59e0b 0%,transparent 60%)",
-        }}
-      />
-    </div>
-  );
-}`,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdsb3dDdXJzb3IoKSB7CgogIGNvbnN0IHJlZiA9IHVzZVJlZjxIVE1MRGl2RWxlbWVudD4obnVsbCk7CiAgY29uc3QgW3AsIHNldFBdID0gdXNlU3RhdGUoeyB4OiA1MCwgeTogNTAgfSk7CiAgcmV0dXJuICgKICAgIDxkaXYKICAgICAgcmVmPXtyZWZ9CiAgICAgIGNsYXNzTmFtZT0icmVsYXRpdmUgdy1mdWxsIGgtZnVsbCBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1tZCBiZy1bY29sb3I6dmFyKC0tc3VyZmFjZS0yKV0iCiAgICAgIG9uTW91c2VNb3ZlPXsoZSkgPT4gewogICAgICAgIGNvbnN0IHIgPSByZWYuY3VycmVudCEuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICAgICAgc2V0UCh7CiAgICAgICAgICB4OiAoKGUuY2xpZW50WCAtIHIubGVmdCkgLyByLndpZHRoKSAqIDEwMCwKICAgICAgICAgIHk6ICgoZS5jbGllbnRZIC0gci50b3ApIC8gci5oZWlnaHQpICogMTAwLAogICAgICAgIH0pOwogICAgICB9fQogICAgPgogICAgICA8ZGl2CiAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBzaXplLTQwIHJvdW5kZWQtZnVsbCBwb2ludGVyLWV2ZW50cy1ub25lIgogICAgICAgIHN0eWxlPXt7CiAgICAgICAgICBsZWZ0OiBgJHtwLnh9JWAsCiAgICAgICAgICB0b3A6IGAke3AueX0lYCwKICAgICAgICAgIHRyYW5zZm9ybTogInRyYW5zbGF0ZSgtNTAlLC01MCUpIiwKICAgICAgICAgIGJhY2tncm91bmQ6ICJyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCB2YXIoLS1hdXJhKSAwJSwgdHJhbnNwYXJlbnQgNjAlKSIsCiAgICAgICAgICBmaWx0ZXI6ICJibHVyKDIwcHgpIiwKICAgICAgICAgIG9wYWNpdHk6IDAuNywKICAgICAgICB9fQogICAgICAvPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCBncmlkIGdyaWQtY29scy04IGdyaWQtcm93cy00Ij4KICAgICAgICB7QXJyYXkuZnJvbSh7IGxlbmd0aDogMzIgfSkubWFwKChfLCBpKSA9PiAoCiAgICAgICAgICA8ZGl2IGtleT17aX0gY2xhc3NOYW1lPSJib3JkZXIgYm9yZGVyLXdoaXRlL1swLjA0XSIgLz4KICAgICAgICApKX0KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9",
   },
   {
     id: "react-fadeslide",
     stack: "react",
     category: "Transitions",
-    name: "Fade Slide",
-    tag: "transition · in",
+    name: "FadeSlide",
+    tag: "bespoke · special · aura",
     Preview: FadeSlide,
-    dependencies: ["framer-motion"],
-    code: `import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-
-export function FadeSlideCycle({ items }: { items: string[] }) {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setI((v) => (v + 1) % items.length), 2400);
-    return () => clearInterval(id);
-  }, [items.length]);
-  return (
-    <AnimatePresence mode="wait">
-      <motion.span
-        key={i}
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -20, opacity: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="inline-block text-3xl font-serif italic"
-      >
-        {items[i]}
-      </motion.span>
-    </AnimatePresence>
-  );
-}`,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEZhZGVTbGlkZSgpIHsKCiAgY29uc3QgW2ssIHNldEtdID0gdXNlU3RhdGUoMCk7CiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGNvbnN0IGlkID0gc2V0SW50ZXJ2YWwoKCkgPT4gc2V0SygodikgPT4gdiArIDEpLCAyNDAwKTsKICAgIHJldHVybiAoKSA9PiBjbGVhckludGVydmFsKGlkKTsKICB9LCBbXSk7CiAgY29uc3Qgd29yZHMgPSBbImZhZGUuIiwgInNsaWRlLiIsICJyZXZlYWwuIiwgImF1cmEuIl07CiAgcmV0dXJuICgKICAgIDxkaXYga2V5PXtrfSBjbGFzc05hbWU9InRleHQtMnhsIGZvbnQtZGlzcGxheSBpdGFsaWMgYW5pbWF0ZS1bZmxvYXQteV8yc19lYXNlLWluLW91dF9pbmZpbml0ZV0iPgogICAgICA8c3BhbiBjbGFzc05hbWU9ImlubGluZS1ibG9jayBhbmltYXRlLVtzbGlkZS11cC1pbl8wLjZzX2Vhc2Utb3V0XSB0ZXh0LWZvcmVncm91bmQiPgogICAgICAgIHt3b3Jkc1trICUgd29yZHMubGVuZ3RoXX0KICAgICAgPC9zcGFuPgogICAgPC9kaXY+CiAgKTsKfQ==",
   },
   {
-    id: "react-orbit",
-    stack: "react",
-    category: "Loaders",
-    name: "Orbit Loader",
-    tag: "loader · orbit",
-    Preview: OrbitLoader,
-    code: `export function OrbitLoader() {
-  return (
-    <div className="relative size-16">
-      <div className="absolute inset-0 rounded-full border border-white/10" />
-      <div className="absolute inset-0 animate-spin [animation-duration:3s]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 size-2 rounded-full bg-amber-500 shadow-[0_0_12px_#f59e0b]" />
-      </div>
-      <div className="absolute inset-2 animate-spin [animation-duration:1.6s] [animation-direction:reverse]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 size-1.5 rounded-full bg-white/70" />
-      </div>
-    </div>
-  );
-}`,
-  },
-  {
-    id: "react-glitch",
+    id: "react-typewritercode",
     stack: "react",
     category: "Text",
-    name: "Chroma Glitch",
-    tag: "text · glitch",
-    Preview: GlitchText,
-    code: `export function ChromaGlitch({ children }: { children: string }) {
-  return (
-    <div className="relative inline-block font-serif italic text-4xl">
-      <span className="relative z-10">{children}</span>
-      <span className="absolute inset-0 text-amber-500 mix-blend-screen translate-x-[2px] animate-pulse">{children}</span>
-      <span className="absolute inset-0 text-cyan-400 mix-blend-screen -translate-x-[2px] opacity-70">{children}</span>
-    </div>
-  );
-}`,
-  },
-
-  // ---------- TypeScript ----------
-  {
-    id: "ts-particle-field",
-    stack: "typescript",
-    category: "Backgrounds",
-    name: "Particle Domain",
-    tag: "bg · particles · math",
-    Preview: ParticleField,
-    code: `export function ParticleField({ count = 30 }) {
-  const particles = Array.from({ length: count }).map((_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    delay: Math.random() * 5,
-    duration: 5 + Math.random() * 10,
-    tx: Math.random() * 100 - 50,
-    ty: Math.random() * 100 - 50,
-  }));
-
-  return (
-    <div className="relative w-full h-64 bg-neutral-950 overflow-hidden rounded-xl">
-      {particles.map((p) => (
-        <div key={p.id} className="absolute size-1 bg-amber-500/40 rounded-full animate-float"
-          style={{
-            left: \`\${p.x}%\`, top: \`\${p.y}%\`,
-            animationDelay: \`\${p.delay}s\`,
-            animationDuration: \`\${p.duration}s\`,
-            '--tx': \`\${p.tx}px\`, '--ty': \`\${p.ty}px\`
-          } as any}
-        />
-      ))}
-      <style>{\`
-        @keyframes float {
-          0% { transform: translate(0, 0); opacity: 0; }
-          50% { opacity: 1; }
-          100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
-        }
-      \`}</style>
-    </div>
-  );
-}`,
-  },
-  {
-    id: "ts-magnetic-social",
-    stack: "typescript",
-    category: "Buttons",
-    name: "Magnetic Social Aura",
-    tag: "button · magnetic · ts",
-    Preview: MagneticSocialBtn,
-    code: `import { useState } from "react";
-
-export function MagneticSocialBtn() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const handleMove = (e: React.MouseEvent) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    setPos({
-      x: (e.clientX - (r.left + r.width / 2)) * 0.4,
-      y: (e.clientY - (r.top + r.height / 2)) * 0.4
-    });
-  };
-  return (
-    <button
-      onMouseMove={handleMove}
-      onMouseLeave={() => setPos({ x: 0, y: 0 })}
-      className="size-16 rounded-2xl bg-neutral-900 border border-white/10 flex items-center justify-center transition-all duration-200 hover:border-amber-500/50 group"
-      style={{ transform: \`translate(\${pos.x}px, \${pos.y}px)\` }}
-    >
-      <div className="size-8 bg-amber-500/20 rounded-full group-hover:bg-amber-500 transition-colors animate-bounce" />
-    </button>
-  );
-}`,
-  },
-  {
-    id: "ts-typewriter",
-    stack: "typescript",
-    category: "Text",
-    name: "Typewriter Hook",
-    tag: "hook · typewriter",
+    name: "TypewriterCode",
+    tag: "bespoke · special · aura",
     Preview: TypewriterCode,
-    code: `import { useEffect, useState } from "react";
-
-export function useTypewriter(text: string, speed = 60): string {
-  const [out, setOut] = useState("");
-  useEffect(() => {
-    let i = 0;
-    setOut("");
-    const id = setInterval(() => {
-      i++;
-      setOut(text.slice(0, i));
-      if (i >= text.length) clearInterval(id);
-    }, speed);
-    return () => clearInterval(id);
-  }, [text, speed]);
-  return out;
-}`,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFR5cGV3cml0ZXJDb2RlKCkgewoKICBjb25zdCBmdWxsID0gIj4gY29uc3QgYXVyYSA9IG5ldyBNb3Rpb24oKSI7CiAgY29uc3QgW24sIHNldE5dID0gdXNlU3RhdGUoMCk7CiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGNvbnN0IGlkID0gc2V0SW50ZXJ2YWwoKCkgPT4gc2V0TigodikgPT4gKHYgKyAxKSAlIChmdWxsLmxlbmd0aCArIDEyKSksIDkwKTsKICAgIHJldHVybiAoKSA9PiBjbGVhckludGVydmFsKGlkKTsKICB9LCBbXSk7CiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJmb250LW1vbm8gdGV4dC1zbSB0ZXh0LWF1cmEiPgogICAgICB7ZnVsbC5zbGljZSgwLCBNYXRoLm1pbihuLCBmdWxsLmxlbmd0aCkpfQogICAgICA8c3BhbiBjbGFzc05hbWU9ImlubGluZS1ibG9jayB3LTEuNSBoLTQgYmctYXVyYSBtbC0wLjUgYWxpZ24tbWlkZGxlIGFuaW1hdGUtcHVsc2UiIC8+CiAgICA8L2Rpdj4KICApOwp9",
   },
   {
-    id: "ts-spring",
-    stack: "typescript",
-    category: "Transitions",
-    name: "Spring Value",
-    tag: "util · spring",
-    Preview: FadeSlide,
-    code: `export function spring(
-  from: number,
-  to: number,
-  { stiffness = 170, damping = 26, mass = 1 } = {},
-  onFrame: (v: number) => void,
-): () => void {
-  let v = from, velocity = 0, last = performance.now(), id = 0;
-  const step = (t: number) => {
-    const dt = Math.min((t - last) / 1000, 0.064);
-    last = t;
-    const force = -stiffness * (v - to);
-    const damp = -damping * velocity;
-    velocity += ((force + damp) / mass) * dt;
-    v += velocity * dt;
-    onFrame(v);
-    if (Math.abs(velocity) > 0.01 || Math.abs(v - to) > 0.01)
-      id = requestAnimationFrame(step);
-  };
-  id = requestAnimationFrame(step);
-  return () => cancelAnimationFrame(id);
-}`,
-  },
-  {
-    id: "ts-marquee",
-    stack: "typescript",
-    category: "Backgrounds",
-    name: "Marquee Row",
-    tag: "component · marquee",
-    Preview: MarqueeTags,
-    code: `interface MarqueeProps { items: string[]; duration?: number; }
-
-export function Marquee({ items, duration = 18 }: MarqueeProps) {
-  return (
-    <div className="w-full overflow-hidden">
-      <div className="flex gap-3 w-max" style={{ animation: \`marquee \${duration}s linear infinite\` }}>
-        {[...items, ...items].map((t, i) => (
-          <span key={i} className="px-3 py-1 rounded-full bg-neutral-800 text-xs font-mono">{t}</span>
-        ))}
-      </div>
-      <style>{\`@keyframes marquee{to{transform:translateX(-50%)}}\`}</style>
-    </div>
-  );
-}`,
-  },
-
-  // ---------- Tailwind ----------
-  {
-    id: "tw-cyber-border",
-    stack: "tailwind",
-    category: "Buttons",
-    name: "Cyber Protocol",
-    tag: "border · cyberpunk · aura",
-    Preview: CyberpunkBorder,
-    code: `<div class="relative p-1 group">
-  <div class="absolute inset-0 bg-amber-500 opacity-20 group-hover:opacity-40 transition-opacity"></div>
-  <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-amber-500 animate-pulse"></div>
-  <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-amber-500 animate-pulse" style="animation-delay: 0.5s"></div>
-
-  <div class="relative bg-black px-6 py-3 border border-white/5 overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-[1px] bg-amber-500/50 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-    <span class="font-mono text-xs tracking-tighter text-white group-hover:text-amber-500 transition-colors">
-      PROTOCOL_AURORA
-    </span>
-  </div>
-</div>`,
-  },
-  {
-    id: "tw-island-float",
-    stack: "tailwind",
-    category: "Transitions",
-    name: "Floating Island",
-    tag: "layout · 3d · float",
-    Preview: FloatingIsland,
-    code: `<div class="relative group perspective-[1000px]">
-  <div class="relative w-64 h-40 bg-gradient-to-b from-neutral-800 to-black rounded-[3rem] border border-white/10 shadow-2xl animate-[island-float_6s_ease-in-out_infinite] preserve-3d">
-    <div class="absolute -inset-4 bg-amber-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-    <div class="absolute top-8 left-8 size-10 rounded-xl bg-amber-500/40 border border-amber-500/60 animate-pulse"></div>
-  </div>
-</div>
-<style>
-  @keyframes island-float {
-    0%, 100% { transform: translateY(0) rotateX(10deg) rotateY(-5deg); }
-    50% { transform: translateY(-20px) rotateX(15deg) rotateY(5deg); }
-  }
-</style>`,
-  },
-  {
-    id: "tw-grid-pulse",
-    stack: "tailwind",
-    category: "Backgrounds",
-    name: "Neural Grid",
-    tag: "bg · grid · pulse",
-    Preview: GridPulse,
-    code: `<div class="relative h-64 w-full overflow-hidden rounded-xl bg-black">
-  <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 32px 32px;"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-48 bg-amber-500/30 blur-[100px] animate-pulse"></div>
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div class="size-2 bg-amber-500 rounded-full shadow-[0_0_30px_#f59e0b] animate-ping"></div>
-  </div>
-</div>`,
-  },
-  {
-    id: "tw-gradient-border",
-    stack: "tailwind",
-    category: "Buttons",
-    name: "Aura Border",
-    tag: "border · conic",
-    Preview: GradientBorder,
-    code: `<div class="relative p-[1.5px] rounded-xl overflow-hidden">
-  <div class="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0%,#f59e0b_25%,transparent_50%,#f59e0b_75%,transparent_100%)] animate-spin [animation-duration:4s]"></div>
-  <div class="relative bg-neutral-950 rounded-[10px] px-5 py-3 font-mono text-sm text-white">
-    aura::border
-  </div>
-</div>`,
-  },
-  {
-    id: "tw-aurora",
-    stack: "tailwind",
-    category: "Backgrounds",
-    name: "Aurora Field",
-    tag: "bg · aurora",
-    Preview: AuroraBg,
-    code: `<div class="relative h-64 w-full overflow-hidden rounded-xl">
-  <div class="absolute inset-0 blur-2xl opacity-60 bg-[conic-gradient(from_0deg_at_50%_50%,#f59e0b,#7c3aed_25%,#22d3ee_50%,#f59e0b_75%)] [animation:spin_14s_linear_infinite]"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-</div>`,
-  },
-  {
-    id: "tw-skeleton",
-    stack: "tailwind",
-    category: "Loaders",
-    name: "Wave Skeleton",
-    tag: "loader · skeleton",
-    Preview: SkeletonWave,
-    code: `<div class="space-y-2 w-72">
-  <div class="h-3 w-4/5 rounded-full overflow-hidden bg-neutral-800">
-    <div class="h-full w-1/3 bg-gradient-to-r from-transparent via-amber-500 to-transparent animate-[shimmer_1.8s_linear_infinite]"></div>
-  </div>
-  <div class="h-3 w-3/5 rounded-full overflow-hidden bg-neutral-800">
-    <div class="h-full w-1/3 bg-gradient-to-r from-transparent via-amber-500 to-transparent animate-[shimmer_1.8s_linear_infinite]"></div>
-  </div>
-</div>
-<style>@keyframes shimmer{to{transform:translateX(300%)}}</style>`,
-  },
-
-  // ---------- HTML / CSS ----------
-  {
-    id: "html-dna-helix",
-    stack: "html",
-    category: "Loaders",
-    name: "DNA Helix",
-    tag: "loader · math · css",
-    Preview: DNAHelixLoader,
-    code: `<div class="dna">
-  ${Array.from({ length: 12 })
-    .map(
-      (_, i) =>
-        `<div class="bar" style="animation-delay: ${i * 0.15}s"><span></span><span></span></div>`,
-    )
-    .join("\n  ")}
-</div>
-<style>
-.dna { display: flex; gap: 6px; height: 60px; align-items: center; }
-.bar { display: flex; flex-direction: column; justify-content: space-between; height: 100%; align-items: center; animation: dna-rotate 2s ease-in-out infinite; }
-.bar span:first-child { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
-.bar span:last-child { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); }
-@keyframes dna-rotate {
-  0%, 100% { transform: scaleY(1); opacity: 0.3; }
-  50% { transform: scaleY(0.2); opacity: 1; }
-}
-</style>`,
-  },
-  {
-    id: "html-neon-scroll",
-    stack: "html",
-    category: "Transitions",
-    name: "Neon Scrollbar",
-    tag: "scroll · neon · light",
-    Preview: NeonScroll,
-    code: `<div class="scroll-track">
-  <div class="neon-thumb"></div>
-</div>
-<style>
-.scroll-track { position: relative; width: 4px; height: 100px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
-.neon-thumb { position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(transparent, #f59e0b, transparent); animation: neon-scroll 2s linear infinite; }
-@keyframes neon-scroll {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(200%); }
-}
-</style>`,
-  },
-  {
-    id: "html-aura-blob",
-    stack: "html",
-    category: "Backgrounds",
-    name: "Morphing Aura",
-    tag: "bg · blob · morph",
-    Preview: AuraBlob,
-    code: `<div class="aura-blob"></div>
-<style>
-.aura-blob {
-  width: 150px; height: 150px;
-  background: #f59e0b; opacity: 0.3; filter: blur(40px);
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  animation: blob-morph 8s ease-in-out infinite;
-}
-@keyframes blob-morph {
-  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: scale(1); }
-  50% { border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%; transform: scale(1.2); }
-}
-</style>`,
-  },
-  {
-    id: "html-shimmer",
-    stack: "html",
+    id: "react-marqueetags",
+    stack: "react",
     category: "Text",
-    name: "CSS Shimmer",
-    tag: "text · css-only",
-    Preview: ShimmerText,
-    code: `<span class="shimmer">aura reading</span>
-<style>
-${shimmerCss}
-</style>`,
+    name: "MarqueeTags",
+    tag: "bespoke · special · aura",
+    Preview: MarqueeTags,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE1hcnF1ZWVUYWdzKCkgewoKICBjb25zdCBpdGVtcyA9IFsibW90aW9uIiwgImF1cmEiLCAic2hhZGVyIiwgInNwcmluZyIsICJlYXNlIiwgInNpZ25hbCIsICJwcmlzbSIsICJwdWxzZSJdOwogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0idy1mdWxsIG92ZXJmbG93LWhpZGRlbiI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGdhcC0zIHctbWF4IGFuaW1hdGUtW21hcnF1ZWUteF8xOHNfbGluZWFyX2luZmluaXRlXSI+CiAgICAgICAge1suLi5pdGVtcywgLi4uaXRlbXNdLm1hcCgodCwgaSkgPT4gKAogICAgICAgICAgPHNwYW4KICAgICAgICAgICAga2V5PXtpfQogICAgICAgICAgICBjbGFzc05hbWU9InB4LTMgcHktMSByb3VuZGVkLWZ1bGwgYmctW2NvbG9yOnZhcigtLXN1cmZhY2UtMildIHRleHQteHMgZm9udC1tb25vIHRleHQtdGV4dC1tdXRlZCByaW5nLTEgcmluZy13aGl0ZS81IgogICAgICAgICAgPgogICAgICAgICAgICB7dH0KICAgICAgICAgIDwvc3Bhbj4KICAgICAgICApKX0KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9",
   },
   {
-    id: "html-pulsar",
-    stack: "html",
+    id: "react-orbitloader",
+    stack: "react",
     category: "Loaders",
-    name: "Ion Pulsar",
-    tag: "loader · pulse",
-    Preview: IonPulsar,
-    code: `<div class="pulsar"></div>
-<style>
-.pulsar{
-  position: relative;
-  width: 56px; height: 56px;
-  border-radius: 9999px;
-  border: 2px solid #f59e0b;
-  box-shadow: 0 0 30px -4px #f59e0b;
-}
-.pulsar::before{
-  content:"";
-  position:absolute; inset:0;
-  border-radius: inherit;
-  border: 1px solid rgba(245,158,11,.4);
-  animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite;
-}
-@keyframes ping { 75%,100% { transform: scale(1.8); opacity: 0; } }
-</style>`,
-  },
-  {
-    id: "html-cursor",
-    stack: "html",
-    category: "Cursors",
-    name: "Aura Follow",
-    tag: "cursor · js",
-    Preview: GlowCursor,
-    code: `<div id="stage" class="stage"><div id="glow"></div></div>
-<style>
-.stage{ position:relative; height: 240px; overflow:hidden; border-radius: 16px; background:#0a0a0b; }
-#glow{
-  position:absolute; width: 220px; height: 220px; border-radius: 9999px;
-  background: radial-gradient(circle,#f59e0b 0%, transparent 60%);
-  filter: blur(24px); pointer-events:none;
-  transform: translate(-50%,-50%);
-}
-</style>
-<script>
-const s = document.getElementById("stage"), g = document.getElementById("glow");
-s.addEventListener("mousemove", e => {
-  const r = s.getBoundingClientRect();
-  g.style.left = (e.clientX - r.left) + "px";
-  g.style.top  = (e.clientY - r.top) + "px";
-});
-</script>`,
-  },
-
-  // ---------- Vue ----------
-  {
-    id: "vue-fade",
-    stack: "vue",
-    category: "Transitions",
-    name: "Fade Slide",
-    tag: "transition · vue",
-    Preview: FadeSlide,
-    code: `<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
-const items = ["fade.", "slide.", "reveal.", "aura."];
-const i = ref(0);
-let id: number;
-onMounted(() => { id = window.setInterval(() => i.value = (i.value + 1) % items.length, 2400); });
-onUnmounted(() => clearInterval(id));
-</script>
-
-<template>
-  <Transition name="aura" mode="out-in">
-    <span :key="i" class="text-3xl italic">{{ items[i] }}</span>
-  </Transition>
-</template>
-
-<style scoped>
-.aura-enter-from{ transform: translateY(20px); opacity: 0; }
-.aura-leave-to{ transform: translateY(-20px); opacity: 0; }
-.aura-enter-active,.aura-leave-active{ transition: all .4s ease; }
-</style>`,
-  },
-  {
-    id: "vue-magnetic",
-    stack: "vue",
-    category: "Buttons",
-    name: "Magnetic Button",
-    tag: "button · vue",
-    Preview: MagneticButton,
-    code: `<script setup lang="ts">
-import { ref } from "vue";
-const btn = ref<HTMLButtonElement>();
-const tf = ref("translate(0,0)");
-function move(e: MouseEvent) {
-  const r = btn.value!.getBoundingClientRect();
-  const x = e.clientX - (r.left + r.width / 2);
-  const y = e.clientY - (r.top + r.height / 2);
-  tf.value = \`translate(\${x * 0.3}px, \${y * 0.3}px)\`;
-}
-</script>
-
-<template>
-  <button ref="btn" :style="{ transform: tf }" @mousemove="move" @mouseleave="tf = 'translate(0,0)'"
-    class="px-6 py-3 rounded-full bg-amber-500 text-black font-medium transition-transform duration-300">
-    Aura →
-  </button>
-</template>`,
-  },
-
-  // ---------- Svelte ----------
-  {
-    id: "svelte-orbit",
-    stack: "svelte",
-    category: "Loaders",
-    name: "Orbit Loader",
-    tag: "loader · svelte",
+    name: "OrbitLoader",
+    tag: "bespoke · special · aura",
     Preview: OrbitLoader,
-    code: `<div class="orbit">
-  <div class="ring one"><span /></div>
-  <div class="ring two"><span /></div>
-</div>
-
-<style>
-.orbit{ position:relative; width:64px; height:64px; }
-.ring{ position:absolute; inset:0; animation: spin 3s linear infinite; }
-.ring.two{ inset: 8px; animation-direction: reverse; animation-duration: 1.6s; }
-.ring span{
-  position:absolute; top:0; left:50%;
-  width:8px; height:8px; border-radius:9999px;
-  transform: translateX(-50%);
-  background: #f59e0b; box-shadow: 0 0 12px #f59e0b;
-}
-.ring.two span{ width:6px; height:6px; background:#fff; box-shadow:none; }
-@keyframes spin{ to { transform: rotate(360deg); } }
-</style>`,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIE9yYml0TG9hZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHNpemUtMTYiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCByb3VuZGVkLWZ1bGwgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCIgLz4KICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYW5pbWF0ZS1zcGluIiBzdHlsZT17eyBhbmltYXRpb25EdXJhdGlvbjogIjNzIiB9fT4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYWJzb2x1dGUgdG9wLTAgbGVmdC0xLzIgLXRyYW5zbGF0ZS14LTEvMiBzaXplLTIgcm91bmRlZC1mdWxsIGJnLWF1cmEgc2hhZG93LVswXzBfMTJweF92YXIoLS1hdXJhKV0iIC8+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2CiAgICAgICAgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0yIGFuaW1hdGUtc3BpbiIKICAgICAgICBzdHlsZT17eyBhbmltYXRpb25EdXJhdGlvbjogIjEuNnMiLCBhbmltYXRpb25EaXJlY3Rpb246ICJyZXZlcnNlIiB9fQogICAgICA+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIHRvcC0wIGxlZnQtMS8yIC10cmFuc2xhdGUteC0xLzIgc2l6ZS0xLjUgcm91bmRlZC1mdWxsIGJnLXdoaXRlLzcwIiAvPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0=",
   },
   {
-    id: "svelte-aurora",
-    stack: "svelte",
-    category: "Backgrounds",
-    name: "Aurora Field",
-    tag: "bg · aurora",
-    Preview: AuroraBg,
-    code: `<div class="aurora"></div>
-
-<style>
-.aurora{
-  position: relative; height: 240px; border-radius: 16px; overflow:hidden;
-  background: conic-gradient(from 0deg at 50% 50%, #f59e0b, #7c3aed 25%, #22d3ee 50%, #f59e0b 75%);
-  filter: blur(28px); opacity: .7;
-  animation: drift 14s linear infinite;
-}
-@keyframes drift { to { transform: rotate(360deg); } }
-</style>`,
+    id: "react-gradientborder",
+    stack: "react",
+    category: "Transitions",
+    name: "GradientBorder",
+    tag: "bespoke · special · aura",
+    Preview: GradientBorder,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdyYWRpZW50Qm9yZGVyKCkgewoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIHAtWzEuNXB4XSByb3VuZGVkLXhsIG92ZXJmbG93LWhpZGRlbiI+CiAgICAgIDxkaXYKICAgICAgICBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgYmctW2NvbmljLWdyYWRpZW50KGZyb21fMGRlZyx0cmFuc3BhcmVudF8wJSx2YXIoLS1hdXJhKV8yNSUsdHJhbnNwYXJlbnRfNTAlLHZhcigtLWF1cmEpXzc1JSx0cmFuc3BhcmVudF8xMDAlKV0gYW5pbWF0ZS1zcGluIgogICAgICAgIHN0eWxlPXt7IGFuaW1hdGlvbkR1cmF0aW9uOiAiNHMiIH19CiAgICAgIC8+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBiZy1bY29sb3I6dmFyKC0tc3VyZmFjZSldIHJvdW5kZWQtWzEwcHhdIHB4LTUgcHktMyBmb250LW1vbm8gdGV4dC1zbSI+CiAgICAgICAgYXVyYTo6Ym9yZGVyCiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQ==",
   },
   {
-    id: "svelte-marquee",
-    stack: "svelte",
+    id: "react-glitchtext",
+    stack: "react",
     category: "Text",
-    name: "Tag Marquee",
-    tag: "marquee · svelte",
-    Preview: MarqueeTags,
-    code: `<script lang="ts">
-  export let items: string[] = [];
-  export let duration = 18;
-</script>
-
-<div class="wrap"><div class="row" style="animation-duration: {duration}s">
-  {#each [...items, ...items] as t}<span>{t}</span>{/each}
-</div></div>
-
-<style>
-.wrap{ overflow:hidden; width:100%; }
-.row{ display:flex; gap:12px; width:max-content; animation: mx linear infinite; }
-span{ padding: 4px 12px; border-radius: 9999px; background:#27272a; font: 500 12px/1 ui-monospace, monospace; color:#e4e4e7; }
-@keyframes mx{ to { transform: translateX(-50%); } }
-</style>`,
+    name: "GlitchText",
+    tag: "bespoke · special · aura",
+    Preview: GlitchText,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIEdsaXRjaFRleHQoKSB7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgZm9udC1kaXNwbGF5IHRleHQtM3hsIGl0YWxpYyI+CiAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC1mb3JlZ3JvdW5kIj5nbGl0Y2g8L3NwYW4+CiAgICAgIDxzcGFuIGNsYXNzTmFtZT0iYWJzb2x1dGUgaW5zZXQtMCB0ZXh0LWF1cmEgbWl4LWJsZW5kLXNjcmVlbiB0cmFuc2xhdGUteC1bMnB4XSBhbmltYXRlLXB1bHNlIj4KICAgICAgICBnbGl0Y2gKICAgICAgPC9zcGFuPgogICAgICA8c3BhbiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LTAgdGV4dC1jeWFuLTQwMCBtaXgtYmxlbmQtc2NyZWVuIC10cmFuc2xhdGUteC1bMnB4XSBvcGFjaXR5LTcwIj4KICAgICAgICBnbGl0Y2gKICAgICAgPC9zcGFuPgogICAgPC9kaXY+CiAgKTsKfQ==",
+  },
+  {
+    id: "react-skeletonwave",
+    stack: "react",
+    category: "Transitions",
+    name: "SkeletonWave",
+    tag: "bespoke · special · aura",
+    Preview: SkeletonWave,
+    code: "ZXhwb3J0IGZ1bmN0aW9uIFNrZWxldG9uV2F2ZSgpIHsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJ3LWZ1bGwgbWF4LXctWzIyMHB4XSBzcGFjZS15LTIiPgogICAgICB7WzgwLCA2MCwgOTBdLm1hcCgodywgaSkgPT4gKAogICAgICAgIDxkaXYKICAgICAgICAgIGtleT17aX0KICAgICAgICAgIGNsYXNzTmFtZT0iaC0zIHJvdW5kZWQtZnVsbCBvdmVyZmxvdy1oaWRkZW4gYmctW2NvbG9yOnZhcigtLXN1cmZhY2UtMildIgogICAgICAgICAgc3R5bGU9e3sgd2lkdGg6IGAke3d9JWAgfX0KICAgICAgICA+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC1mdWxsIHctMS8zIGJnLWdyYWRpZW50LXRvLXIgZnJvbS10cmFuc3BhcmVudCB2aWEtYXVyYSB0by10cmFuc3BhcmVudCBbYW5pbWF0aW9uOm1hcnF1ZWUteF8xLjhzX2xpbmVhcl9pbmZpbml0ZV0iIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICkpfQogICAgPC9kaXY+CiAgKTsKfQ==",
   },
 ];

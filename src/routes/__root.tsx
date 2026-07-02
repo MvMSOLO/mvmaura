@@ -77,27 +77,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "MVMAI — Motion for craftsmen" },
+      { title: "MVMAURA — Motion for craftsmen" },
       {
         name: "description",
         content:
-          "MVMAI Aura Pack: A living library of high-grade animation snippets for modern web builders.",
+          "MVMAURA Aura Pack: A living library of high-grade animation snippets for modern web builders.",
       },
-      { name: "author", content: "MVMAI" },
-      { property: "og:title", content: "MVMAI — Motion for craftsmen" },
+      { name: "author", content: "MVMAURA" },
+      { property: "og:title", content: "MVMAURA — Motion for craftsmen" },
       {
         property: "og:description",
         content:
-          "MVMAI Aura Pack: A living library of high-grade animation snippets for modern web builders.",
+          "MVMAURA Aura Pack: A living library of high-grade animation snippets for modern web builders.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@MVMAI" },
-      { name: "twitter:title", content: "MVMAI — Motion for craftsmen" },
+      { name: "twitter:site", content: "@MVMAURA" },
+      { name: "twitter:title", content: "MVMAURA — Motion for craftsmen" },
       {
         name: "twitter:description",
         content:
-          "MVMAI Aura Pack: A living library of high-grade animation snippets for modern web builders.",
+          "MVMAURA Aura Pack: A living library of high-grade animation snippets for modern web builders.",
       },
       {
         property: "og:image",
