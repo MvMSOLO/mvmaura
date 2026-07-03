@@ -3,12 +3,14 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Check, Copy, Terminal, X } from "lucide-react";
 import { STACKS, CATEGORIES, SNIPPETS, type StackId, type Category } from "@/data/snippets";
+import { Cutscene } from "@/components/cutscene";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 function Index() {
+  const [showCutscene, setShowCutscene] = useState(true);
   const [stack, setStack] = useState<StackId>("react");
   const [category, setCategory] = useState<Category>("All");
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -16,9 +18,7 @@ function Index() {
 
   const visible = useMemo(
     () =>
-      SNIPPETS.filter(
-        (s) => s.stack === stack && (category === "All" || s.category === category),
-      ),
+      SNIPPETS.filter((s) => s.stack === stack && (category === "All" || s.category === category)),
     [stack, category],
   );
 
@@ -26,7 +26,9 @@ function Index() {
     const snip = SNIPPETS.find((s) => s.id === id);
     if (!snip) return;
     try {
-      await navigator.clipboard.writeText(snip.code);
+      // Decode Base64 snippet code
+      const code = atob(snip.code);
+      await navigator.clipboard.writeText(code);
       setCopiedId(id);
       window.setTimeout(() => setCopiedId((v) => (v === id ? null : v)), 1500);
       toast.success("Snippet copied", {
@@ -48,6 +50,7 @@ function Index() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden">
+      {showCutscene && <Cutscene onComplete={() => setShowCutscene(false)} />}
       <div className="noise-overlay fixed inset-0 pointer-events-none z-40" />
 
       {/* Ambient aura blobs */}
@@ -63,7 +66,7 @@ function Index() {
             </span>
             <span className="font-display italic text-lg tracking-tight">MVMAURA</span>
             <span className="hidden sm:inline text-[10px] font-mono text-text-muted uppercase tracking-widest ml-1">
-              v1 · aura pack
+              v3 · aura pack ©
             </span>
           </a>
 
@@ -87,7 +90,42 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section className="relative px-5 pt-14 pb-10">
+      <section className="relative px-5 pt-14 pb-10 overflow-hidden">
+        {/* Micro SVG Background Image */}
+        <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+          <svg viewBox="0 0 400 400" className="w-full h-full rotate-12">
+            <defs>
+              <linearGradient id="micro-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--aura)" />
+                <stop offset="100%" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M50 200 Q 100 50 200 200 T 350 200"
+              fill="none"
+              stroke="url(#micro-grad)"
+              strokeWidth="0.5"
+              className="animate-pulse"
+            />
+            <path
+              d="M50 220 Q 100 70 200 220 T 350 220"
+              fill="none"
+              stroke="url(#micro-grad)"
+              strokeWidth="0.5"
+              style={{ animationDelay: "1s" }}
+              className="animate-pulse"
+            />
+            <path
+              d="M50 180 Q 100 30 200 180 T 350 180"
+              fill="none"
+              stroke="url(#micro-grad)"
+              strokeWidth="0.5"
+              style={{ animationDelay: "2s" }}
+              className="animate-pulse"
+            />
+          </svg>
+        </div>
+
         <div className="max-w-6xl mx-auto relative">
           <div className="relative inline-block">
             <div className="absolute -inset-14 aura-radial z-0 opacity-70" />
@@ -96,8 +134,8 @@ function Index() {
             </h1>
           </div>
           <p className="mt-5 text-text-muted text-base md:text-lg max-w-[52ch] text-pretty">
-            A living library of aura-grade animation snippets. Tap any card to copy the
-            code, paste it into your stack, ship the feeling.
+            A living library of aura-grade animation snippets. Tap any card to copy the code, paste
+            it into your stack, ship the feeling.
           </p>
 
           <div className="mt-8 flex items-center gap-3 flex-wrap">
@@ -127,10 +165,7 @@ function Index() {
                   }
                 >
                   <span
-                    className={
-                      "size-1.5 rounded-full " +
-                      (active ? "bg-aura" : "bg-neutral-700")
-                    }
+                    className={"size-1.5 rounded-full " + (active ? "bg-aura" : "bg-neutral-700")}
                   />
                   {c}
                 </button>
@@ -154,7 +189,9 @@ function Index() {
                 className={
                   "group relative text-left bg-[color:var(--surface)] ring-1 ring-white/5 rounded-2xl p-4 transition-all active:scale-[0.985] hover:ring-white/10 hover:-translate-y-0.5 overflow-hidden " +
                   (featured ? "sm:col-span-2 lg:col-span-2" : "") +
-                  (isCopied ? " ring-aura shadow-[0_0_60px_-10px_var(--aura)]" : "")
+                  (isCopied
+                    ? " ring-aura shadow-[0_0_60px_-10px_var(--aura)] animate-copy-confirm"
+                    : "")
                 }
               >
                 {/* hover aura */}
@@ -187,6 +224,22 @@ function Index() {
                     (featured ? "h-56" : "h-40")
                   }
                 >
+                  {/* Card Background Micro Image */}
+                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                    <svg viewBox="0 0 100 100" className="w-full h-full">
+                      <pattern
+                        id="card-pattern"
+                        x="0"
+                        y="0"
+                        width="10"
+                        height="10"
+                        patternUnits="userSpaceOnUse"
+                      >
+                        <circle cx="2" cy="2" r="1" fill="currentColor" />
+                      </pattern>
+                      <rect width="100" height="100" fill="url(#card-pattern)" />
+                    </svg>
+                  </div>
                   <Preview />
                 </div>
 
@@ -224,9 +277,7 @@ function Index() {
         <footer className="max-w-6xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <p className="font-display italic text-2xl">MVMAURA</p>
-            <p className="text-xs text-text-muted mt-1">
-              Copy. Paste. Feel the aura.
-            </p>
+            <p className="text-xs text-text-muted mt-1">Copy. Paste. Feel the aura. © MVMAURA</p>
           </div>
           <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest">
             crafted for builders · {new Date().getFullYear()}
@@ -265,9 +316,7 @@ function Index() {
                 className="shrink-0 px-3 py-1.5 flex items-center gap-1.5 bg-aura/15 hover:bg-aura/25 text-aura ring-1 ring-aura/40 rounded-md transition-all active:scale-95"
               >
                 <Copy className="size-3" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider">
-                  Copy cmd
-                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-wider">Copy cmd</span>
               </button>
             </div>
           </div>

@@ -77,18 +77,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Aura Animations provides pre-built, copy-paste animation packages for web development." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Aura Animations provides pre-built, copy-paste animation packages for web development." },
+      { title: "MVMAURA — Motion for craftsmen" },
+      {
+        name: "description",
+        content:
+          "MVMAURA Aura Pack: A living library of high-grade animation snippets for modern web builders.",
+      },
+      { name: "author", content: "MVMAURA" },
+      { property: "og:title", content: "MVMAURA — Motion for craftsmen" },
+      {
+        property: "og:description",
+        content:
+          "MVMAURA Aura Pack: A living library of high-grade animation snippets for modern web builders.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Aura Animations provides pre-built, copy-paste animation packages for web development." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ecf824d2-4ee3-48ed-9053-797dd647088e/id-preview-ab50f20f--39391665-4ad3-48cb-8e5c-984cbff5c507.lovable.app-1782899213252.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ecf824d2-4ee3-48ed-9053-797dd647088e/id-preview-ab50f20f--39391665-4ad3-48cb-8e5c-984cbff5c507.lovable.app-1782899213252.png" },
+      { name: "twitter:site", content: "@MVMAURA" },
+      { name: "twitter:title", content: "MVMAURA — Motion for craftsmen" },
+      {
+        name: "twitter:description",
+        content:
+          "MVMAURA Aura Pack: A living library of high-grade animation snippets for modern web builders.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ecf824d2-4ee3-48ed-9053-797dd647088e/id-preview-ab50f20f--39391665-4ad3-48cb-8e5c-984cbff5c507.lovable.app-1782899213252.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ecf824d2-4ee3-48ed-9053-797dd647088e/id-preview-ab50f20f--39391665-4ad3-48cb-8e5c-984cbff5c507.lovable.app-1782899213252.png",
+      },
     ],
     links: [
       {
