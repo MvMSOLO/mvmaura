@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { toast } from "sonner";
 import { Check, Copy, Terminal, X } from "lucide-react";
 import { STACKS, CATEGORIES, SNIPPETS, type StackId, type Category } from "@/data/snippets";
@@ -13,29 +14,40 @@ function Index() {
   const [showCutscene, setShowCutscene] = useState(true);
   const [stack, setStack] = useState<StackId>("react");
   const [category, setCategory] = useState<Category>("All");
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
   const [deps, setDeps] = useState<{ name: string; packages: string[] } | null>(null);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const visible = useMemo(
     () =>
-      SNIPPETS.filter((s) => s.stack === stack && (category === "All" || s.category === category)),
-    [stack, category],
+      SNIPPETS.filter((s) => (category === "All" || s.category === category)),
+    [category],
   );
 
-  const copySnippet = async (id: string) => {
+  const copySnippet = async (id: number) => {
     const snip = SNIPPETS.find((s) => s.id === id);
     if (!snip) return;
     try {
-      // Decode Base64 snippet code
-      const code = atob(snip.code);
+      const code = atob(snip[stack as keyof typeof snip] as string);
       await navigator.clipboard.writeText(code);
       setCopiedId(id);
       window.setTimeout(() => setCopiedId((v) => (v === id ? null : v)), 1500);
       toast.success("Snippet copied", {
         description: `${snip.name} · ready to paste`,
       });
-      if (snip.dependencies?.length) {
-        setDeps({ name: snip.name, packages: snip.dependencies });
+      // Simple dependency detection for demo
+      const dependencies: string[] = [];
+      if (atob(snip.react).includes('framer-motion')) dependencies.push('framer-motion');
+      if (atob(snip.react).includes('lucide-react')) dependencies.push('lucide-react');
+
+      if (dependencies.length) {
+        setDeps({ name: snip.name, packages: dependencies });
       }
     } catch {
       toast.error("Clipboard unavailable");
@@ -49,278 +61,405 @@ function Index() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden">
-      {showCutscene && <Cutscene onComplete={() => setShowCutscene(false)} />}
-      <div className="noise-overlay fixed inset-0 pointer-events-none z-40" />
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden scroll-smooth">
+      <AnimatePresence>
+        {showCutscene && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[100]"
+          >
+            <Cutscene onComplete={() => setShowCutscene(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Ambient aura blobs */}
-      <div className="pointer-events-none fixed -top-40 -left-24 size-[380px] aura-radial opacity-40" />
-      <div className="pointer-events-none fixed top-[30%] -right-32 size-[420px] aura-radial opacity-25 [animation-delay:-3s]" />
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-aura z-[60] origin-left"
+        style={{ scaleX }}
+      />
 
-      {/* Sticky header + stack switcher */}
-      <header className="sticky top-0 z-30 bg-background/70 backdrop-blur-xl border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
-          <a href="/" className="flex items-center gap-2 group">
-            <span className="relative size-2 rounded-full bg-aura shadow-[0_0_12px_var(--aura)]">
-              <span className="absolute inset-0 rounded-full bg-aura animate-ping opacity-60" />
+      <div className="noise-overlay fixed inset-0 pointer-events-none z-40 opacity-[0.03]" />
+
+      {/* Optimized Ambient aura blobs */}
+      <motion.div
+        style={{
+          y: useSpring(useScroll().scrollYProgress, { stiffness: 50, damping: 20 })
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.4, 0.3]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none fixed -top-40 -left-24 size-[500px] aura-radial z-0"
+      />
+
+      <motion.div
+        style={{
+          y: useSpring(useScroll().scrollYProgress, { stiffness: 40, damping: 15 })
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.25, 0.15]
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="pointer-events-none fixed top-[40%] -right-48 size-[600px] aura-radial z-0"
+      />
+
+      {/* Sticky header */}
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="sticky top-0 z-50 bg-background/60 backdrop-blur-2xl border-b border-white/[0.03]"
+      >
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+          <motion.a
+            whileHover={{ scale: 1.02 }}
+            href="/"
+            className="flex items-center gap-3 group"
+          >
+            <div className="relative size-3 rounded-full bg-aura">
+              <div className="absolute inset-0 rounded-full bg-aura animate-ping opacity-40" />
+              <div className="absolute inset-[-4px] rounded-full border border-aura/20 animate-pulse" />
+            </div>
+            <span className="font-display italic text-xl tracking-tighter">MVMAURA</span>
+            <span className="hidden sm:inline text-[9px] font-mono text-aura/60 uppercase tracking-[0.3em] ml-2">
+              v4 · bespoke
             </span>
-            <span className="font-display italic text-lg tracking-tight">MVMAURA</span>
-            <span className="hidden sm:inline text-[10px] font-mono text-text-muted uppercase tracking-widest ml-1">
-              v4 · aura pack ©
-            </span>
-          </a>
+          </motion.a>
 
-          <nav className="flex bg-[color:var(--surface)] ring-1 ring-white/5 p-1 rounded-full overflow-x-auto no-scrollbar max-w-[60%]">
+          <nav className="flex bg-white/[0.03] ring-1 ring-white/5 p-1 rounded-2xl overflow-x-auto no-scrollbar">
             {STACKS.map((s) => (
               <button
                 key={s.id}
-                onClick={() => setStack(s.id)}
+                onClick={() => setStack(s.id as StackId)}
                 className={
-                  "px-3 py-1.5 text-[11px] font-medium rounded-full whitespace-nowrap transition-all " +
+                  "px-4 py-2 text-[11px] font-semibold rounded-xl whitespace-nowrap transition-all duration-500 " +
                   (stack === s.id
-                    ? "bg-[color:var(--surface-2)] text-foreground shadow-sm ring-1 ring-white/5"
-                    : "text-text-muted hover:text-foreground")
+                    ? "bg-white/10 text-foreground shadow-xl ring-1 ring-white/10"
+                    : "text-white/40 hover:text-white/70 hover:bg-white/5")
                 }
               >
-                {s.label}
+                {s.name}
               </button>
             ))}
           </nav>
         </div>
-      </header>
+      </motion.header>
 
       {/* Hero */}
-      <section className="relative px-5 pt-14 pb-10 overflow-hidden">
-        {/* Micro SVG Background Image */}
-        <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
-          <svg viewBox="0 0 400 400" className="w-full h-full rotate-12">
-            <defs>
-              <linearGradient id="micro-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="var(--aura)" />
-                <stop offset="100%" stopColor="transparent" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M50 200 Q 100 50 200 200 T 350 200"
-              fill="none"
-              stroke="url(#micro-grad)"
-              strokeWidth="0.5"
-              className="animate-pulse"
-            />
-            <path
-              d="M50 220 Q 100 70 200 220 T 350 220"
-              fill="none"
-              stroke="url(#micro-grad)"
-              strokeWidth="0.5"
-              style={{ animationDelay: "1s" }}
-              className="animate-pulse"
-            />
-            <path
-              d="M50 180 Q 100 30 200 180 T 350 180"
-              fill="none"
-              stroke="url(#micro-grad)"
-              strokeWidth="0.5"
-              style={{ animationDelay: "2s" }}
-              className="animate-pulse"
-            />
-          </svg>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative">
-          <div className="relative inline-block">
-            <div className="absolute -inset-14 aura-radial z-0 opacity-70" />
-            <h1 className="relative z-10 font-display text-5xl md:text-7xl leading-[0.95] tracking-tight text-balance">
-              Motion for <span className="shimmer-text italic">craftsmen.</span>
+      <section className="relative px-6 pt-24 pb-16">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h1 className="font-display text-7xl md:text-9xl leading-[0.85] tracking-tighter text-balance">
+              <motion.span
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 1.2 }}
+              >
+                Motion for
+              </motion.span>
+               <br />
+              <motion.span
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                className="italic bg-gradient-to-r from-orange-500 via-white to-orange-500 bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(249,115,22,0.3)]"
+              >
+                craftsmen.
+              </motion.span>
             </h1>
-          </div>
-          <p className="mt-5 text-text-muted text-base md:text-lg max-w-[52ch] text-pretty">
-            A living library of aura-grade animation snippets. Tap any card to copy the code, paste
-            it into your stack, ship the feeling.
-          </p>
 
-          <div className="mt-8 flex items-center gap-3 flex-wrap">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
-              Now browsing
-            </span>
-            <span className="px-3 py-1 rounded-full bg-aura/10 ring-1 ring-aura/40 text-aura text-xs font-mono">
-              {STACKS.find((s) => s.id === stack)?.label}
-            </span>
-            <span className="text-text-muted text-xs">·</span>
-            <span className="text-text-muted text-xs">{visible.length} snippets</span>
-          </div>
+            <p className="mt-8 text-white/50 text-lg md:text-xl max-w-[48ch] leading-relaxed font-light">
+              A curated anthology of aura-grade motion systems. High-fidelity components designed to breathe life into your interfaces.
+            </p>
+
+            <div className="mt-12 flex items-center gap-6 flex-wrap">
+              <div className="flex items-center gap-3">
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">
+                  Browsing
+                </span>
+                <motion.span
+                  key={stack}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="px-4 py-1.5 rounded-full bg-aura/10 border border-aura/30 text-aura text-[11px] font-mono font-bold"
+                >
+                  {STACKS.find((s) => s.id === stack)?.name}
+                </motion.span>
+              </div>
+              <div className="h-4 w-px bg-white/10" />
+              <span className="text-white/40 font-mono text-[11px] tracking-widest">{visible.length} SYSTEMS LOADED</span>
+            </div>
+          </motion.div>
 
           {/* Category chips */}
-          <div className="mt-6 flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-            {CATEGORIES.map((c) => {
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-12 flex gap-3 overflow-x-auto pb-4 no-scrollbar"
+          >
+            {CATEGORIES.map((c, i) => {
               const active = category === c;
               return (
-                <button
+                <motion.button
                   key={c}
-                  onClick={() => setCategory(c)}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setCategory(c as Category)}
                   className={
-                    "shrink-0 px-3 py-1.5 flex items-center gap-1.5 rounded-lg text-sm font-medium transition-all " +
+                    "shrink-0 px-5 py-2.5 flex items-center gap-2.5 rounded-2xl text-[12px] font-semibold transition-all duration-500 " +
                     (active
-                      ? "bg-aura/10 ring-1 ring-aura text-foreground"
-                      : "bg-[color:var(--surface)] ring-1 ring-white/5 text-text-muted hover:text-foreground")
+                      ? "bg-aura/10 border border-aura/50 text-white shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+                      : "bg-white/[0.03] border border-white/5 text-white/40 hover:border-white/10 hover:text-white/60")
                   }
                 >
-                  <span
-                    className={"size-1.5 rounded-full " + (active ? "bg-aura" : "bg-neutral-700")}
-                  />
+                  <div className={"size-1.5 rounded-full transition-colors " + (active ? "bg-aura shadow-[0_0_8px_var(--aura)]" : "bg-white/10")} />
                   {c}
-                </button>
+                </motion.button>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Gallery */}
-      <main className="px-5 pb-40 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visible.map((s, i) => {
-            const isCopied = copiedId === s.id;
-            const featured = i === 0 && category === "All";
-            const { Preview } = s;
-            return (
-              <button
-                key={s.id}
-                onClick={() => copySnippet(s.id)}
-                className={
-                  "group relative text-left bg-[color:var(--surface)] ring-1 ring-white/5 rounded-2xl p-4 transition-all active:scale-[0.985] hover:ring-white/10 hover:-translate-y-0.5 overflow-hidden " +
-                  (featured ? "sm:col-span-2 lg:col-span-2" : "") +
-                  (isCopied
-                    ? " ring-aura shadow-[0_0_60px_-10px_var(--aura)] animate-copy-confirm"
-                    : "")
-                }
-              >
-                {/* hover aura */}
-                <div className="pointer-events-none absolute -inset-24 opacity-0 group-hover:opacity-30 transition-opacity duration-700 aura-radial" />
+      <main className="px-6 pb-40">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
+            {visible.map((s, i) => {
+              const isCopied = copiedId === s.id;
+              const featured = i === 0 && category === "All";
 
-                <div className="relative flex justify-between items-start mb-5">
-                  <div className="space-y-1">
-                    <h3 className="text-sm font-medium">{s.name}</h3>
-                    <p className="text-[10px] text-text-muted uppercase tracking-widest font-mono">
-                      {s.tag}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    {s.dependencies?.length ? (
-                      <span className="py-1 px-2 bg-[color:var(--surface-2)] ring-1 ring-white/5 rounded text-[10px] font-mono text-aura">
-                        {s.dependencies[0]}
-                        {s.dependencies.length > 1 ? ` +${s.dependencies.length - 1}` : ""}
-                      </span>
-                    ) : (
-                      <span className="py-1 px-2 bg-[color:var(--surface-2)] ring-1 ring-white/5 rounded text-[10px] font-mono text-text-muted">
-                        zero-deps
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div
-                  className={
-                    "relative flex items-center justify-center overflow-hidden bg-background/60 rounded-lg ring-1 ring-black/20 " +
-                    (featured ? "h-56" : "h-40")
-                  }
+              return (
+                <motion.div
+                  key={s.id}
+                  layout
+                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: i % 12 * 0.05,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className={featured ? "sm:col-span-2 lg:col-span-2" : ""}
                 >
-                  {/* Card Background Micro Image */}
-                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                      <pattern
-                        id="card-pattern"
-                        x="0"
-                        y="0"
-                        width="10"
-                        height="10"
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <circle cx="2" cy="2" r="1" fill="currentColor" />
-                      </pattern>
-                      <rect width="100" height="100" fill="url(#card-pattern)" />
-                    </svg>
-                  </div>
-                  <Preview />
-                </div>
+                  <motion.button
+                    onClick={() => copySnippet(s.id)}
+                    whileHover={{ y: -8 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className={
+                      "group relative w-full text-left bg-white/[0.02] border border-white/[0.05] rounded-[2rem] p-6 transition-colors hover:border-white/10 overflow-hidden " +
+                      (isCopied ? " ring-2 ring-aura/50 shadow-2xl shadow-aura/10" : "")
+                    }
+                  >
+                    {/* Hover Aura Effect */}
+                    <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                      <div className="absolute -inset-[100%] bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.05)_0%,transparent_50%)]" />
+                    </div>
 
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-[11px] text-text-muted flex items-center gap-1.5">
-                    {isCopied ? (
-                      <>
-                        <Check className="size-3 text-aura" />
-                        <span className="text-aura">Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="size-3" />
-                        Tap card to copy
-                      </>
-                    )}
-                  </span>
-                  <span className="text-[10px] font-mono text-text-muted uppercase">
-                    {s.category}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
+                    <div className="relative flex justify-between items-start mb-8">
+                      <div className="space-y-1.5">
+                        <h3 className="text-base font-semibold tracking-tight text-white/90">{s.name}</h3>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[9px] text-aura font-mono font-black uppercase tracking-[0.2em]">
+                            Bespoke
+                          </span>
+                          <span className="size-1 rounded-full bg-white/10" />
+                          <span className="text-[9px] text-white/30 font-mono uppercase tracking-widest">
+                            {s.category}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="px-3 py-1 bg-white/[0.03] border border-white/[0.05] rounded-full text-[9px] font-mono text-white/40">
+                          {s.id % 2 === 0 ? 'Spring' : 'Physics'}
+                        </div>
+                      </div>
+                    </div>
 
-          {visible.length === 0 && (
-            <div className="col-span-full py-24 text-center text-text-muted">
-              <p className="font-mono text-sm">no snippets yet in this bucket.</p>
-              <p className="text-xs mt-1">Try another category or stack.</p>
-            </div>
-          )}
+                    <div
+                      className={
+                        "relative flex items-center justify-center overflow-hidden bg-black/40 rounded-3xl border border-white/[0.03] group-hover:border-white/10 transition-colors " +
+                        (featured ? "h-72" : "h-52")
+                      }
+                    >
+                       <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay">
+                          <svg viewBox="0 0 200 200" className="size-full">
+                            <filter id="noiseFilter">
+                              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+                            </filter>
+                            <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+                          </svg>
+                       </div>
+
+                       <SnippetPreview id={s.id} name={s.name} category={s.category} />
+                    </div>
+
+                    <div className="mt-6 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <AnimatePresence mode="wait">
+                          {isCopied ? (
+                            <motion.div
+                              key="copied"
+                              initial={{ opacity: 0, scale: 0.5 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              className="flex items-center gap-2 text-aura"
+                            >
+                              <Check className="size-4" />
+                              <span className="text-[11px] font-bold uppercase tracking-wider">Copied</span>
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="copy"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              className="flex items-center gap-2 text-white/30 group-hover:text-white/60 transition-colors"
+                            >
+                              <Copy className="size-3.5" />
+                              <span className="text-[10px] font-semibold uppercase tracking-widest">Tap to capture</span>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        <div className="size-1 rounded-full bg-white/20" />
+                        <div className="size-1 rounded-full bg-white/10" />
+                        <div className="size-1 rounded-full bg-white/5" />
+                      </div>
+                    </div>
+                  </motion.button>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
 
         {/* Footer */}
-        <footer className="max-w-6xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <div>
-            <p className="font-display italic text-2xl">MVMAURA</p>
-            <p className="text-xs text-text-muted mt-1">Copy. Paste. Feel the aura. © MVMAURA</p>
+        <footer className="max-w-7xl mx-auto mt-40 pt-12 border-t border-white/[0.05] flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+               <div className="size-2 rounded-full bg-aura" />
+               <span className="font-display italic text-3xl tracking-tighter">MVMAURA</span>
+            </div>
+            <p className="text-sm text-white/30 max-w-sm font-light leading-relaxed">
+              Precision-engineered motion for the modern web. Every frame crafted with purpose.
+            </p>
           </div>
-          <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest">
-            crafted for builders · {new Date().getFullYear()}
-          </p>
+
+          <div className="flex flex-col items-end gap-2">
+            <p className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em]">
+              © MVMSOLO · BUILT BY JULES
+            </p>
+            <div className="flex gap-4 text-white/40 text-[11px] font-medium">
+              <a href="#" className="hover:text-aura transition-colors">Twitter</a>
+              <a href="#" className="hover:text-aura transition-colors">GitHub</a>
+              <a href="#" className="hover:text-aura transition-colors">Contact</a>
+            </div>
+          </div>
         </footer>
       </main>
 
       {/* Dependency terminal panel */}
-      {deps && (
-        <div className="fixed bottom-4 inset-x-4 z-50 animate-[slide-up-in_0.5s_cubic-bezier(0.16,1,0.3,1)]">
-          <div className="max-w-3xl mx-auto bg-neutral-900/95 backdrop-blur-md ring-1 ring-aura/30 rounded-xl overflow-hidden shadow-2xl shadow-black/60">
-            <div className="flex items-center justify-between px-4 py-2 bg-neutral-900 border-b border-white/5">
-              <div className="flex items-center gap-2">
-                <Terminal className="size-3.5 text-aura" />
-                <span className="text-[10px] font-mono text-aura uppercase tracking-widest font-semibold">
-                  install first · {deps.name}
-                </span>
+      <AnimatePresence>
+        {deps && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed bottom-6 inset-x-6 z-[60]"
+          >
+            <div className="max-w-2xl mx-auto bg-neutral-900/90 backdrop-blur-3xl border border-aura/30 rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
+              <div className="flex items-center justify-between px-6 py-4 bg-white/[0.02] border-b border-white/[0.05]">
+                <div className="flex items-center gap-3">
+                  <Terminal className="size-4 text-aura" />
+                  <span className="text-[11px] font-mono text-aura font-bold uppercase tracking-[0.2em]">
+                    Provisioning · {deps.name}
+                  </span>
+                </div>
+                <button
+                  onClick={() => setDeps(null)}
+                  className="text-white/40 hover:text-white transition-colors"
+                >
+                  <X className="size-5" />
+                </button>
               </div>
-              <button
-                onClick={() => setDeps(null)}
-                aria-label="Close"
-                className="text-text-muted hover:text-foreground transition-colors"
-              >
-                <X className="size-4" />
-              </button>
-            </div>
-            <div className="p-4 flex items-center justify-between gap-3 flex-wrap">
-              <div className="flex items-start gap-3 min-w-0 flex-1">
-                <span className="text-aura font-mono">›</span>
-                <code className="text-xs sm:text-sm font-mono text-zinc-200 break-all">
-                  npm install {deps.packages.join(" ")}
-                </code>
+              <div className="p-6 flex items-center justify-between gap-6">
+                <div className="flex items-center gap-4 min-w-0 flex-1">
+                  <span className="text-aura/60 font-mono text-lg animate-pulse">›</span>
+                  <code className="text-sm font-mono text-white/80 break-all bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/[0.05]">
+                    npm install {deps.packages.join(" ")}
+                  </code>
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={copyInstall}
+                  className="shrink-0 px-6 py-2.5 bg-aura text-black font-bold rounded-xl shadow-xl shadow-aura/20 hover:shadow-aura/40 transition-all text-[11px] uppercase tracking-wider"
+                >
+                  Capture Command
+                </motion.button>
               </div>
-              <button
-                onClick={copyInstall}
-                className="shrink-0 px-3 py-1.5 flex items-center gap-1.5 bg-aura/15 hover:bg-aura/25 text-aura ring-1 ring-aura/40 rounded-md transition-all active:scale-95"
-              >
-                <Copy className="size-3" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider">Copy cmd</span>
-              </button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// Lazy/Performance optimized preview component
+import * as Previews from "@/components/previews";
+
+function SnippetPreview({ id, name, category }: { id: number; name: string; category: string }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Map snippet name to component
+  const ComponentName = name.replace(/ /g, '');
+  const PreviewComponent = (Previews as any)[ComponentName] || (() => <div className="text-white/20 text-xs font-mono">PREVIEW::{category}</div>);
+
+  return (
+    <div ref={containerRef} className="size-full flex items-center justify-center p-4">
+      {isVisible ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="size-full flex items-center justify-center"
+        >
+          <PreviewComponent />
+        </motion.div>
+      ) : (
+        <div className="size-8 rounded-full border border-white/5 animate-pulse" />
       )}
     </div>
   );

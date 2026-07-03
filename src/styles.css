@@ -169,14 +169,12 @@
 @keyframes aura-pulse {
   0%,
   100% {
-    opacity: 0.35;
-    filter: blur(60px);
+    opacity: 0.25;
     transform: scale(1);
   }
   50% {
-    opacity: 0.6;
-    filter: blur(80px);
-    transform: scale(1.15);
+    opacity: 0.45;
+    transform: scale(1.1);
   }
 }
 @keyframes text-shimmer {
@@ -237,8 +235,10 @@
 }
 
 @utility aura-radial {
-  background: radial-gradient(circle at center, var(--aura) 0%, transparent 65%);
-  animation: aura-pulse 8s ease-in-out infinite;
+  background: radial-gradient(circle at center, var(--aura) 0%, transparent 70%);
+  filter: blur(80px); /* Static blur is much cheaper than animated blur */
+  animation: aura-pulse 10s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 @utility shimmer-text {
   background: linear-gradient(
@@ -256,8 +256,9 @@
 }
 @utility noise-overlay {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.05;
-  mix-blend-mode: overlay;
+  opacity: 0.03;
+  /* Removed mix-blend-mode for performance */
+  pointer-events: none;
 }
 @utility no-scrollbar {
   scrollbar-width: none;

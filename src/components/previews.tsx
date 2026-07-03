@@ -451,8 +451,10 @@ export function AuraBlob() { return (<div className="size-24 bg-aura/30 blur-2xl
 
 export function MagneticTrailLink() { return (<div className="text-xl font-display italic text-aura underline underline-offset-8">Trace Motion</div>); }
 
-export function MorphingShape() { return (<div className="size-20 bg-aura animate-[morph_5s_infinite_ease-in-out]" />
-      <style>{`@keyframes morph { 0%, 100% { border-radius: 60% 40% 30% 70%; } 50% { border-radius: 30% 60% 70% 40%; } }`}</style>); }
+export function MorphingShape() { return (<>
+      <div className="size-20 bg-aura animate-[morph_5s_infinite_ease-in-out]" />
+      <style>{`@keyframes morph { 0%, 100% { border-radius: 60% 40% 30% 70%; } 50% { border-radius: 30% 60% 70% 40%; } }`}</style>
+    </>); }
 
 export function AuraInfinity() { return (<div className="relative size-20">
       <div className="absolute inset-0 border-2 border-aura rounded-full rotate-45" />
