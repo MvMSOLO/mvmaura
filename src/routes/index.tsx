@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { Check, Copy, Terminal, X } from "lucide-react";
-import { STACKS, CATEGORIES, SNIPPETS, type StackId, type Category } from "@/data/snippets";
+import { STACKS, CATEGORIES, SNIPPETS, type Snippet, type StackId, type Category } from "@/data/snippets";
 import { Cutscene } from "@/components/cutscene";
+import { GridSnapCursor, KineticText, ChronoCounter } from "@/components/ui/kinetic-animations";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -15,12 +16,33 @@ function Index() {
   const [category, setCategory] = useState<Category>("All");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [deps, setDeps] = useState<{ name: string; packages: string[] } | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set());
 
   const visible = useMemo(
     () =>
       SNIPPETS.filter((s) => s.stack === stack && (category === "All" || s.category === category)),
     [stack, category],
   );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-id");
+            if (id) setVisibleItems((prev) => new Set(prev).add(id));
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "50px" },
+    );
+
+    const elements = galleryRef.current?.querySelectorAll("[data-id]");
+    elements?.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [visible]);
 
   const copySnippet = async (id: string) => {
     const snip = SNIPPETS.find((s) => s.id === id);
@@ -49,13 +71,14 @@ function Index() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden cursor-none">
+      <GridSnapCursor />
       {showCutscene && <Cutscene onComplete={() => setShowCutscene(false)} />}
       <div className="noise-overlay fixed inset-0 pointer-events-none z-40" />
 
       {/* Ambient aura blobs */}
-      <div className="pointer-events-none fixed -top-40 -left-24 size-[380px] aura-radial opacity-40" />
-      <div className="pointer-events-none fixed top-[30%] -right-32 size-[420px] aura-radial opacity-25 [animation-delay:-3s]" />
+      <div className="pointer-events-none fixed -top-40 -left-24 size-[380px] aura-radial opacity-40 isometric-shift" />
+      <div className="pointer-events-none fixed top-[30%] -right-32 size-[420px] aura-radial opacity-25 [animation-delay:-3s] isometric-shift" />
 
       {/* Sticky header + stack switcher */}
       <header className="sticky top-0 z-30 bg-background/70 backdrop-blur-xl border-b border-white/[0.06]">
@@ -66,7 +89,7 @@ function Index() {
             </span>
             <span className="font-display italic text-lg tracking-tight">MVMAURA</span>
             <span className="hidden sm:inline text-[10px] font-mono text-text-muted uppercase tracking-widest ml-1">
-              v3 · aura pack ©
+              v4 · aura pack ©
             </span>
           </a>
 
@@ -76,7 +99,7 @@ function Index() {
                 key={s.id}
                 onClick={() => setStack(s.id)}
                 className={
-                  "px-3 py-1.5 text-[11px] font-medium rounded-full whitespace-nowrap transition-all " +
+                  "px-3 py-1.5 text-[11px] font-medium rounded-full whitespace-nowrap transition-all tactile-depress " +
                   (stack === s.id
                     ? "bg-[color:var(--surface-2)] text-foreground shadow-sm ring-1 ring-white/5"
                     : "text-text-muted hover:text-foreground")
@@ -128,25 +151,31 @@ function Index() {
 
         <div className="max-w-6xl mx-auto relative">
           <div className="relative inline-block">
-            <div className="absolute -inset-14 aura-radial z-0 opacity-70" />
-            <h1 className="relative z-10 font-display text-5xl md:text-7xl leading-[0.95] tracking-tight text-balance">
-              Motion for <span className="shimmer-text italic">craftsmen.</span>
-            </h1>
+            <div className="absolute -inset-14 aura-radial z-0 opacity-70 isometric-shift" />
+            <div className="relative z-10 overflow-hidden">
+                <h1 className="font-display text-5xl md:text-7xl leading-[0.95] tracking-tight text-balance animate-[slit-scan-reveal_1s_ease-out_forwards]">
+                Motion for <span className="shimmer-text italic">craftsmen.</span>
+                </h1>
+            </div>
           </div>
-          <p className="mt-5 text-text-muted text-base md:text-lg max-w-[52ch] text-pretty">
-            A living library of aura-grade animation snippets. Tap any card to copy the code, paste
-            it into your stack, ship the feeling.
-          </p>
+          <div className="mt-5">
+            <KineticText className="text-text-muted text-base md:text-lg max-w-[52ch] text-pretty">
+              A living library of aura-grade animation snippets. Tap any card to copy the code, paste it into your stack, ship the feeling.
+            </KineticText>
+          </div>
 
           <div className="mt-8 flex items-center gap-3 flex-wrap">
             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
               Now browsing
             </span>
-            <span className="px-3 py-1 rounded-full bg-aura/10 ring-1 ring-aura/40 text-aura text-xs font-mono">
+            <span className="px-3 py-1 rounded-full bg-aura/10 ring-1 ring-aura/40 text-aura text-xs font-mono tactile-depress">
               {STACKS.find((s) => s.id === stack)?.label}
             </span>
             <span className="text-text-muted text-xs">·</span>
-            <span className="text-text-muted text-xs">{visible.length} snippets</span>
+            <div className="flex items-center gap-1.5 text-text-muted text-xs">
+                <ChronoCounter value={visible.length} />
+                <span>snippets</span>
+            </div>
           </div>
 
           {/* Category chips */}
@@ -177,25 +206,46 @@ function Index() {
 
       {/* Gallery */}
       <main className="px-5 pb-40 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div ref={galleryRef} className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visible.map((s, i) => {
             const isCopied = copiedId === s.id;
             const featured = i === 0 && category === "All";
+            const isVisible = visibleItems.has(s.id);
             const { Preview } = s;
             return (
               <button
                 key={s.id}
+                data-id={s.id}
                 onClick={() => copySnippet(s.id)}
                 className={
-                  "group relative text-left bg-[color:var(--surface)] ring-1 ring-white/5 rounded-2xl p-4 transition-all active:scale-[0.985] hover:ring-white/10 hover:-translate-y-0.5 overflow-hidden " +
-                  (featured ? "sm:col-span-2 lg:col-span-2" : "") +
+                  "group relative text-left bg-[color:var(--surface)] ring-1 ring-white/5 rounded-2xl p-4 transition-all hover:ring-white/10 hover:-translate-y-0.5 overflow-hidden bento-matrix-item tactile-depress " +
+                  (isVisible ? "visible " : "") +
+                  (featured ? "sm:col-span-2 lg:col-span-2 " : "") +
                   (isCopied
                     ? " ring-aura shadow-[0_0_60px_-10px_var(--aura)] animate-copy-confirm"
                     : "")
                 }
+                style={{ animationDelay: `${(i % 9) * 0.05}s` }}
               >
                 {/* hover aura */}
-                <div className="pointer-events-none absolute -inset-24 opacity-0 group-hover:opacity-30 transition-opacity duration-700 aura-radial" />
+                <div className="pointer-events-none absolute -inset-24 opacity-0 group-hover:opacity-30 transition-opacity duration-700 aura-radial isometric-shift" />
+
+                {/* Border Draw Reveal (SVG) */}
+                <svg className="absolute inset-0 pointer-events-none size-full">
+                    <rect
+                        x="0" y="0" width="100%" height="100%"
+                        fill="none"
+                        stroke="var(--aura)"
+                        strokeWidth="2"
+                        strokeDasharray="1200"
+                        strokeDashoffset="1200"
+                        className={"transition-opacity duration-300 " + (isVisible ? "opacity-40" : "opacity-0")}
+                        style={{
+                            animation: isVisible ? `border-draw 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none',
+                            animationDelay: `${(i % 9) * 0.05 + 0.2}s`
+                        }}
+                    />
+                </svg>
 
                 <div className="relative flex justify-between items-start mb-5">
                   <div className="space-y-1">
@@ -278,6 +328,9 @@ function Index() {
           <div>
             <p className="font-display italic text-2xl">MVMAURA</p>
             <p className="text-xs text-text-muted mt-1">Copy. Paste. Feel the aura. © MVMAURA</p>
+            <p className="text-[10px] font-mono text-aura/50 mt-2 uppercase tracking-tighter animate-pulse">
+                Jules orqali yangilandi #1
+            </p>
           </div>
           <p className="text-[10px] font-mono text-text-muted uppercase tracking-widest">
             crafted for builders · {new Date().getFullYear()}
