@@ -960,13 +960,13 @@ export function Cutscene({ onComplete }: { onComplete: () => void }) {
 
         {/* Stage 4: Brand Emergence */}
         <div className={`absolute flex flex-col items-center gap-6 stage-transition ${stage === 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}>
-          <div className="font-display italic text-8xl text-white tracking-tighter shimmer-text">MVMAURA</div>
+          <div className="font-display italic text-8xl text-white tracking-tighter shimmer-text animate-[slit-scan-reveal_1s_ease-out_forwards]">MVMAURA</div>
           <div className="h-px w-64 bg-gradient-to-r from-transparent via-aura to-transparent" />
-          <div className="font-mono text-xs tracking-[1em] text-aura/60 uppercase">V3 Evolution</div>
+          <div className="font-mono text-xs tracking-[1em] text-aura/60 uppercase">V4 Evolution</div>
         </div>
 
         {/* Stage 5: Transition to UI */}
-        <div className={`absolute inset-0 bg-white stage-transition ${stage === 5 ? "opacity-100" : "opacity-0 pointer-events-none"}`} />
+        <div className={`absolute inset-0 bg-background stage-transition ${stage === 5 ? "opacity-100" : "opacity-0 pointer-events-none"}`} />
 
       </div>
     </div>

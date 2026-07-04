@@ -2700,7 +2700,7 @@ export function CosmicResonance() {
 
 
 /**
- * AURA MASTERPIECE v3
+ * AURA MASTERPIECE v4
  * A procedurally generated, hyper-complex kinetic sculpture.
  * Exceeds 1000 lines of specialized animation logic and SVG construction.
  */
@@ -3603,7 +3603,7 @@ export function AuraMasterpiece() {
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col items-center">
           <div className="text-[10px] font-mono text-aura tracking-[1em] mb-2 uppercase">Core Resonance</div>
-          <div className="text-[8px] font-mono text-white/30 uppercase">System Stable · v3.0.4</div>
+          <div className="text-[8px] font-mono text-white/30 uppercase">System Stable · v4.0.0</div>
         </div>
       </div>
     </div>
