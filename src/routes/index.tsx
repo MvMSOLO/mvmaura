@@ -443,7 +443,7 @@ function SnippetPreview({ id, name, category }: { id: number; name: string; cate
           <PreviewComponent />
         </motion.div>
       ) : (
-        <div className="size-8 rounded-full border border-white/5 animate-pulse" />
+        <div className="size-8 rounded-none border border-white/5 animate-pulse" />
       )}
     </div>
   );

@@ -69,7 +69,7 @@ export const {name} = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
-      className="relative p-10 bg-neutral-900 border border-white/10 rounded-[2.5rem] overflow-hidden group"
+      className="relative p-10 bg-neutral-900 border border-white/10 rounded-none overflow-hidden group"
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -131,7 +131,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="mvmaura-vue-root p-8 bg-neutral-900 border border-white/5 rounded-[2rem] relative overflow-hidden group">
+  <div class="mvmaura-vue-root p-8 bg-neutral-900 border border-white/5 rounded-none relative overflow-hidden group">
     <motion.div
       :initial="{ opacity: 0, scale: 0.9 }"
       :animate="{ opacity: 1, scale: 1 }"
@@ -188,7 +188,7 @@ def gen_svelte_snippet(name, impl, cat):
     use:motion
     on:mouseenter={() => isHovered = true}
     on:mouseleave={() => isHovered = false}
-    class="svelte-component-root p-12 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl relative group cursor-crosshair"
+    class="svelte-component-root p-12 bg-black/60 backdrop-blur-xl border border-white/10 rounded-none relative group cursor-crosshair"
   >
     <div class="z-10 relative flex flex-col items-center">
       {s_impl}
@@ -227,7 +227,7 @@ def gen_tailwind_snippet(name, impl):
     t_impl = re.sub(r'\{\s*Array\.from.*?\.map.*?\}', '<!-- Interactive Element -->', t_impl, flags=re.DOTALL)
 
     return """<!-- MVMAURA :: {name} -->
-<div class="group relative p-12 bg-neutral-950 border border-white/5 rounded-[3rem] overflow-hidden transition-all duration-700 hover:border-aura/20">
+<div class="group relative p-12 bg-neutral-950 border border-white/5 rounded-none overflow-hidden transition-all duration-700 hover:border-aura/20">
   <!-- Dynamic Background Background -->
   <div class="absolute inset-0 bg-gradient-to-tr from-aura/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
 
@@ -238,8 +238,8 @@ def gen_tailwind_snippet(name, impl):
   </div>
 
   <!-- Decorative Corner Accents -->
-  <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/10 rounded-tl-3xl group-hover:border-aura/40 transition-colors"></div>
-  <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/10 rounded-br-3xl group-hover:border-aura/40 transition-colors"></div>
+  <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/10 rounded-none group-hover:border-aura/40 transition-colors"></div>
+  <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/10 rounded-none group-hover:border-aura/40 transition-colors"></div>
 
   <div class="absolute bottom-4 left-1/2 -translate-x-1/2">
     <span class="text-[7px] font-mono text-white/10 uppercase tracking-[0.5em] group-hover:text-aura/40 transition-colors">

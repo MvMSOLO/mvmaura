@@ -84,7 +84,7 @@ export function HolographicText() {
   return (
     <div className="relative group cursor-default">
       <h2 className="text-4xl font-mono uppercase tracking-widest relative">
-        <span className="absolute inset-0 text-white blur-[2px] opacity-20 group-hover:opacity-40 transition-opacity">
+        <span className="absolute inset-0 text-white [2px] opacity-20 group-hover:opacity-40 transition-opacity">
           HOLOGRAPH
         </span>
         <span
@@ -189,8 +189,8 @@ export function SplitTextReveal() {
 
 export function MagneticAuraButton() {
   return (
-    <button className="relative px-8 py-3 bg-surface-2 border border-white/10 rounded-none-none group overflow-hidden">
-      <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+    <button className="relative px-8 py-3 bg-surface-2 border border-white/10 rounded-none group overflow-hidden">
+      <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-20  transition-opacity duration-500" />
       <span className="relative z-10 transition-colors group-hover:text-white">Explore Aura</span>
     </button>
   );
@@ -212,7 +212,7 @@ export function CyberButton() {
 
 export function WaveButton() {
   return (
-    <button className="relative px-8 py-3 bg-aura text-black font-semibold rounded-none-none overflow-hidden group">
+    <button className="relative px-8 py-3 bg-aura text-black font-semibold rounded-none overflow-hidden group">
       <span className="relative z-10">WAVE</span>
       <div className="absolute bottom-0 left-0 w-full h-0 bg-black/20 group-hover:h-full transition-all duration-300" />
     </button>
@@ -221,8 +221,8 @@ export function WaveButton() {
 
 export function GlowButton() {
   return (
-    <button className="relative px-6 py-2 bg-background border border-white/10 rounded-none-none group overflow-hidden">
-      <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
+    <button className="relative px-6 py-2 bg-background border border-white/10 rounded-none group overflow-hidden">
+      <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-20  transition-opacity" />
       <div className="absolute -inset-[500%] group-hover:animate-[glow-spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent,var(--aura),transparent)] opacity-0 group-hover:opacity-100" />
       <span className="relative z-10 font-medium group-hover:text-white transition-colors">
         Surge
@@ -234,16 +234,16 @@ export function GlowButton() {
 
 export function LiquidBlobButton() {
   return (
-    <button className="relative px-8 py-3 rounded-none-none bg-surface-2 text-foreground font-semibold overflow-hidden group transition-transform active:scale-95">
+    <button className="relative px-8 py-3 rounded-none bg-surface-2 text-foreground font-semibold overflow-hidden group transition-transform active:scale-95">
       <span className="relative z-10">Liquid Aura</span>
-      <div className="absolute inset-0 bg-aura/20 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity" />
+      <div className="absolute inset-0 bg-aura/20 opacity-0 group-hover:opacity-100  transition-opacity" />
     </button>
   );
 }
 
 export function MagneticButton() {
   return (
-    <button className="px-6 py-2.5 rounded-none-none bg-aura text-black font-medium text-sm shadow-[0_0_30px_-6px_var(--aura)] hover:scale-110 transition-transform">
+    <button className="px-6 py-2.5 rounded-none bg-aura text-black font-medium text-sm  hover:scale-110 transition-transform">
       Aura →
     </button>
   );
@@ -251,7 +251,7 @@ export function MagneticButton() {
 
 export function LiquidButton() {
   return (
-    <button className="relative px-8 py-3 bg-surface-2 rounded-none-none border border-white/10 overflow-hidden group">
+    <button className="relative px-8 py-3 bg-surface-2 rounded-none border border-white/10 overflow-hidden group">
       <span className="relative z-10 text-sm font-medium transition-colors group-hover:text-background">
         Press Start
       </span>
@@ -262,7 +262,7 @@ export function LiquidButton() {
 
 export function NeumorphicBtn() {
   return (
-    <button className="px-6 py-2 bg-surface rounded-none-none shadow-[5px_5px_15px_rgba(0,0,0,0.3),-5px_-5px_15px_rgba(255,255,255,0.05)] active:shadow-inner transition-all text-sm font-medium text-text-muted hover:text-aura">
+    <button className="px-6 py-2 bg-surface rounded-none  active:shadow-inner transition-all text-sm font-medium text-text-muted hover:text-aura">
       Aura Style
     </button>
   );
@@ -280,15 +280,15 @@ export function ShinobiButton() {
 export function AuraRadialMenu() {
   return (
     <div className="relative size-12 flex items-center justify-center">
-      <button className="z-10 size-10 rounded-none-none bg-aura shadow-[0_0_20px_var(--aura)] flex items-center justify-center transition-transform active:scale-90" />
-      <div className="absolute size-4 bg-aura rounded-none-none animate-ping opacity-20" />
+      <button className="z-10 size-10 rounded-none bg-aura  flex items-center justify-center transition-transform active:scale-90" />
+      <div className="absolute size-4 bg-aura rounded-none animate-ping opacity-20" />
     </div>
   );
 }
 
 export function GlassButton() {
   return (
-    <button className="px-6 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-none-none hover:bg-white/10 transition-all text-sm font-light tracking-widest">
+    <button className="px-6 py-2 bg-white/5 backdrop- border border-white/10 rounded-none hover:bg-white/10 transition-all text-sm font-light tracking-widest">
       TRANSLUCENT
     </button>
   );
@@ -296,16 +296,16 @@ export function GlassButton() {
 
 export function CyberToggle() {
   return (
-    <div className="relative w-14 h-7 rounded-none-none bg-surface-2 border border-white/10 p-1 group cursor-pointer">
-      <div className="size-5 rounded-none-none bg-white/20 group-hover:bg-aura transition-all translate-x-0" />
+    <div className="relative w-14 h-7 rounded-none bg-surface-2 border border-white/10 p-1 group cursor-pointer">
+      <div className="size-5 rounded-none bg-white/20 group-hover:bg-aura transition-all translate-x-0" />
     </div>
   );
 }
 
 export function ElasticToggle() {
   return (
-    <div className="relative w-14 h-7 rounded-none-none bg-aura/20 border border-white/10 p-1 cursor-pointer">
-      <div className="size-5 rounded-none-none bg-white shadow-xl translate-x-7 transition-all duration-500" />
+    <div className="relative w-14 h-7 rounded-none bg-aura/20 border border-white/10 p-1 cursor-pointer">
+      <div className="size-5 rounded-none bg-white shadow-xl translate-x-7 transition-all duration-500" />
     </div>
   );
 }
@@ -320,7 +320,7 @@ export function CyberSwitch() {
 
 export function DoubleGlowBtn() {
   return (
-    <button className="relative px-8 py-3 bg-neutral-950 rounded-none-none border border-aura/20 shadow-[0_0_20px_var(--aura-soft)] hover:shadow-[0_0_30px_var(--aura)] transition-all">
+    <button className="relative px-8 py-3 bg-neutral-950 rounded-none border border-aura/20  hover: transition-all">
       Dual Surge
     </button>
   );
@@ -328,7 +328,7 @@ export function DoubleGlowBtn() {
 
 export function LiquidLoader() {
   return (
-    <div className="size-16 relative overflow-hidden rounded-none-none border-2 border-aura/30 flex items-end">
+    <div className="size-16 relative overflow-hidden rounded-none border-2 border-aura/30 flex items-end">
       <div
         className="w-full bg-aura animate-[liquid-fill_4s_infinite_linear]"
         style={{ height: "60%" }}
@@ -355,16 +355,16 @@ export function PrismLoader() {
 
 export function AuraSpinner() {
   return (
-    <div className="size-12 border-4 border-aura/20 border-t-aura rounded-none-none animate-spin" />
+    <div className="size-12 border-4 border-aura/20 border-t-aura rounded-none animate-spin" />
   );
 }
 
 export function GooeyLoader() {
   return (
     <div className="relative size-16 flex items-center justify-center gap-4">
-      <div className="size-6 rounded-none-none bg-aura animate-bounce" />
+      <div className="size-6 rounded-none bg-aura animate-bounce" />
       <div
-        className="size-6 rounded-none-none bg-aura animate-bounce"
+        className="size-6 rounded-none bg-aura animate-bounce"
         style={{ animationDelay: "0.2s" }}
       />
     </div>
@@ -393,9 +393,9 @@ export function CyberLoader() {
 export function OrbitLoader() {
   return (
     <div className="relative size-16">
-      <div className="absolute inset-0 rounded-none-none border border-white/10" />
+      <div className="absolute inset-0 rounded-none border border-white/10" />
       <div className="absolute inset-0 animate-spin" style={{ animationDuration: "3s" }}>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 size-2 rounded-none-none bg-aura shadow-[0_0_12px_var(--aura)]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 size-2 rounded-none bg-aura " />
       </div>
     </div>
   );
@@ -420,8 +420,8 @@ export function DNAHelixLoader() {
           className="flex flex-col justify-between h-full items-center animate-[dna-rotate_2s_ease-in-out_infinite]"
           style={{ animationDelay: `${i * 0.15}s` }}
         >
-          <div className="size-1.5 rounded-none-none bg-aura" />
-          <div className="size-1.5 rounded-none-none bg-white/40" />
+          <div className="size-1.5 rounded-none bg-aura" />
+          <div className="size-1.5 rounded-none bg-white/40" />
         </div>
       ))}
       <style>{`@keyframes dna-rotate { 0%, 100% { transform: scaleY(1); opacity: 0.3; } 50% { transform: scaleY(0.2); opacity: 1; } }`}</style>
@@ -435,7 +435,7 @@ export function WaveLoading() {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="w-1.5 bg-aura rounded-none-none animate-[wave-grow_1s_infinite_ease-in-out]"
+          className="w-1.5 bg-aura rounded-none animate-[wave-grow_1s_infinite_ease-in-out]"
           style={{ animationDelay: `${i * 0.1}s` }}
         />
       ))}
@@ -453,7 +453,7 @@ export function OrbitDots() {
           className="absolute inset-0 animate-spin"
           style={{ animationDuration: `${2 + i * 0.3}s`, transform: `rotate(${i * 45}deg)` }}
         >
-          <div className="size-1.5 bg-aura rounded-none-none absolute top-0 left-1/2 -translate-x-1/2" />
+          <div className="size-1.5 bg-aura rounded-none absolute top-0 left-1/2 -translate-x-1/2" />
         </div>
       ))}
     </div>
@@ -463,8 +463,8 @@ export function OrbitDots() {
 export function SpinRing() {
   return (
     <div className="relative size-16">
-      <div className="absolute inset-0 border-2 border-white/5 rounded-none-none" />
-      <div className="absolute inset-0 border-2 border-t-aura rounded-none-none animate-spin" />
+      <div className="absolute inset-0 border-2 border-white/5 rounded-none" />
+      <div className="absolute inset-0 border-2 border-t-aura rounded-none animate-spin" />
     </div>
   );
 }
@@ -472,16 +472,16 @@ export function SpinRing() {
 export function PulseDots() {
   return (
     <div className="flex gap-2">
-      <div className="size-2 bg-aura rounded-none-none animate-pulse" />
-      <div className="size-2 bg-aura rounded-none-none animate-pulse [animation-delay:0.2s]" />
-      <div className="size-2 bg-aura rounded-none-none animate-pulse [animation-delay:0.4s]" />
+      <div className="size-2 bg-aura rounded-none animate-pulse" />
+      <div className="size-2 bg-aura rounded-none animate-pulse [animation-delay:0.2s]" />
+      <div className="size-2 bg-aura rounded-none animate-pulse [animation-delay:0.4s]" />
     </div>
   );
 }
 
 export function InfiniteTiles() {
   return (
-    <div className="w-full h-1 bg-white/10 relative overflow-hidden rounded-none-none">
+    <div className="w-full h-1 bg-white/10 relative overflow-hidden rounded-none">
       <div
         className="absolute inset-0 bg-aura animate-[scroll-x_2s_linear_infinite]"
         style={{ width: "50%" }}
@@ -517,24 +517,24 @@ export function BarChartLoader() {
 
 export function FloatingIsland() {
   return (
-    <div className="relative w-40 h-24 bg-gradient-to-b from-surface-2 to-background rounded-none-none border border-white/10 shadow-2xl animate-bounce">
-      <div className="absolute top-4 left-4 size-6 rounded-none-none bg-aura/40 border border-aura/60" />
+    <div className="relative w-40 h-24 bg-gradient-to-b from-surface-2 to-background rounded-none border border-white/10 shadow-2xl animate-bounce">
+      <div className="absolute top-4 left-4 size-6 rounded-none bg-aura/40 border border-aura/60" />
     </div>
   );
 }
 
 export function Floating3DCard() {
   return (
-    <div className="size-32 bg-gradient-to-br from-aura/20 to-surface-2 border border-white/10 rounded-none-none hover:rotate-12 transition-transform" />
+    <div className="size-32 bg-gradient-to-br from-aura/20 to-surface-2 border border-white/10 rounded-none hover:rotate-12 transition-transform" />
   );
 }
 
 export function BentoHover() {
   return (
-    <div className="relative w-40 h-28 bg-surface-2 rounded-none-none border border-white/5 p-4 overflow-hidden group">
+    <div className="relative w-40 h-28 bg-surface-2 rounded-none border border-white/5 p-4 overflow-hidden group">
       <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-      <div className="relative z-10 size-8 bg-background rounded-none-none border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-        <div className="size-2 bg-aura rounded-none-none" />
+      <div className="relative z-10 size-8 bg-background rounded-none border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+        <div className="size-2 bg-aura rounded-none" />
       </div>
     </div>
   );
@@ -546,7 +546,7 @@ export function InteractiveGridDots() {
       {Array.from({ length: 36 }).map((_, i) => (
         <div
           key={i}
-          className="size-1.5 rounded-none-none bg-white/10 hover:bg-aura hover:scale-150 transition-all duration-300"
+          className="size-1.5 rounded-none bg-white/10 hover:bg-aura hover:scale-150 transition-all duration-300"
         />
       ))}
     </div>
@@ -555,7 +555,7 @@ export function InteractiveGridDots() {
 
 export function SpotlightCard() {
   return (
-    <div className="relative w-48 h-28 bg-surface-2 rounded-none-none border border-white/5 overflow-hidden group">
+    <div className="relative w-48 h-28 bg-surface-2 rounded-none border border-white/5 overflow-hidden group">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_var(--x,50%)_var(--y,50%),var(--aura-soft)_0%,transparent_60%)]" />
       <div className="p-4 relative z-10">
         <div className="size-6 bg-white/10 rounded-none" />
@@ -566,10 +566,10 @@ export function SpotlightCard() {
 
 export function BentoGridItem() {
   return (
-    <div className="relative w-48 h-32 bg-surface-2 rounded-none-none border border-white/5 p-4 overflow-hidden group hover:border-aura/30 transition-colors">
-      <div className="absolute top-2 right-2 size-2 bg-aura rounded-none-none animate-ping" />
+    <div className="relative w-48 h-32 bg-surface-2 rounded-none border border-white/5 p-4 overflow-hidden group hover:border-aura/30 transition-colors">
+      <div className="absolute top-2 right-2 size-2 bg-aura rounded-none animate-ping" />
       <div className="h-full flex flex-col justify-end">
-        <div className="h-1.5 w-12 bg-aura/40 rounded-none-none mb-2" />
+        <div className="h-1.5 w-12 bg-aura/40 rounded-none mb-2" />
       </div>
     </div>
   );
@@ -577,11 +577,11 @@ export function BentoGridItem() {
 
 export function FloatingDock() {
   return (
-    <div className="flex items-end gap-2 bg-white/5 backdrop-blur-md p-2 rounded-none-none border border-white/10 h-16">
+    <div className="flex items-end gap-2 bg-white/5 backdrop- p-2 rounded-none border border-white/10 h-16">
       {[0, 1, 2, 3, 4].map((i) => (
         <div
           key={i}
-          className="size-8 bg-surface-2 rounded-none-none border border-white/5 hover:bg-aura hover:size-10 transition-all duration-300"
+          className="size-8 bg-surface-2 rounded-none border border-white/5 hover:bg-aura hover:size-10 transition-all duration-300"
         />
       ))}
     </div>
@@ -590,12 +590,9 @@ export function FloatingDock() {
 
 export function MagneticGrid() {
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden rounded-none-none grid grid-cols-10 grid-rows-6 gap-2 p-2">
+    <div className="relative w-full h-full bg-black overflow-hidden rounded-none grid grid-cols-10 grid-rows-6 gap-2 p-2">
       {Array.from({ length: 60 }).map((_, i) => (
-        <div
-          key={i}
-          className="size-1 bg-white/20 rounded-none-none hover:bg-aura transition-all"
-        />
+        <div key={i} className="size-1 bg-white/20 rounded-none hover:bg-aura transition-all" />
       ))}
     </div>
   );
@@ -617,7 +614,7 @@ export function GridPulse() {
 
 export function GridHover() {
   return (
-    <div className="grid grid-cols-4 gap-1 p-1 bg-surface-2 rounded-none-none">
+    <div className="grid grid-cols-4 gap-1 p-1 bg-surface-2 rounded-none">
       {Array.from({ length: 16 }).map((_, i) => (
         <div
           key={i}
@@ -631,23 +628,23 @@ export function GridHover() {
 export function BentoPulse() {
   return (
     <div className="grid grid-cols-3 gap-2 w-40 h-24">
-      <div className="col-span-2 bg-surface-2 rounded-none-none animate-pulse" />
-      <div className="bg-aura/10 rounded-none-none" />
+      <div className="col-span-2 bg-surface-2 rounded-none animate-pulse" />
+      <div className="bg-aura/10 rounded-none" />
     </div>
   );
 }
 
 export function GlassMorphismCard() {
   return (
-    <div className="w-48 h-28 rounded-none-none border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center">
-      <div className="size-10 rounded-none-none bg-aura/20 blur-xl" />
+    <div className="w-48 h-28 rounded-none border border-white/10 bg-white/5 backdrop- flex items-center justify-center">
+      <div className="size-10 rounded-none bg-aura/20 " />
     </div>
   );
 }
 
 export function HolographicCard() {
   return (
-    <div className="w-40 h-24 rounded-none-none bg-surface-2 border border-white/10 relative overflow-hidden">
+    <div className="w-40 h-24 rounded-none bg-surface-2 border border-white/10 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-tr from-aura/10 via-transparent to-cyan-500/10" />
     </div>
   );
@@ -655,7 +652,7 @@ export function HolographicCard() {
 
 export function RefractiveGlass() {
   return (
-    <div className="w-48 h-28 bg-white/5 backdrop-blur-xl rounded-none-none border border-white/10 shadow-2xl relative overflow-hidden">
+    <div className="w-48 h-28 bg-white/5 backdrop- rounded-none border border-white/10 shadow-2xl relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite]" />
       <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
     </div>
@@ -664,7 +661,7 @@ export function RefractiveGlass() {
 
 export function TiltCard3D() {
   return (
-    <div className="w-48 h-32 rounded-none-none bg-surface-2 border border-white/10 flex items-center justify-center hover:scale-105 transition-transform">
+    <div className="w-48 h-32 rounded-none bg-surface-2 border border-white/10 flex items-center justify-center hover:scale-105 transition-transform">
       <span className="text-xs font-mono text-aura">3D::ELEVATE</span>
     </div>
   );
@@ -672,11 +669,11 @@ export function TiltCard3D() {
 
 export function AuraStarfield() {
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden rounded-none-none">
+    <div className="relative w-full h-full bg-black overflow-hidden rounded-none">
       {Array.from({ length: 30 }).map((_, i) => (
         <div
           key={i}
-          className="absolute size-0.5 bg-white rounded-none-none animate-pulse"
+          className="absolute size-0.5 bg-white rounded-none animate-pulse"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -690,11 +687,11 @@ export function AuraStarfield() {
 
 export function WarpDriveBg() {
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden rounded-none-none">
+    <div className="relative w-full h-full bg-black overflow-hidden rounded-none">
       {Array.from({ length: 20 }).map((_, i) => (
         <div
           key={i}
-          className="absolute bg-white/30 rounded-none-none animate-[warp_1s_linear_infinite]"
+          className="absolute bg-white/30 rounded-none animate-[warp_1s_linear_infinite]"
           style={{ left: `${Math.random() * 100}%`, top: "0%", width: "1px", height: "20px" }}
         />
       ))}
@@ -705,7 +702,7 @@ export function WarpDriveBg() {
 
 export function RetroGrid() {
   return (
-    <div className="relative w-full h-full bg-background overflow-hidden rounded-none-none perspective-[200px]">
+    <div className="relative w-full h-full bg-background overflow-hidden rounded-none perspective-[200px]">
       <div
         className="absolute inset-0 bg-[linear-gradient(to_right,var(--line)_1px,transparent_1px),linear-gradient(to_bottom,var(--line)_1px,transparent_1px)] bg-[length:20px_20px]"
         style={{ transform: "rotateX(60deg) translateY(-20px)", transformOrigin: "top" }}
@@ -715,9 +712,7 @@ export function RetroGrid() {
 }
 
 export function NoiseBg() {
-  return (
-    <div className="w-full h-full bg-neutral-900 noise-overlay opacity-20 rounded-none-none" />
-  );
+  return <div className="w-full h-full bg-neutral-900 noise-overlay opacity-20 rounded-none" />;
 }
 
 export function AuraGrid() {
@@ -737,7 +732,7 @@ export function AuraGrid() {
 export function AuroraBg() {
   return (
     <div
-      className="w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,#f59e0b_0%,#7c3aed_20%,#22d3ee_45%,#f59e0b_70%)] opacity-30 blur-3xl rounded-none-none animate-spin"
+      className="w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,#f59e0b_0%,#7c3aed_20%,#22d3ee_45%,#f59e0b_70%)] opacity-30  rounded-none animate-spin"
       style={{ animationDuration: "20s" }}
     />
   );
@@ -749,7 +744,7 @@ export function ParticleField() {
       {Array.from({ length: 10 }).map((_, i) => (
         <div
           key={i}
-          className="absolute size-1 bg-aura/20 rounded-none-none animate-ping"
+          className="absolute size-1 bg-aura/20 rounded-none animate-ping"
           style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
         />
       ))}
@@ -759,7 +754,7 @@ export function ParticleField() {
 
 export function CyberRain() {
   return (
-    <div className="relative w-full h-full bg-black/40 overflow-hidden rounded-none-none">
+    <div className="relative w-full h-full bg-black/40 overflow-hidden rounded-none">
       {Array.from({ length: 10 }).map((_, i) => (
         <div
           key={i}
@@ -778,7 +773,7 @@ export function FloatingParticles() {
       {Array.from({ length: 15 }).map((_, i) => (
         <div
           key={i}
-          className="absolute size-1 bg-aura rounded-none-none animate-bounce"
+          className="absolute size-1 bg-aura rounded-none animate-bounce"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -793,8 +788,8 @@ export function FloatingParticles() {
 export function NeonTunnel() {
   return (
     <div className="relative w-full h-full bg-black overflow-hidden flex items-center justify-center">
-      <div className="size-20 border border-aura/20 rounded-none-none animate-ping" />
-      <div className="absolute size-10 border border-aura/40 rounded-none-none animate-ping [animation-delay:0.5s]" />
+      <div className="size-20 border border-aura/20 rounded-none animate-ping" />
+      <div className="absolute size-10 border border-aura/40 rounded-none animate-ping [animation-delay:0.5s]" />
     </div>
   );
 }
@@ -813,13 +808,13 @@ export function MatrixRain() {
 
 export function FoggyAura() {
   return (
-    <div className="w-full h-full bg-gradient-to-br from-aura/10 via-background to-transparent blur-2xl rounded-none-none" />
+    <div className="w-full h-full bg-gradient-to-br from-aura/10 via-background to-transparent  rounded-none" />
   );
 }
 
 export function CosmicDust() {
   return (
-    <div className="relative w-full h-full bg-[#050505] rounded-none-none">
+    <div className="relative w-full h-full bg-[#050505] rounded-none">
       {Array.from({ length: 40 }).map((_, i) => (
         <div
           key={i}
@@ -833,7 +828,7 @@ export function CosmicDust() {
 
 export function VortexBg() {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-black rounded-none-none overflow-hidden">
+    <div className="w-full h-full flex items-center justify-center bg-black rounded-none overflow-hidden">
       <div className="size-40 bg-[conic-gradient(var(--aura),transparent,var(--aura))] opacity-20 animate-spin" />
     </div>
   );
@@ -841,15 +836,15 @@ export function VortexBg() {
 
 export function NebulaDrift() {
   return (
-    <div className="w-full h-full bg-neutral-950 relative overflow-hidden rounded-none-none">
-      <div className="absolute inset-0 bg-aura/5 blur-3xl animate-pulse" />
+    <div className="w-full h-full bg-neutral-950 relative overflow-hidden rounded-none">
+      <div className="absolute inset-0 bg-aura/5  animate-pulse" />
     </div>
   );
 }
 
 export function CosmicResonance() {
   return (
-    <div className="relative size-full bg-black flex items-center justify-center overflow-hidden rounded-none-none">
+    <div className="relative size-full bg-black flex items-center justify-center overflow-hidden rounded-none">
       <svg viewBox="0 0 400 400" className="size-full">
         <circle
           cx="200"
@@ -879,7 +874,7 @@ export function CosmicResonance() {
 
 export function AuraMasterpiece() {
   return (
-    <div className="relative size-full bg-[#030303] flex items-center justify-center overflow-hidden rounded-none-none group">
+    <div className="relative size-full bg-[#030303] flex items-center justify-center overflow-hidden rounded-none group">
       <div className="absolute inset-0 aura-radial opacity-10 group-hover:opacity-20 transition-opacity" />
       <svg viewBox="0 0 600 600" className="size-full max-w-[500px]">
         {Array.from({ length: 100 }).map((_, i) => (
@@ -899,8 +894,8 @@ export function AuraMasterpiece() {
 
 export function CyberScan() {
   return (
-    <div className="relative w-48 h-28 bg-surface-2 rounded-none-none overflow-hidden border border-white/5">
-      <div className="absolute top-0 left-0 w-full h-0.5 bg-aura shadow-[0_0_15px_var(--aura)] animate-[scan_3s_infinite_linear]" />
+    <div className="relative w-48 h-28 bg-surface-2 rounded-none overflow-hidden border border-white/5">
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-aura  animate-[scan_3s_infinite_linear]" />
       <style>{`@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }`}</style>
     </div>
   );
@@ -908,8 +903,8 @@ export function CyberScan() {
 
 export function FloatingSphere() {
   return (
-    <div className="size-20 rounded-none-none bg-gradient-to-br from-aura/40 to-transparent relative animate-bounce">
-      <div className="absolute inset-0 bg-aura opacity-20 blur-xl" />
+    <div className="size-20 rounded-none bg-gradient-to-br from-aura/40 to-transparent relative animate-bounce">
+      <div className="absolute inset-0 bg-aura opacity-20 " />
     </div>
   );
 }
@@ -920,7 +915,7 @@ export function ParticleCircle() {
       {Array.from({ length: 12 }).map((_, i) => (
         <div
           key={i}
-          className="absolute size-1.5 bg-aura rounded-none-none"
+          className="absolute size-1.5 bg-aura rounded-none"
           style={{ transform: `rotate(${i * 30}deg) translateY(-40px)` }}
         />
       ))}
@@ -930,13 +925,13 @@ export function ParticleCircle() {
 
 export function AuraRing() {
   return (
-    <div className="size-20 border-2 border-aura/30 border-t-aura rounded-none-none animate-spin" />
+    <div className="size-20 border-2 border-aura/30 border-t-aura rounded-none animate-spin" />
   );
 }
 
 export function HologramAvatar() {
   return (
-    <div className="size-20 rounded-none-none bg-aura/20 border-2 border-aura/40 animate-pulse flex items-center justify-center font-mono text-aura text-[10px]">
+    <div className="size-20 rounded-none bg-aura/20 border-2 border-aura/40 animate-pulse flex items-center justify-center font-mono text-aura text-[10px]">
       AUTH
     </div>
   );
@@ -947,7 +942,7 @@ export function InteractiveDNA() {
     <div className="flex gap-2 rotate-45">
       {Array.from({ length: 6 }).map((_, i) => (
         <div key={i} className="h-10 w-px bg-white/10 relative">
-          <div className="absolute top-0 -left-1 size-2 bg-aura rounded-none-none" />
+          <div className="absolute top-0 -left-1 size-2 bg-aura rounded-none" />
         </div>
       ))}
     </div>
@@ -967,18 +962,16 @@ export function GlitchLogo() {
 
 export function FloatingIslandSmall() {
   return (
-    <div className="w-20 h-4 bg-surface-2 rounded-none-none border border-white/10 animate-bounce" />
+    <div className="w-20 h-4 bg-surface-2 rounded-none border border-white/10 animate-bounce" />
   );
 }
 
 export function IonPulsar() {
-  return (
-    <div className="size-14 rounded-none-none border-2 border-aura shadow-[0_0_30px_var(--aura)] animate-ping" />
-  );
+  return <div className="size-14 rounded-none border-2 border-aura  animate-ping" />;
 }
 
 export function AuraBlob() {
-  return <div className="size-24 bg-aura/30 blur-2xl rounded-none-none animate-pulse" />;
+  return <div className="size-24 bg-aura/30  rounded-none animate-pulse" />;
 }
 
 export function MagneticTrailLink() {
@@ -1001,8 +994,8 @@ export function MorphingShape() {
 export function AuraInfinity() {
   return (
     <div className="relative size-20">
-      <div className="absolute inset-0 border-2 border-aura rounded-none-none rotate-45" />
-      <div className="absolute inset-0 border-2 border-aura/30 rounded-none-none -rotate-45" />
+      <div className="absolute inset-0 border-2 border-aura rounded-none rotate-45" />
+      <div className="absolute inset-0 border-2 border-aura/30 rounded-none -rotate-45" />
     </div>
   );
 }
@@ -1012,7 +1005,7 @@ export function PageSlide() {
 }
 
 export function CircularMask() {
-  return <div className="size-20 bg-aura rounded-none-none animate-ping" />;
+  return <div className="size-20 bg-aura rounded-none animate-ping" />;
 }
 
 export function PixelDissolve() {
@@ -1026,7 +1019,7 @@ export function PixelDissolve() {
 }
 
 export function AuraBlurFade() {
-  return <div className="w-full h-full bg-aura/10 blur-xl animate-pulse" />;
+  return <div className="w-full h-full bg-aura/10  animate-pulse" />;
 }
 
 export function StaggerReveal() {
@@ -1044,27 +1037,27 @@ export function GlitchExit() {
 }
 
 export function GlowCursor() {
-  return <div className="size-10 rounded-none-none bg-aura/40 blur-xl" />;
+  return <div className="size-10 rounded-none bg-aura/40 " />;
 }
 
 export function TrailingCursor() {
   return (
     <div className="flex gap-1">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="size-2 bg-aura rounded-none-none opacity-40" />
+        <div key={i} className="size-2 bg-aura rounded-none opacity-40" />
       ))}
     </div>
   );
 }
 
 export function InvertedCursor() {
-  return <div className="size-8 border border-white rounded-none-none" />;
+  return <div className="size-8 border border-white rounded-none" />;
 }
 
 export function MagneticCursor() {
-  return <div className="size-10 border-2 border-aura rounded-none-none animate-pulse" />;
+  return <div className="size-10 border-2 border-aura rounded-none animate-pulse" />;
 }
 
 export function FluidCursor() {
-  return <div className="size-12 bg-aura/20 rounded-none-none blur-md" />;
+  return <div className="size-12 bg-aura/20 rounded-none " />;
 }
