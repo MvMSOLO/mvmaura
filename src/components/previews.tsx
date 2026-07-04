@@ -1061,3 +1061,66 @@ export function MagneticCursor() {
 export function FluidCursor() {
   return <div className="size-12 bg-aura/20 rounded-none " />;
 }
+
+export function StructuralRefraction() {
+  return (
+    <div className="relative size-full flex items-center justify-center p-8 bg-black">
+      <div className="absolute inset-0 border border-white/5" />
+      <div className="relative size-32 border border-aura group-hover:rotate-45 transition-transform duration-700">
+        <div className="absolute inset-0 border border-aura/20 -translate-x-2 -translate-y-2" />
+        <div className="absolute inset-0 border border-aura/20 translate-x-2 translate-y-2" />
+        <div className="absolute inset-0 flex items-center justify-center font-mono text-[10px] text-aura">
+          REFRACT_01
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function MechanicalCommand() {
+  return (
+    <div className="w-full space-y-2 font-mono text-[10px]">
+      <div className="flex justify-between border-b border-white/5 pb-1">
+        <span className="text-white/40">SYS_EXEC</span>
+        <span className="text-aura">READY</span>
+      </div>
+      <div className="grid grid-cols-4 gap-1">
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <div key={i} className="h-4 bg-white/5 group-hover:bg-aura/20 transition-colors" />
+        ))}
+      </div>
+      <div className="text-white/20">PROCESS_ID: 0x88A2</div>
+    </div>
+  );
+}
+
+export function DataStreamAura() {
+  return (
+    <div className="relative size-full flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 opacity-10 flex flex-col gap-1">
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div
+            key={i}
+            className="whitespace-nowrap text-[6px] text-aura animate-[marquee-x_10s_linear_infinite]"
+            style={{ animationDelay: `${i * 0.5}s` }}
+          >
+            101010111010100101010101110101001010101011101010010101010111010100
+          </div>
+        ))}
+      </div>
+      <div className="z-10 font-mono font-black text-2xl tracking-tighter text-white">
+        DATA_STREAM
+      </div>
+    </div>
+  );
+}
+
+export function TerminalCursor() {
+  return (
+    <div className="p-4 border border-line bg-surface/40 font-mono text-[10px] flex items-center gap-2 group">
+      <span className="text-aura">$</span>
+      <span className="text-white/80 uppercase">Aura_Protocol_Init</span>
+      <div className="w-2 h-4 bg-aura animate-pulse" />
+    </div>
+  );
+}

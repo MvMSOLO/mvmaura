@@ -4,7 +4,6 @@ import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { toast } from "sonner";
 import { Check, Copy, Terminal, X } from "lucide-react";
 import { STACKS, CATEGORIES, SNIPPETS, type StackId, type Category } from "@/data/snippets";
-import { Cutscene } from "@/components/cutscene";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -43,7 +42,6 @@ function CustomCursor() {
 }
 
 function Index() {
-  const [showCutscene, setShowCutscene] = useState(true);
   const [stack, setStack] = useState<StackId>("react");
   const [category, setCategory] = useState<Category>("All");
   const [copiedId, setCopiedId] = useState<number | null>(null);
@@ -61,11 +59,24 @@ function Index() {
     [category],
   );
 
+  const b64ToUtf8 = (str: string) => {
+    try {
+      return decodeURIComponent(
+        atob(str)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+    } catch {
+      return atob(str);
+    }
+  };
+
   const copySnippet = async (id: number) => {
     const snip = SNIPPETS.find((s) => s.id === id);
     if (!snip) return;
     try {
-      const code = atob(snip[stack as keyof typeof snip] as string);
+      const code = b64ToUtf8(snip[stack as keyof typeof snip] as string);
       await navigator.clipboard.writeText(code);
       setCopiedId(id);
       window.setTimeout(() => setCopiedId((v) => (v === id ? null : v)), 1500);
@@ -74,8 +85,8 @@ function Index() {
       });
       // Simple dependency detection for demo
       const dependencies: string[] = [];
-      if (atob(snip.react).includes("framer-motion")) dependencies.push("framer-motion");
-      if (atob(snip.react).includes("lucide-react")) dependencies.push("lucide-react");
+      if (b64ToUtf8(snip.react).includes("framer-motion")) dependencies.push("framer-motion");
+      if (b64ToUtf8(snip.react).includes("lucide-react")) dependencies.push("lucide-react");
 
       if (dependencies.length) {
         setDeps({ name: snip.name, packages: dependencies });
@@ -94,18 +105,6 @@ function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden scroll-smooth cursor-none font-mono">
       <CustomCursor />
-      <AnimatePresence>
-        {showCutscene && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[100]"
-          >
-            <Cutscene onComplete={() => setShowCutscene(false)} />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-aura z-[60] origin-left"
@@ -350,8 +349,9 @@ function Index() {
                 Structure
               </a>
             </div>
-            <div className="text-[10px] text-white/20 uppercase tracking-[0.5em] mt-12">
-              © 2026_MVMSOLO_CORE_SYSTEM
+            <div className="text-[10px] text-white/20 uppercase tracking-[0.5em] mt-12 flex flex-col items-end gap-2">
+              <span>© 2026_MVMSOLO_CORE_SYSTEM</span>
+              <span className="text-aura/40 font-black tracking-widest">Jules orqali yangilandi #1</span>
             </div>
           </div>
         </footer>

@@ -5,18 +5,49 @@ import re
 def b64(s):
     return base64.b64encode(s.encode()).decode()
 
+def extract_impls(content):
+    results = {}
+    # Find all "export function Name() {"
+    for match in re.finditer(r'export function (\w+)\(\) \{', content):
+        name = match.group(1)
+        start_pos = match.end()
+
+        # Find the return statement
+        return_match = re.search(r'return\s+', content[start_pos:])
+        if not return_match: continue
+
+        impl_start = start_pos + return_match.end()
+
+        # Handle nested parentheses for return (...)
+        balance = 0
+        impl_end = impl_start
+        found_start = False
+
+        for i in range(impl_start, len(content)):
+            char = content[i]
+            if char == '(':
+                balance += 1
+                found_start = True
+            elif char == ')':
+                balance -= 1
+
+            if found_start and balance == 0:
+                impl_end = i + 1
+                break
+            if not found_start and char == ';':
+                impl_end = i
+                break
+
+        impl = content[impl_start:impl_end].strip()
+        if impl.startswith('(') and impl.endswith(')'):
+            impl = impl[1:-1].strip()
+        results[name] = impl
+    return results
+
 with open('src/components/previews.tsx', 'r') as f:
     preview_content = f.read()
 
-# Extract names and implementations
-matches = re.findall(r'export function (\w+)\(\) \{ return \((.*?)\); \}', preview_content, re.DOTALL)
-impl_dict = {}
-for name, impl in matches:
-    impl = impl.strip()
-    # Remove outer parentheses if present
-    if impl.startswith('(') and impl.endswith(')'):
-        impl = impl[1:-1].strip()
-    impl_dict[name] = impl
+impl_dict = extract_impls(preview_content)
 
 names = [
     "ShimmerText", "ElasticText", "WaveText", "PixelText", "LiquidText", "MagneticText", "HolographicText", "GlitchText", "GlitchTextMedium", "TypewriterCode", "FadeSlide", "ScanText", "AuraTextFloat", "RainbowText", "SplitTextReveal",
@@ -26,233 +57,133 @@ names = [
     "AuraStarfield", "WarpDriveBg", "RetroGrid", "NoiseBg", "AuraGrid", "AuroraBg", "ParticleField", "CyberRain", "FloatingParticles", "NeonTunnel", "MatrixRain", "FoggyAura", "CosmicDust", "VortexBg", "NebulaDrift", "CosmicResonance", "AuraMasterpiece",
     "CyberScan", "FloatingSphere", "ParticleCircle", "AuraRing", "HologramAvatar", "InteractiveDNA", "GlitchLogo", "FloatingIslandSmall", "IonPulsar", "AuraBlob",
     "MagneticTrailLink", "MorphingShape", "AuraInfinity", "PageSlide", "CircularMask", "PixelDissolve", "AuraBlurFade", "StaggerReveal", "GlitchExit",
-    "GlowCursor", "TrailingCursor", "InvertedCursor", "MagneticCursor", "FluidCursor"
+    "GlowCursor", "TrailingCursor", "InvertedCursor", "MagneticCursor", "FluidCursor",
+    "StructuralRefraction", "MechanicalCommand", "DataStreamAura", "TerminalCursor"
 ]
 
-categories = ["Text"] * 15 + ["Buttons"] * 15 + ["Loaders"] * 15 + ["Layout"] * 15 + ["Backgrounds"] * 17 + ["Special"] * 10 + ["Transitions"] * 9 + ["Cursors"] * 5
+categories = ["Text"] * 15 + ["Buttons"] * 15 + ["Loaders"] * 15 + ["Layout"] * 15 + ["Backgrounds"] * 17 + ["Special"] * 10 + ["Transitions"] * 9 + ["Cursors"] * 5 + ["Special"] * 4
 
 def gen_react_snippet(name, impl, cat, i):
-    return """import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+    return """import React from 'react';
+import { motion } from 'framer-motion';
 
 /**
  * MVMAURA v4 - {name}
  * High-complexity animation module for premium interfaces.
- * Optimized for 60fps and low memory overhead.
  */
-export const {name} = () => {
-  const [isActive, setIsActive] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const handleGlobalClick = () => console.log("{name} interaction captured");
-    window.addEventListener('click', handleGlobalClick);
-    return () => window.removeEventListener('click', handleGlobalClick);
-  }, []);
-
-  const handleMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
-
-  return (
-    <motion.div
-      ref={containerRef}
-      onMouseMove={handleMove}
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
-      className="relative p-10 bg-neutral-900 border border-white/10 rounded-none overflow-hidden group"
-    >
-      <div
-        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, var(--aura-soft), transparent 80%)`
-        }}
-      />
-
-      <div className="relative z-10 flex flex-col items-center gap-6">
-        <div className="transform transition-transform duration-500 group-hover:scale-110">
-          {impl}
-        </div>
-
-        <div className="h-px w-12 bg-aura/20 group-hover:w-24 transition-all duration-700" />
-
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-[10px] font-mono text-aura/50 uppercase tracking-[0.2em]">Module::{name}</span>
-          <span className="text-[8px] font-mono text-white/10">Build ID: 2026_X_{id_val}</span>
-        </div>
+export const {name} = () => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.98 }}
+    animate={{ opacity: 1, scale: 1 }}
+    className="relative p-12 bg-black border border-white/10 rounded-none overflow-hidden group"
+  >
+    <div className="absolute inset-0 blueprint-grid opacity-5 pointer-events-none" />
+    <div className="relative z-10 flex flex-col items-center gap-8">
+      <div className="transform transition-all duration-700 group-hover:scale-105">
+        {impl}
       </div>
-
-      <div className="absolute top-2 right-4 flex gap-1">
-        <div className="size-1 rounded-full bg-aura/40 animate-pulse" />
-        <div className="size-1 rounded-full bg-aura/20 animate-pulse delay-75" />
-        <div className="size-1 rounded-full bg-aura/10 animate-pulse delay-150" />
+      <div className="flex flex-col items-center gap-2 mt-4">
+        <div className="h-px w-8 bg-aura/40 group-hover:w-16 transition-all duration-1000" />
+        <span className="text-[9px] font-mono text-aura font-bold uppercase tracking-[0.4em]">MODULE::{name}</span>
       </div>
-    </motion.div>
-  );
-};
-""".replace("{name}", name).replace("{impl}", impl).replace("{id_val}", str(1000 + i))
+    </div>
+    <div className="absolute top-0 left-0 size-4 border-t border-l border-white/20" />
+    <div className="absolute bottom-0 right-0 size-4 border-b border-r border-white/20" />
+  </motion.div>
+);
+""".replace("{name}", name).replace("{impl}", impl)
+
+def framework_conv(impl):
+    # Basic JSX to HTML-ish conversion
+    s = impl.replace('className=', 'class=')
+    s = re.sub(r'style=\{\{\s*animationDelay:\s*`\$\{i\s*\*\s*([\d.]+)\}s`\s*\}\}', r'style="animation-delay: calc(var(--i) * \1s)"', s)
+    s = s.replace('key={i}', '')
+    return s
 
 def gen_vue_snippet(name, impl, cat):
-    # Basic conversion of common React patterns to Vue
-    v_impl = impl.replace('className=', 'class=')
-    v_impl = re.sub(r'\{\s*(\d+)\s*\}', r'\1', v_impl) # {5} -> 5
-    v_impl = v_impl.replace('style={{', ':style="{').replace('}}', '}"')
-
-    # Handle map patterns: {[...Array(5)].map...} or {Array.from({length:5}).map...}
-    # This is a very rough heuristic and won't work for all 101, but improves the simple ones
-    patterns = [
-        (r'\{\s*\[\.\.\.Array\((\d+)\)\]\.map\(\(_, i\) => \((.*?)\)\)\s*\}', r'<template v-for="i in \1" :key="i">\2</template>'),
-        (r'\{\s*Array\.from\(\{\s*length:\s*(\d+)\s*\}\)\.map\(\(_, i\) => \((.*?)\)\)\s*\}', r'<template v-for="i in \1" :key="i">\2</template>')
-    ]
-    for pattern, replacement in patterns:
-        v_impl = re.sub(pattern, lambda m: replacement.replace(r'\1', m.group(1)).replace(r'\2', m.group(2).replace("key={i}", "").strip()), v_impl, flags=re.DOTALL)
+    impl_v = framework_conv(impl)
+    # Handle loops
+    impl_v = re.sub(r'\{"(.*?)".split\(""\).map\(\(c, i\) => \(', r'<span v-for="(c, i) in \1.split(\'\')" :key="i">', impl_v)
+    impl_v = re.sub(r'\{\.\.\.Array\((\d+)\)\].map\(\(_, i\) => \(', r'<div v-for="i in \1" :key="i">', impl_v)
+    impl_v = impl_v.replace('))}', '</span>') # Very naive close
 
     return """<script setup>
-import { ref, reactive, onMounted } from 'vue';
 import { motion } from 'motion/vue';
-
-const state = reactive({
-  isHovered: false,
-  initialized: false
-});
-
-onMounted(() => {
-  state.initialized = true;
-});
 </script>
 
 <template>
-  <div class="mvmaura-vue-root p-8 bg-neutral-900 border border-white/5 rounded-none relative overflow-hidden group">
-    <motion.div
-      :initial="{ opacity: 0, scale: 0.9 }"
-      :animate="{ opacity: 1, scale: 1 }"
-      @mouseenter="state.isHovered = true"
-      @mouseleave="state.isHovered = false"
-      class="relative z-10"
-    >
-      {v_impl}
+  <div class="p-12 bg-black border border-white/10 rounded-none relative overflow-hidden group">
+    <motion.div :initial="{ opacity: 0 }" :animate="{ opacity: 1 }" class="relative z-10 flex flex-col items-center">
+      {impl}
+      <div class="mt-8 text-[9px] font-mono text-aura uppercase tracking-[0.4em]">MODULE::{name}</div>
     </motion.div>
-
-    <div
-      class="absolute inset-0 bg-aura/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-3xl"
-      :class="{ 'animate-pulse': state.isHovered }"
-    />
-
-    <div class="absolute bottom-4 left-8 right-8 flex justify-between items-center border-t border-white/5 pt-4 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-      <span class="text-[9px] font-mono text-white/30 uppercase tracking-widest">{name} // 0.4.0</span>
-      <div class="size-1.5 rounded-full bg-aura shadow-[0_0_10px_var(--aura)]" />
-    </div>
   </div>
 </template>
-
-<style scoped>
-.mvmaura-vue-root {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.mvmaura-vue-root:hover {
-  border-color: rgba(var(--aura-rgb), 0.2);
-}
-</style>
-""".replace("{name}", name).replace("{v_impl}", v_impl)
+""".replace("{name}", name).replace("{impl}", impl_v)
 
 def gen_svelte_snippet(name, impl, cat):
-    s_impl = impl.replace('className=', 'class=')
-    s_impl = re.sub(r'\{\s*(\d+)\s*\}', r'\1', s_impl)
-    s_impl = s_impl.replace('style={{', 'style="{').replace('}}', '}"')
-
-    # Handle map patterns for Svelte: {#each Array(5) as _, i}
-    patterns = [
-        (r'\{\s*\[\.\.\.Array\((\d+)\)\]\.map\(\(_, i\) => \((.*?)\)\)\s*\}', r'{#each Array(\1) as _, i}\2{/each}'),
-        (r'\{\s*Array\.from\(\{\s*length:\s*(\d+)\s*\}\)\.map\(\(_, i\) => \((.*?)\)\)\s*\}', r'{#each Array(\1) as _, i}\2{/each}')
-    ]
-    for pattern, replacement in patterns:
-        s_impl = re.sub(pattern, lambda m: replacement.replace(r'\1', m.group(1)).replace(r'\2', m.group(2).replace("key={i}", "").strip()), s_impl, flags=re.DOTALL)
-
+    impl_s = framework_conv(impl)
     return """<script>
   import { Motion } from 'svelte-motion';
-  let isHovered = false;
 </script>
 
-<Motion let:motion initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-  <div
-    use:motion
-    on:mouseenter={() => isHovered = true}
-    on:mouseleave={() => isHovered = false}
-    class="svelte-component-root p-12 bg-black/60 backdrop-blur-xl border border-white/10 rounded-none relative group cursor-crosshair"
-  >
-    <div class="z-10 relative flex flex-col items-center">
-      {s_impl}
-
-      <div class="mt-8 flex gap-4 opacity-20 group-hover:opacity-100 transition-opacity">
-        <div class="h-0.5 w-8 bg-aura" />
-        <div class="h-0.5 w-2 bg-white" />
-        <div class="h-0.5 w-8 bg-aura" />
-      </div>
-    </div>
-
-    {#if isHovered}
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--aura-soft),transparent_70%)] opacity-20" />
-    {/if}
+<Motion let:motion initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+  <div use:motion class="p-12 bg-black border border-white/10 rounded-none relative group">
+    {impl}
+    <div class="mt-8 text-[9px] font-mono text-aura uppercase tracking-[0.4em]">MODULE::{name}</div>
   </div>
 </Motion>
+""".replace("{name}", name).replace("{impl}", impl_s)
 
-<style>
-  .svelte-component-root {
-    transition: all 0.6s var(--ease-aura);
-  }
-  .svelte-component-root:hover {
-    border-color: var(--aura);
-    box-shadow: 0 0 40px -10px var(--aura-soft);
-  }
-</style>
-""".replace("{s_impl}", s_impl)
+def gen_lua_snippet(name, impl, cat):
+    return """-- MVMAURA v4 :: {name} :: Luau Module
+local {name} = {}
+local TweenService = game:GetService("TweenService")
 
-def gen_tailwind_snippet(name, impl):
-    t_impl = impl.replace('className=', 'class=')
-    t_impl = re.sub(r'\{\s*(\d+)\s*\}', r'\1', t_impl)
-    t_impl = re.sub(r'style=\{\{.*?\}\}', '', t_impl) # Remove complex React styles
+function {name}.new(parent)
+    local frame = Instance.new("Frame")
+    frame.Name = "Aura_{name}"
+    frame.Size = UDim2.new(0, 240, 0, 120)
+    frame.BackgroundColor3 = Color3.new(0,0,0)
+    frame.BorderSizePixel = 1
+    frame.BorderColor3 = Color3.fromHex("#FF4F00")
+    frame.Parent = parent
 
-    # Remove React maps for plain HTML
-    t_impl = re.sub(r'\{\s*\[\.\.\.Array\(\d+\)\]\.map.*?\}', '<!-- Interactive Element -->', t_impl, flags=re.DOTALL)
-    t_impl = re.sub(r'\{\s*Array\.from.*?\.map.*?\}', '<!-- Interactive Element -->', t_impl, flags=re.DOTALL)
+    local label = Instance.new("TextLabel")
+    label.Text = "MODULE::{name}"
+    label.Font = Enum.Font.Code
+    label.TextColor3 = Color3.fromHex("#FF4F00")
+    label.Size = UDim2.new(1, 0, 0, 20)
+    label.Position = UDim2.new(0, 0, 1, -20)
+    label.BackgroundTransparency = 1
+    label.Parent = frame
 
-    return """<!-- MVMAURA :: {name} -->
-<div class="group relative p-12 bg-neutral-950 border border-white/5 rounded-none overflow-hidden transition-all duration-700 hover:border-aura/20">
-  <!-- Dynamic Background Background -->
-  <div class="absolute inset-0 bg-gradient-to-tr from-aura/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+    -- Procedural Animation
+    task.spawn(function()
+        while true do
+            local t = tick()
+            frame.Rotation = math.sin(t * 2) * 2
+            task.wait()
+        end
+    end)
 
-  <div class="relative z-10 flex flex-col items-center justify-center min-h-[120px]">
-    <div class="scale-100 group-hover:scale-110 transition-transform duration-500 ease-out">
-      {t_impl}
-    </div>
-  </div>
+    return frame
+end
+return {name}
+""".replace("{name}", name)
 
-  <!-- Decorative Corner Accents -->
-  <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/10 rounded-none group-hover:border-aura/40 transition-colors"></div>
-  <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/10 rounded-none group-hover:border-aura/40 transition-colors"></div>
-
-  <div class="absolute bottom-4 left-1/2 -translate-x-1/2">
-    <span class="text-[7px] font-mono text-white/10 uppercase tracking-[0.5em] group-hover:text-aura/40 transition-colors">
-      Encoded Module :: {name}_V4
-    </span>
-  </div>
+def gen_html_snippet(name, impl):
+    return """<!-- MVMAURA v4 :: {name} -->
+<div class="mvmaura-module" style="background:#000; border:1px solid #333; padding:3rem; display:flex; flex-direction:column; align-items:center;">
+  <div class="content">{impl}</div>
+  <div style="color:#FF4F00; font-family:monospace; font-size:8px; margin-top:2rem; letter-spacing:0.4em;">MODULE::{name}</div>
 </div>
-""".replace("{name}", name).replace("{t_impl}", t_impl)
+""".replace("{name}", name).replace("{impl}", framework_conv(impl))
 
 snippets = []
 for i, name in enumerate(names):
     cat = categories[i] if i < len(categories) else "OTHER"
-    impl = impl_dict.get(name, "<div>Component Implementation Layer</div>")
+    impl = impl_dict.get(name, "<div>UNAVAILABLE_IMPLEMENTATION</div>")
 
     snippets.append({
         "id": i + 1,
@@ -261,17 +192,19 @@ for i, name in enumerate(names):
         "react": b64(gen_react_snippet(name, impl, cat, i)),
         "vue": b64(gen_vue_snippet(name, impl, cat)),
         "svelte": b64(gen_svelte_snippet(name, impl, cat)),
-        "tailwind": b64(gen_tailwind_snippet(name, impl))
+        "lua": b64(gen_lua_snippet(name, impl, cat)),
+        "html": b64(gen_html_snippet(name, impl))
     })
 
-output_file_content = f"""export type StackId = "react" | "vue" | "svelte" | "tailwind";
+output_file_content = f"""export type StackId = "react" | "vue" | "svelte" | "lua" | "html";
 export type Category = "All" | "Text" | "Buttons" | "Loaders" | "Layout" | "Backgrounds" | "Special" | "Transitions" | "Cursors";
 
 export const STACKS = [
   {{ "id": "react", "name": "React", "icon": "Atom" }},
   {{ "id": "vue", "name": "Vue", "icon": "Component" }},
   {{ "id": "svelte", "name": "Svelte", "icon": "Flame" }},
-  {{ "id": "tailwind", "name": "Tailwind", "icon": "Wind" }}
+  {{ "id": "lua", "name": "Lua", "icon": "Terminal" }},
+  {{ "id": "html", "name": "HTML", "icon": "Code" }}
 ];
 export const CATEGORIES: Category[] = [
   "Text", "Buttons", "Loaders", "Layout", "Backgrounds", "Special", "Transitions", "Cursors"
@@ -281,5 +214,3 @@ export const SNIPPETS = {json.dumps(snippets, indent=2)};
 
 with open("src/data/snippets.ts", "w") as f:
     f.write(output_file_content)
-
-print("SUCCESS: 101 high-fidelity snippets generated and synced with previews.")
