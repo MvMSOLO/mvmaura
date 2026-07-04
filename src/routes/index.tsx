@@ -10,6 +10,41 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function CustomCursor() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    const handleHover = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      setIsHovered(!!target.closest("button, a"));
+    };
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mouseover", handleHover);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("mouseover", handleHover);
+    };
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 size-6 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+      animate={{
+        x: mousePos.x - 12,
+        y: mousePos.y - 12,
+        scale: isHovering ? 2.5 : 1,
+      }}
+      transition={{ type: "spring", damping: 30, stiffness: 400, mass: 0.5 }}
+    >
+      <div className="size-full bg-white rounded-full" />
+    </motion.div>
+  );
+}
+
 function Index() {
   const [showCutscene, setShowCutscene] = useState(true);
   const [stack, setStack] = useState<StackId>("react");
@@ -21,12 +56,11 @@ function Index() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   const visible = useMemo(
-    () =>
-      SNIPPETS.filter((s) => (category === "All" || s.category === category)),
+    () => SNIPPETS.filter((s) => category === "All" || s.category === category),
     [category],
   );
 
@@ -43,8 +77,8 @@ function Index() {
       });
       // Simple dependency detection for demo
       const dependencies: string[] = [];
-      if (atob(snip.react).includes('framer-motion')) dependencies.push('framer-motion');
-      if (atob(snip.react).includes('lucide-react')) dependencies.push('lucide-react');
+      if (atob(snip.react).includes("framer-motion")) dependencies.push("framer-motion");
+      if (atob(snip.react).includes("lucide-react")) dependencies.push("lucide-react");
 
       if (dependencies.length) {
         setDeps({ name: snip.name, packages: dependencies });
@@ -61,7 +95,8 @@ function Index() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden scroll-smooth">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden scroll-smooth cursor-none">
+      <CustomCursor />
       <AnimatePresence>
         {showCutscene && (
           <motion.div
@@ -85,11 +120,11 @@ function Index() {
       {/* Optimized Ambient aura blobs */}
       <motion.div
         style={{
-          y: useSpring(useScroll().scrollYProgress, { stiffness: 50, damping: 20 })
+          y: useSpring(useScroll().scrollYProgress, { stiffness: 50, damping: 20 }),
         }}
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.3, 0.4, 0.3]
+          opacity: [0.3, 0.4, 0.3],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="pointer-events-none fixed -top-40 -left-24 size-[500px] aura-radial z-0"
@@ -97,280 +132,301 @@ function Index() {
 
       <motion.div
         style={{
-          y: useSpring(useScroll().scrollYProgress, { stiffness: 40, damping: 15 })
+          y: useSpring(useScroll().scrollYProgress, { stiffness: 40, damping: 15 }),
         }}
         animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.15, 0.25, 0.15]
+          opacity: [0.15, 0.25, 0.15],
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="pointer-events-none fixed top-[40%] -right-48 size-[600px] aura-radial z-0"
       />
 
-      {/* Sticky header */}
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 z-50 bg-background/60 backdrop-blur-2xl border-b border-white/[0.03]"
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <motion.a
-            whileHover={{ scale: 1.02 }}
-            href="/"
-            className="flex items-center gap-3 group"
-          >
-            <div className="relative size-3 rounded-full bg-aura">
-              <div className="absolute inset-0 rounded-full bg-aura animate-ping opacity-40" />
-              <div className="absolute inset-[-4px] rounded-full border border-aura/20 animate-pulse" />
-            </div>
-            <span className="font-display italic text-xl tracking-tighter">MVMAURA</span>
-            <span className="hidden sm:inline text-[9px] font-mono text-aura/60 uppercase tracking-[0.3em] ml-2">
-              v4 · bespoke
-            </span>
-          </motion.a>
-
-          <nav className="flex bg-white/[0.03] ring-1 ring-white/5 p-1 rounded-2xl overflow-x-auto no-scrollbar">
-            {STACKS.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setStack(s.id as StackId)}
-                className={
-                  "px-4 py-2 text-[11px] font-semibold rounded-xl whitespace-nowrap transition-all duration-500 " +
-                  (stack === s.id
-                    ? "bg-white/10 text-foreground shadow-xl ring-1 ring-white/10"
-                    : "text-white/40 hover:text-white/70 hover:bg-white/5")
-                }
-              >
-                {s.name}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </motion.header>
-
-      {/* Hero */}
-      <section className="relative px-6 pt-24 pb-16">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1 className="font-display text-7xl md:text-9xl leading-[0.85] tracking-tighter text-balance">
-              <motion.span
-                initial={{ opacity: 0, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 1.2 }}
-              >
-                Motion for
-              </motion.span>
-               <br />
-              <motion.span
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="italic bg-gradient-to-r from-orange-500 via-white to-orange-500 bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(249,115,22,0.3)]"
-              >
-                craftsmen.
-              </motion.span>
-            </h1>
-
-            <p className="mt-8 text-white/50 text-lg md:text-xl max-w-[48ch] leading-relaxed font-light">
-              A curated anthology of aura-grade motion systems. High-fidelity components designed to breathe life into your interfaces.
-            </p>
-
-            <div className="mt-12 flex items-center gap-6 flex-wrap">
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">
-                  Browsing
-                </span>
-                <motion.span
-                  key={stack}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="px-4 py-1.5 rounded-full bg-aura/10 border border-aura/30 text-aura text-[11px] font-mono font-bold"
-                >
-                  {STACKS.find((s) => s.id === stack)?.name}
-                </motion.span>
+      {/* Sticky header: Floating Boutique */}
+      <div className="fixed top-0 inset-x-0 z-[100] p-6 pointer-events-none">
+        <motion.header
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-7xl mx-auto glass-morphism rounded-2xl pointer-events-auto shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+        >
+          <div className="px-8 py-5 flex items-center justify-between gap-4">
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              href="/"
+              className="flex items-center gap-3 group"
+            >
+              <div className="relative size-3 rounded-full bg-aura">
+                <div className="absolute inset-0 rounded-full bg-aura animate-ping opacity-40" />
+                <div className="absolute inset-[-4px] rounded-full border border-aura/20 animate-pulse" />
               </div>
-              <div className="h-4 w-px bg-white/10" />
-              <span className="text-white/40 font-mono text-[11px] tracking-widest">{visible.length} SYSTEMS LOADED</span>
-            </div>
-          </motion.div>
+              <span className="font-display italic text-xl tracking-tighter">MVMAURA</span>
+              <span className="hidden sm:inline text-[9px] font-mono text-aura/60 uppercase tracking-[0.3em] ml-2">
+                v4 · bespoke
+              </span>
+            </motion.a>
 
-          {/* Category chips */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-12 flex gap-3 overflow-x-auto pb-4 no-scrollbar"
-          >
-            {CATEGORIES.map((c, i) => {
-              const active = category === c;
-              return (
-                <motion.button
-                  key={c}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setCategory(c as Category)}
+            <nav className="flex bg-white/[0.03] ring-1 ring-white/5 p-1 rounded-2xl overflow-x-auto no-scrollbar">
+              {STACKS.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setStack(s.id as StackId)}
                   className={
-                    "shrink-0 px-5 py-2.5 flex items-center gap-2.5 rounded-2xl text-[12px] font-semibold transition-all duration-500 " +
-                    (active
-                      ? "bg-aura/10 border border-aura/50 text-white shadow-[0_0_20px_rgba(249,115,22,0.1)]"
-                      : "bg-white/[0.03] border border-white/5 text-white/40 hover:border-white/10 hover:text-white/60")
+                    "px-5 py-2 text-[10px] font-bold uppercase tracking-widest rounded-lg whitespace-nowrap transition-all duration-700 " +
+                    (stack === s.id
+                      ? "bg-white text-black shadow-[0_0_20px_white]"
+                      : "text-white/30 hover:text-white/80 hover:bg-white/5")
                   }
                 >
-                  <div className={"size-1.5 rounded-full transition-colors " + (active ? "bg-aura shadow-[0_0_8px_var(--aura)]" : "bg-white/10")} />
-                  {c}
-                </motion.button>
-              );
-            })}
+                  {s.name}
+                </button>
+              ))}
+            </nav>
+          </div>
+        </motion.header>
+      </div>
+
+      {/* Hero: Flagship Editorial */}
+      <section className="relative nike-section min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Flagship: AuraMasterpiece */}
+        <div className="absolute inset-0 z-0 opacity-40 scale-110 pointer-events-none">
+          <Previews.AuraMasterpiece />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h1 className="font-display text-[clamp(4rem,15vw,14rem)] leading-[0.8] tracking-[-0.04em] text-white selection:bg-aura">
+              <span className="block opacity-20 hover:opacity-100 transition-opacity duration-1000">
+                LIMITLESS
+              </span>
+              <span className="block italic shimmer-text drop-shadow-[0_0_50px_var(--aura-soft)]">
+                MOTION
+              </span>
+            </h1>
+
+            <div className="mt-12 flex flex-col items-center gap-8">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="text-white/40 text-lg md:text-2xl max-w-[40ch] leading-tight font-medium uppercase tracking-widest"
+              >
+                The v4 Anthology. High-performance aura systems for the top 0.1% of interfaces.
+              </motion.p>
+
+              <div className="flex items-center gap-6">
+                <button className="px-12 py-4 bg-white text-black font-black text-xs uppercase tracking-[0.3em] rounded-none hover:bg-aura hover:scale-105 transition-all active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                  Explore Systems
+                </button>
+                <div className="hidden md:flex items-center gap-4">
+                  <div className="w-12 h-px bg-white/20" />
+                  <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">
+                    Scroll to begin
+                  </span>
+                </div>
+              </div>
+            </div>
           </motion.div>
+        </div>
+
+        {/* Floating Stack Stats */}
+        <div className="absolute bottom-12 left-12 flex flex-col gap-1 items-start">
+          <span className="text-[9px] font-mono text-aura/50 font-bold tracking-widest">
+            PROTOCOL::V4
+          </span>
+          <span className="text-[14px] font-mono text-white/80 font-medium tracking-tight">
+            NODES_LOADED: {visible.length}
+          </span>
         </div>
       </section>
 
-      {/* Gallery */}
-      <main className="px-6 pb-40">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {visible.map((s, i) => {
-              const isCopied = copiedId === s.id;
-              const featured = i === 0 && category === "All";
-
-              return (
-                <motion.div
-                  key={s.id}
-                  layout
-                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    duration: 0.7,
-                    delay: i % 12 * 0.05,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  className={featured ? "sm:col-span-2 lg:col-span-2" : ""}
-                >
-                  <motion.button
-                    onClick={() => copySnippet(s.id)}
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      {/* Gallery: Asymmetrical Editorial Grid */}
+      <main className="px-6 pb-40 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-12">
+            <div className="space-y-4">
+              <h2 className="text-[10px] font-mono text-aura font-bold tracking-[0.5em] uppercase">
+                The Collection
+              </h2>
+              <p className="text-4xl md:text-7xl font-display italic text-white leading-none tracking-tight">
+                Bespoke artifacts.
+              </p>
+            </div>
+            {/* Category chips moved here for better editorial flow */}
+            <div className="flex flex-wrap gap-2 max-w-xl justify-end">
+              {CATEGORIES.map((c) => {
+                const active = category === c;
+                return (
+                  <button
+                    key={c}
+                    onClick={() => setCategory(c as Category)}
                     className={
-                      "group relative w-full text-left bg-white/[0.02] border border-white/[0.05] rounded-[2rem] p-6 transition-colors hover:border-white/10 overflow-hidden " +
-                      (isCopied ? " ring-2 ring-aura/50 shadow-2xl shadow-aura/10" : "")
+                      "px-4 py-2 text-[10px] font-bold uppercase tracking-widest border transition-all duration-500 " +
+                      (active
+                        ? "bg-white text-black border-white"
+                        : "bg-transparent text-white/40 border-white/10 hover:border-white/40 hover:text-white")
                     }
                   >
-                    {/* Hover Aura Effect */}
-                    <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                      <div className="absolute -inset-[100%] bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.05)_0%,transparent_50%)]" />
-                    </div>
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
+            <AnimatePresence mode="popLayout">
+              {visible.map((s, i) => {
+                const isCopied = copiedId === s.id;
 
-                    <div className="relative flex justify-between items-start mb-8">
-                      <div className="space-y-1.5">
-                        <h3 className="text-base font-semibold tracking-tight text-white/90">{s.name}</h3>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[9px] text-aura font-mono font-black uppercase tracking-[0.2em]">
-                            Bespoke
-                          </span>
-                          <span className="size-1 rounded-full bg-white/10" />
-                          <span className="text-[9px] text-white/30 font-mono uppercase tracking-widest">
-                            {s.category}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="px-3 py-1 bg-white/[0.03] border border-white/[0.05] rounded-full text-[9px] font-mono text-white/40">
-                          {s.id % 2 === 0 ? 'Spring' : 'Physics'}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
+                return (
+                  <motion.div
+                    key={s.id}
+                    layout
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{
+                      duration: 0.8,
+                      delay: (i % 6) * 0.1,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="break-inside-avoid"
+                  >
+                    <motion.button
+                      onClick={() => copySnippet(s.id)}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
                       className={
-                        "relative flex items-center justify-center overflow-hidden bg-black/40 rounded-3xl border border-white/[0.03] group-hover:border-white/10 transition-colors " +
-                        (featured ? "h-72" : "h-52")
+                        "group relative w-full text-left bg-surface border border-white/[0.03] rounded-3xl p-8 transition-all duration-500 hover:border-aura/30 hover:bg-surface-2 " +
+                        (isCopied
+                          ? "ring-2 ring-aura shadow-[0_0_100px_var(--aura-soft)]"
+                          : "shadow-2xl")
                       }
                     >
-                       <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay">
+                      {/* Hover Aura Effect */}
+                      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                        <div className="absolute -inset-[100%] bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.05)_0%,transparent_50%)]" />
+                      </div>
+
+                      <div className="relative flex justify-between items-start mb-8">
+                        <div className="space-y-1.5">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[8px] font-mono text-aura/60 font-bold uppercase tracking-[0.3em]">
+                              Module::{s.id.toString().padStart(3, "0")}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold tracking-tight text-white/90 group-hover:text-aura transition-colors duration-500">
+                            {s.name}
+                          </h3>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[9px] text-white/30 font-mono uppercase tracking-widest">
+                              {s.category}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <div className="px-3 py-1 bg-aura/10 border border-aura/30 rounded-full text-[8px] font-mono text-aura uppercase tracking-tighter">
+                            Performance_A
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="relative flex items-center justify-center overflow-hidden bg-black/40 rounded-3xl border border-white/[0.03] group-hover:border-white/10 transition-colors h-64 shadow-inner">
+                        <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay">
                           <svg viewBox="0 0 200 200" className="size-full">
                             <filter id="noiseFilter">
-                              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+                              <feTurbulence
+                                type="fractalNoise"
+                                baseFrequency="0.65"
+                                numOctaves="3"
+                                stitchTiles="stitch"
+                              />
                             </filter>
-                            <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+                            <rect width="100%" height="100%" filter="url(#noiseFilter)" />
                           </svg>
-                       </div>
+                        </div>
 
-                       <SnippetPreview id={s.id} name={s.name} category={s.category} />
-                    </div>
-
-                    <div className="mt-6 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <AnimatePresence mode="wait">
-                          {isCopied ? (
-                            <motion.div
-                              key="copied"
-                              initial={{ opacity: 0, scale: 0.5 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              className="flex items-center gap-2 text-aura"
-                            >
-                              <Check className="size-4" />
-                              <span className="text-[11px] font-bold uppercase tracking-wider">Copied</span>
-                            </motion.div>
-                          ) : (
-                            <motion.div
-                              key="copy"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              className="flex items-center gap-2 text-white/30 group-hover:text-white/60 transition-colors"
-                            >
-                              <Copy className="size-3.5" />
-                              <span className="text-[10px] font-semibold uppercase tracking-widest">Tap to capture</span>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                        <SnippetPreview id={s.id} name={s.name} category={s.category} />
                       </div>
 
-                      <div className="flex items-center gap-1">
-                        <div className="size-1 rounded-full bg-white/20" />
-                        <div className="size-1 rounded-full bg-white/10" />
-                        <div className="size-1 rounded-full bg-white/5" />
+                      <div className="mt-6 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <AnimatePresence mode="wait">
+                            {isCopied ? (
+                              <motion.div
+                                key="copied"
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="flex items-center gap-2 text-aura"
+                              >
+                                <Check className="size-4" />
+                                <span className="text-[11px] font-bold uppercase tracking-wider">
+                                  Copied
+                                </span>
+                              </motion.div>
+                            ) : (
+                              <motion.div
+                                key="copy"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex items-center gap-2 text-white/30 group-hover:text-white/60 transition-colors"
+                              >
+                                <Copy className="size-3.5" />
+                                <span className="text-[10px] font-semibold uppercase tracking-widest">
+                                  Tap to capture
+                                </span>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+
+                        <div className="flex items-center gap-1">
+                          <div className="size-1 rounded-full bg-white/20" />
+                          <div className="size-1 rounded-full bg-white/10" />
+                          <div className="size-1 rounded-full bg-white/5" />
+                        </div>
                       </div>
-                    </div>
-                  </motion.button>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
+                    </motion.button>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* Footer */}
+          <footer className="max-w-7xl mx-auto mt-40 pt-12 border-t border-white/[0.05] flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="size-2 rounded-full bg-aura" />
+                <span className="font-display italic text-3xl tracking-tighter">MVMAURA</span>
+              </div>
+              <p className="text-sm text-white/30 max-w-sm font-light leading-relaxed">
+                Precision-engineered motion for the modern web. Every frame crafted with purpose.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-end gap-2">
+              <p className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em]">
+                © MVMSOLO · BUILT BY JULES
+              </p>
+              <div className="flex gap-4 text-white/40 text-[11px] font-medium">
+                <a href="#" className="hover:text-aura transition-colors">
+                  Twitter
+                </a>
+                <a href="#" className="hover:text-aura transition-colors">
+                  GitHub
+                </a>
+                <a href="#" className="hover:text-aura transition-colors">
+                  Contact
+                </a>
+              </div>
+            </div>
+          </footer>
         </div>
-
-        {/* Footer */}
-        <footer className="max-w-7xl mx-auto mt-40 pt-12 border-t border-white/[0.05] flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-               <div className="size-2 rounded-full bg-aura" />
-               <span className="font-display italic text-3xl tracking-tighter">MVMAURA</span>
-            </div>
-            <p className="text-sm text-white/30 max-w-sm font-light leading-relaxed">
-              Precision-engineered motion for the modern web. Every frame crafted with purpose.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-end gap-2">
-            <p className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em]">
-              © MVMSOLO · BUILT BY JULES
-            </p>
-            <div className="flex gap-4 text-white/40 text-[11px] font-medium">
-              <a href="#" className="hover:text-aura transition-colors">Twitter</a>
-              <a href="#" className="hover:text-aura transition-colors">GitHub</a>
-              <a href="#" className="hover:text-aura transition-colors">Contact</a>
-            </div>
-          </div>
-        </footer>
       </main>
 
       {/* Dependency terminal panel */}
@@ -434,7 +490,7 @@ function SnippetPreview({ id, name, category }: { id: number; name: string; cate
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (containerRef.current) {
@@ -445,8 +501,10 @@ function SnippetPreview({ id, name, category }: { id: number; name: string; cate
   }, []);
 
   // Map snippet name to component
-  const ComponentName = name.replace(/ /g, '');
-  const PreviewComponent = (Previews as any)[ComponentName] || (() => <div className="text-white/20 text-xs font-mono">PREVIEW::{category}</div>);
+  const ComponentName = name.replace(/ /g, "");
+  const PreviewComponent =
+    (Previews as Record<string, React.ComponentType>)[ComponentName] ||
+    (() => <div className="text-white/20 text-xs font-mono">PREVIEW::{category}</div>);
 
   return (
     <div ref={containerRef} className="size-full flex items-center justify-center p-4">

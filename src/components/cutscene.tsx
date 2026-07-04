@@ -32,14 +32,17 @@ export function Cutscene({ onComplete }: { onComplete: () => void }) {
       `}</style>
 
       <div className="relative w-full h-full flex items-center justify-center perspective-[2000px]">
-
         {/* Central Singularity */}
-        <div className={`absolute stage-transition ${stage === 1 ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}>
+        <div
+          className={`absolute stage-transition ${stage === 1 ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+        >
           <div className="size-2 bg-white rounded-full shadow-[0_0_100px_40px_white] animate-pulse" />
         </div>
 
         {/* The Great Expansion - Optimized Lattice */}
-        <div className={`absolute inset-0 stage-transition ${stage >= 2 ? "opacity-40 scale-100" : "opacity-0 scale-50"}`}>
+        <div
+          className={`absolute inset-0 stage-transition ${stage >= 2 ? "opacity-40 scale-100" : "opacity-0 scale-50"}`}
+        >
           <svg viewBox="0 0 1000 1000" className="w-full h-full animate-orbit">
             <g stroke="var(--aura)" strokeWidth="0.2" fill="none" opacity="0.3">
               <path d="M 700.00,500.00 L 574.80,730.23 L 301.41,644.28 L 332.49,378.30 L 550.11,345.78 Z" />
@@ -547,7 +550,9 @@ export function Cutscene({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Stage 3: The Aura Resonance - Heavy but static SVG details */}
-        <div className={`absolute inset-0 stage-transition ${stage >= 3 ? "opacity-100" : "opacity-0"}`}>
+        <div
+          className={`absolute inset-0 stage-transition ${stage >= 3 ? "opacity-100" : "opacity-0"}`}
+        >
           <svg viewBox="0 0 1000 1000" className="w-full h-full">
             <defs>
               <radialGradient id="res-grad">
@@ -556,418 +561,2025 @@ export function Cutscene({ onComplete }: { onComplete: () => void }) {
               </radialGradient>
             </defs>
             <circle cx="600.00" cy="500.00" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="600.00" y2="500.00" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="600.00"
+              y2="500.00"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="596.49" cy="529.85" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="596.49" y2="529.85" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="596.49"
+              y2="529.85"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="584.18" cy="557.59" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="584.18" y2="557.59" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="584.18"
+              y2="557.59"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="564.03" cy="580.68" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="564.03" y2="580.68" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="564.03"
+              y2="580.68"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="537.69" cy="596.93" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="537.69" y2="596.93" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="537.69"
+              y2="596.93"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="507.43" cy="604.74" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="507.43" y2="604.74" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="507.43"
+              y2="604.74"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="475.92" cy="603.23" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="475.92" y2="603.23" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="475.92"
+              y2="603.23"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="445.98" cy="592.36" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="445.98" y2="592.36" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="445.98"
+              y2="592.36"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="420.36" cy="572.95" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="420.36" y2="572.95" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="420.36"
+              y2="572.95"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="401.46" cy="546.58" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="401.46" y2="546.58" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="401.46"
+              y2="546.58"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="391.10" cy="515.52" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="391.10" y2="515.52" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="391.10"
+              y2="515.52"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="390.39" cy="482.49" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="390.39" y2="482.49" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="390.39"
+              y2="482.49"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="399.56" cy="450.44" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="399.56" y2="450.44" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="399.56"
+              y2="450.44"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="417.97" cy="422.28" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="417.97" y2="422.28" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="417.97"
+              y2="422.28"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="444.11" cy="400.64" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="444.11" y2="400.64" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="444.11"
+              y2="400.64"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="475.76" cy="387.58" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="475.76" y2="387.58" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="475.76"
+              y2="387.58"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="510.15" cy="384.44" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="510.15" y2="384.44" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="510.15"
+              y2="384.44"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="544.22" cy="391.68" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="544.22" y2="391.68" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="544.22"
+              y2="391.68"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="574.89" cy="408.81" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="574.89" y2="408.81" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="574.89"
+              y2="408.81"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="599.33" cy="434.47" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="599.33" y2="434.47" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="599.33"
+              y2="434.47"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="615.22" cy="466.47" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="615.22" y2="466.47" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="615.22"
+              y2="466.47"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="620.98" cy="502.03" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="620.98" y2="502.03" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="620.98"
+              y2="502.03"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="615.93" cy="538.01" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="615.93" y2="538.01" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="615.93"
+              y2="538.01"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="600.33" cy="571.15" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="600.33" y2="571.15" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="600.33"
+              y2="571.15"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="575.44" cy="598.41" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="575.44" y2="598.41" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="575.44"
+              y2="598.41"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="543.33" cy="617.25" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="543.33" y2="617.25" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="543.33"
+              y2="617.25"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="506.80" cy="625.82" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="506.80" y2="625.82" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="506.80"
+              y2="625.82"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="469.07" cy="623.18" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="469.07" y2="623.18" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="469.07"
+              y2="623.18"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="433.53" cy="609.39" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="433.53" y2="609.39" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="433.53"
+              y2="609.39"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="403.42" cy="585.52" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="403.42" y2="585.52" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="403.42"
+              y2="585.52"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="381.55" cy="553.58" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="381.55" y2="553.58" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="381.55"
+              y2="553.58"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="370.02" cy="516.30" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="370.02" y2="516.30" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="370.02"
+              y2="516.30"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="370.02" cy="476.99" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="370.02" y2="476.99" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="370.02"
+              y2="476.99"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="381.74" cy="439.15" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="381.74" y2="439.15" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="381.74"
+              y2="439.15"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="404.29" cy="406.22" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="404.29" y2="406.22" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="404.29"
+              y2="406.22"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="435.80" cy="381.24" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="435.80" y2="381.24" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="435.80"
+              y2="381.24"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="473.57" cy="366.59" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="473.57" y2="366.59" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="473.57"
+              y2="366.59"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="514.28" cy="363.75" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="514.28" y2="363.75" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="514.28"
+              y2="363.75"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="554.30" cy="373.13" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="554.30" y2="373.13" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="554.30"
+              y2="373.13"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="590.02" cy="394.08" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="590.02" y2="394.08" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="590.02"
+              y2="394.08"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="618.14" cy="424.88" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="618.14" y2="424.88" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="618.14"
+              y2="424.88"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="636.03" cy="462.88" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="636.03" y2="462.88" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="636.03"
+              y2="462.88"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="641.92" cy="504.77" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="641.92" y2="504.77" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="641.92"
+              y2="504.77"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="635.11" cy="546.83" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="635.11" y2="546.83" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="635.11"
+              y2="546.83"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="616.05" cy="585.26" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="616.05" y2="585.26" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="616.05"
+              y2="585.26"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="586.26" cy="616.55" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="586.26" y2="616.55" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="586.26"
+              y2="616.55"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="548.30" cy="637.78" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="548.30" y2="637.78" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="548.30"
+              y2="637.78"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="505.46" cy="646.90" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="505.46" y2="646.90" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="505.46"
+              y2="646.90"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="461.55" cy="642.92" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="461.55" y2="642.92" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="461.55"
+              y2="642.92"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="420.50" cy="626.02" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="420.50" y2="626.02" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="420.50"
+              y2="626.02"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="386.05" cy="597.54" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="386.05" y2="597.54" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="386.05"
+              y2="597.54"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="361.39" cy="559.91" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="361.39" y2="559.91" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="361.39"
+              y2="559.91"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="348.89" cy="516.38" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="348.89" y2="516.38" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="348.89"
+              y2="516.38"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="349.81" cy="470.80" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="349.81" y2="470.80" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="349.81"
+              y2="470.80"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="364.27" cy="427.25" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="364.27" y2="427.25" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="364.27"
+              y2="427.25"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="391.13" cy="389.67" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="391.13" y2="389.67" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="391.13"
+              y2="389.67"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="428.13" cy="361.54" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="428.13" y2="361.54" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="428.13"
+              y2="361.54"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="472.08" cy="345.50" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="472.08" y2="345.50" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="472.08"
+              y2="345.50"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="519.11" cy="343.16" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="519.11" y2="343.16" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="519.11"
+              y2="343.16"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="565.01" cy="354.90" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="565.01" y2="354.90" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="565.01"
+              y2="354.90"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="605.65" cy="379.84" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="605.65" y2="379.84" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="605.65"
+              y2="379.84"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="637.29" cy="415.91" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="637.29" y2="415.91" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="637.29"
+              y2="415.91"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="656.98" cy="459.99" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="656.98" y2="459.99" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="656.98"
+              y2="459.99"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="662.79" cy="508.22" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="662.79" y2="508.22" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="662.79"
+              y2="508.22"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="654.03" cy="556.30" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="654.03" y2="556.30" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="654.03"
+              y2="556.30"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="631.31" cy="599.91" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="631.31" y2="599.91" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="631.31"
+              y2="599.91"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="596.50" cy="635.07" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="596.50" y2="635.07" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="596.50"
+              y2="635.07"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="552.59" cy="658.50" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="552.59" y2="658.50" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="552.59"
+              y2="658.50"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="503.42" cy="667.97" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="503.42" y2="667.97" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="503.42"
+              y2="667.97"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="453.35" cy="662.43" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="453.35" y2="662.43" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="453.35"
+              y2="662.43"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="406.89" cy="642.23" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="406.89" y2="642.23" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="406.89"
+              y2="642.23"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="368.24" cy="609.00" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="368.24" y2="609.00" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="368.24"
+              y2="609.00"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="340.99" cy="565.58" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="340.99" y2="565.58" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="340.99"
+              y2="565.58"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="327.72" cy="515.75" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="327.72" y2="515.75" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="327.72"
+              y2="515.75"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="329.78" cy="463.92" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="329.78" y2="463.92" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="329.78"
+              y2="463.92"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="347.17" cy="414.74" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="347.17" y2="414.74" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="347.17"
+              y2="414.74"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="378.50" cy="372.66" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="378.50" y2="372.66" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="378.50"
+              y2="372.66"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="421.11" cy="341.55" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="421.11" y2="341.55" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="421.11"
+              y2="341.55"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="471.30" cy="324.33" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="471.30" y2="324.33" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="471.30"
+              y2="324.33"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="524.63" cy="322.70" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="524.63" y2="322.70" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="524.63"
+              y2="322.70"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="576.35" cy="337.00" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="576.35" y2="337.00" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="576.35"
+              y2="337.00"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="621.79" cy="366.10" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="621.79" y2="366.10" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="621.79"
+              y2="366.10"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="656.78" cy="407.56" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="656.78" y2="407.56" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="656.78"
+              y2="407.56"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="678.07" cy="457.79" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="678.07" y2="457.79" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="678.07"
+              y2="457.79"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="683.58" cy="512.37" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="683.58" y2="512.37" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="683.58"
+              y2="512.37"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="672.66" cy="566.43" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="672.66" y2="566.43" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="672.66"
+              y2="566.43"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="646.11" cy="615.10" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="646.11" y2="615.10" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="646.11"
+              y2="615.10"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="606.13" cy="653.96" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="606.13" y2="653.96" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="606.13"
+              y2="653.96"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="556.19" cy="679.41" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="556.19" y2="679.41" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="556.19"
+              y2="679.41"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="500.67" cy="689.00" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="500.67" y2="689.00" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="500.67"
+              y2="689.00"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="444.49" cy="681.71" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="444.49" y2="681.71" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="444.49"
+              y2="681.71"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="392.71" cy="658.02" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="392.71" y2="658.02" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="392.71"
+              y2="658.02"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="350.02" cy="619.88" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="350.02" y2="619.88" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="350.02"
+              y2="619.88"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="320.36" cy="570.57" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="320.36" y2="570.57" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="320.36"
+              y2="570.57"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="306.54" cy="514.41" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="306.54" y2="514.41" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="306.54"
+              y2="514.41"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="309.94" cy="456.37" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="309.94" y2="456.37" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="309.94"
+              y2="456.37"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="330.46" cy="401.65" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="330.46" y2="401.65" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="330.46"
+              y2="401.65"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="366.42" cy="355.21" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="366.42" y2="355.21" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="366.42"
+              y2="355.21"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="414.75" cy="321.29" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="414.75" y2="321.29" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="414.75"
+              y2="321.29"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="471.22" cy="303.09" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="471.22" y2="303.09" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="471.22"
+              y2="303.09"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="530.85" cy="302.39" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="530.85" y2="302.39" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="530.85"
+              y2="302.39"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="588.31" cy="319.44" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="588.31" y2="319.44" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="588.31"
+              y2="319.44"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="638.41" cy="352.87" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="638.41" y2="352.87" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="638.41"
+              y2="352.87"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="676.58" cy="399.85" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="676.58" y2="399.85" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="676.58"
+              y2="399.85"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="699.26" cy="456.29" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="699.26" y2="456.29" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="699.26"
+              y2="456.29"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="704.28" cy="517.21" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="704.28" y2="517.21" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="704.28"
+              y2="517.21"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="690.99" cy="577.19" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="690.99" y2="577.19" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="690.99"
+              y2="577.19"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="660.43" cy="630.81" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="660.43" y2="630.81" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="660.43"
+              y2="630.81"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="615.16" cy="673.21" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="615.16" y2="673.21" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="615.16"
+              y2="673.21"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="559.11" cy="700.47" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="559.11" y2="700.47" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="559.11"
+              y2="700.47"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="497.21" cy="709.98" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="497.21" y2="709.98" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="497.21"
+              y2="709.98"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="434.97" cy="700.73" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="434.97" y2="700.73" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="434.97"
+              y2="700.73"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="377.98" cy="673.37" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="377.98" y2="673.37" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="377.98"
+              y2="673.37"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="331.41" cy="630.18" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="331.41" y2="630.18" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="331.41"
+              y2="630.18"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="299.53" cy="574.89" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="299.53" y2="574.89" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="299.53"
+              y2="574.89"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="285.36" cy="512.36" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="285.36" y2="512.36" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="285.36"
+              y2="512.36"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="290.32" cy="448.14" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="290.32" y2="448.14" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="290.32"
+              y2="448.14"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="314.15" cy="387.97" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="314.15" y2="387.97" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="314.15"
+              y2="387.97"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="354.90" cy="337.31" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="354.90" y2="337.31" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="354.90"
+              y2="337.31"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="409.04" cy="300.78" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="409.04" y2="300.78" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="409.04"
+              y2="300.78"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="471.85" cy="281.81" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="471.85" y2="281.81" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="471.85"
+              y2="281.81"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="537.76" cy="282.25" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="537.76" y2="282.25" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="537.76"
+              y2="282.25"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="600.87" cy="302.24" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="600.87" y2="302.24" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="600.87"
+              y2="302.24"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="655.51" cy="340.17" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="655.51" y2="340.17" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="655.51"
+              y2="340.17"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="696.67" cy="392.78" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="696.67" y2="392.78" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="696.67"
+              y2="392.78"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="720.55" cy="455.50" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="720.55" y2="455.50" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="720.55"
+              y2="455.50"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="724.85" cy="522.76" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="724.85" y2="522.76" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="724.85"
+              y2="522.76"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="709.00" cy="588.58" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="709.00" y2="588.58" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="709.00"
+              y2="588.58"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="674.25" cy="647.04" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="674.25" y2="647.04" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="674.25"
+              y2="647.04"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="623.56" cy="692.81" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="623.56" y2="692.81" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="623.56"
+              y2="692.81"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="561.33" cy="721.67" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="561.33" y2="721.67" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="561.33"
+              y2="721.67"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="493.05" cy="730.90" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="493.05" y2="730.90" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="493.05"
+              y2="730.90"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="424.80" cy="719.47" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="424.80" y2="719.47" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="424.80"
+              y2="719.47"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="362.71" cy="688.26" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="362.71" y2="688.26" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="362.71"
+              y2="688.26"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="312.41" cy="639.88" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="312.41" y2="639.88" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="312.41"
+              y2="639.88"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="278.51" cy="578.53" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="278.51" y2="578.53" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="278.51"
+              y2="578.53"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="264.20" cy="509.60" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="264.20" y2="509.60" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="264.20"
+              y2="509.60"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="270.92" cy="439.23" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="270.92" y2="439.23" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="270.92"
+              y2="439.23"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="298.26" cy="373.72" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="298.26" y2="373.72" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="298.26"
+              y2="373.72"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="343.94" cy="318.99" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="343.94" y2="318.99" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="343.94"
+              y2="318.99"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="404.00" cy="280.03" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="404.00" y2="280.03" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="404.00"
+              y2="280.03"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="473.18" cy="260.50" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="473.18" y2="260.50" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="473.18"
+              y2="260.50"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="545.35" cy="262.29" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="545.35" y2="262.29" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="545.35"
+              y2="262.29"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="614.04" cy="285.42" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="614.04" y2="285.42" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="614.04"
+              y2="285.42"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="673.07" cy="328.00" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="673.07" y2="328.00" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="673.07"
+              y2="328.00"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="717.05" cy="386.37" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="717.05" y2="386.37" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="717.05"
+              y2="386.37"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="741.92" cy="455.40" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="741.92" y2="455.40" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="741.92"
+              y2="455.40"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="745.29" cy="529.01" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="745.29" y2="529.01" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="745.29"
+              y2="529.01"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="726.68" cy="600.60" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="726.68" y2="600.60" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="726.68"
+              y2="600.60"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="687.58" cy="663.76" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="687.58" y2="663.76" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="687.58"
+              y2="663.76"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="631.33" cy="712.73" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="631.33" y2="712.73" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="631.33"
+              y2="712.73"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="562.85" cy="743.00" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="562.85" y2="743.00" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="562.85"
+              y2="743.00"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="488.18" cy="751.72" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="488.18" y2="751.72" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="488.18"
+              y2="751.72"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="413.98" cy="737.93" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="413.98" y2="737.93" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="413.98"
+              y2="737.93"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="346.91" cy="702.68" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="346.91" y2="702.68" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="346.91"
+              y2="702.68"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="293.04" cy="648.97" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="293.04" y2="648.97" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="293.04"
+              y2="648.97"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="257.31" cy="581.47" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="257.31" y2="581.47" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="257.31"
+              y2="581.47"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="243.07" cy="506.14" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="243.07" y2="506.14" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="243.07"
+              y2="506.14"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="251.77" cy="429.67" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="251.77" y2="429.67" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="251.77"
+              y2="429.67"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="282.81" cy="358.91" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="282.81" y2="358.91" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="282.81"
+              y2="358.91"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="333.56" cy="300.25" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="333.56" y2="300.25" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="333.56"
+              y2="300.25"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="399.64" cy="259.07" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="399.64" y2="259.07" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="399.64"
+              y2="259.07"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="475.23" cy="239.17" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="475.23" y2="239.17" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="475.23"
+              y2="239.17"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="553.62" cy="242.52" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="553.62" y2="242.52" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="553.62"
+              y2="242.52"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="627.80" cy="268.99" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="627.80" y2="268.99" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="627.80"
+              y2="268.99"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="691.08" cy="316.39" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="691.08" y2="316.39" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="691.08"
+              y2="316.39"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="737.70" cy="380.60" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="737.70" y2="380.60" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="737.70"
+              y2="380.60"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="763.35" cy="456.02" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="763.35" y2="456.02" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="763.35"
+              y2="456.02"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="765.58" cy="535.94" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="765.58" y2="535.94" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="765.58"
+              y2="535.94"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="744.00" cy="613.24" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="744.00" y2="613.24" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="744.00"
+              y2="613.24"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="700.38" cy="680.96" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="700.38" y2="680.96" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="700.38"
+              y2="680.96"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="638.46" cy="732.96" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="638.46" y2="732.96" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="638.46"
+              y2="732.96"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="563.67" cy="764.44" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="563.67" y2="764.44" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="563.67"
+              y2="764.44"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="482.62" cy="772.45" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="482.62" y2="772.45" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="482.62"
+              y2="772.45"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="402.52" cy="756.07" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="402.52" y2="756.07" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="402.52"
+              y2="756.07"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="330.59" cy="716.62" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="330.59" y2="716.62" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="330.59"
+              y2="716.62"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="273.32" cy="657.45" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="273.32" y2="657.45" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="273.32"
+              y2="657.45"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="235.96" cy="583.73" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="235.96" y2="583.73" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="235.96"
+              y2="583.73"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="222.01" cy="501.97" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="222.01" y2="501.97" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="222.01"
+              y2="501.97"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="232.88" cy="419.44" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="232.88" y2="419.44" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="232.88"
+              y2="419.44"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="267.79" cy="343.54" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="267.79" y2="343.54" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="267.79"
+              y2="343.54"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="323.77" cy="281.13" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="323.77" y2="281.13" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="323.77"
+              y2="281.13"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="395.96" cy="237.89" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="395.96" y2="237.89" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="395.96"
+              y2="237.89"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="477.98" cy="217.86" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="477.98" y2="217.86" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="477.98"
+              y2="217.86"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="562.57" cy="222.98" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="562.57" y2="222.98" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="562.57"
+              y2="222.98"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="642.14" cy="252.97" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="642.14" y2="252.97" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="642.14"
+              y2="252.97"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="709.52" cy="305.33" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="709.52" y2="305.33" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="709.52"
+              y2="305.33"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="758.59" cy="375.51" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="758.59" y2="375.51" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="758.59"
+              y2="375.51"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="784.82" cy="457.34" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="784.82" y2="457.34" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="784.82"
+              y2="457.34"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="785.70" cy="543.57" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="785.70" y2="543.57" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="785.70"
+              y2="543.57"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="760.96" cy="626.49" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="760.96" y2="626.49" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="760.96"
+              y2="626.49"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="712.66" cy="698.64" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="712.66" y2="698.64" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="712.66"
+              y2="698.64"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="644.95" cy="753.48" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="644.95" y2="753.48" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="644.95"
+              y2="753.48"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="563.79" cy="785.97" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="563.79" y2="785.97" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="563.79"
+              y2="785.97"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="476.35" cy="793.05" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="476.35" y2="793.05" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="476.35"
+              y2="793.05"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="390.43" cy="773.90" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="390.43" y2="773.90" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="390.43"
+              y2="773.90"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="313.75" cy="730.06" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="313.75" y2="730.06" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="313.75"
+              y2="730.06"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="253.25" cy="665.30" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="253.25" y2="665.30" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="253.25"
+              y2="665.30"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="214.47" cy="585.29" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="214.47" y2="585.29" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="214.47"
+              y2="585.29"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
             <circle cx="201.01" cy="497.09" r="0.5" fill="var(--aura)" opacity="0.2" />
-            <line x1="500" y1="500" x2="201.01" y2="497.09" stroke="var(--aura)" strokeWidth="0.1" opacity="0.05" />
+            <line
+              x1="500"
+              y1="500"
+              x2="201.01"
+              y2="497.09"
+              stroke="var(--aura)"
+              strokeWidth="0.1"
+              opacity="0.05"
+            />
           </svg>
         </div>
 
         {/* Stage 4: Brand Emergence */}
-        <div className={`absolute flex flex-col items-center gap-6 stage-transition ${stage === 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}>
-          <div className="font-display italic text-8xl text-white tracking-tighter shimmer-text">MVMAURA</div>
+        <div
+          className={`absolute flex flex-col items-center gap-6 stage-transition ${stage === 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+        >
+          <div className="font-display italic text-8xl text-white tracking-tighter shimmer-text">
+            MVMAURA
+          </div>
           <div className="h-px w-64 bg-gradient-to-r from-transparent via-aura to-transparent" />
-          <div className="font-mono text-xs tracking-[1em] text-aura/60 uppercase">V3 Evolution</div>
+          <div className="font-mono text-xs tracking-[1em] text-aura/60 uppercase">
+            V3 Evolution
+          </div>
         </div>
 
         {/* Stage 5: Transition to UI */}
-        <div className={`absolute inset-0 bg-white stage-transition ${stage === 5 ? "opacity-100" : "opacity-0 pointer-events-none"}`} />
-
+        <div
+          className={`absolute inset-0 bg-white stage-transition ${stage === 5 ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        />
       </div>
     </div>
   );

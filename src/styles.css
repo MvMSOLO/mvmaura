@@ -71,16 +71,16 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  /* MVMAURA amber-dark system (dark by default) */
-  --background: oklch(0.145 0.006 60);
-  --foreground: oklch(0.97 0.005 80);
-  --surface: oklch(0.185 0.008 60);
-  --surface-2: oklch(0.225 0.01 60);
-  --line: oklch(1 0 0 / 8%);
-  --text-muted: oklch(0.7 0.015 70);
-  --aura: oklch(0.79 0.16 68);
-  --aura-soft: oklch(0.79 0.16 68 / 18%);
+  --radius: 1rem;
+  /* MVMAURA v4 - Noir Premium System */
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.99 0 0);
+  --surface: oklch(0.12 0 0);
+  --surface-2: oklch(0.16 0 0);
+  --line: oklch(1 0 0 / 5%);
+  --text-muted: oklch(0.6 0 0);
+  --aura: oklch(0.7 0.25 45); /* Intense Crimson/Orange Nike-style pulse */
+  --aura-soft: oklch(0.7 0.25 45 / 12%);
   --card: var(--surface);
   --card-foreground: var(--foreground);
   --popover: var(--surface);
@@ -236,23 +236,32 @@
 
 @utility aura-radial {
   background: radial-gradient(circle at center, var(--aura) 0%, transparent 70%);
-  filter: blur(80px); /* Static blur is much cheaper than animated blur */
-  animation: aura-pulse 10s ease-in-out infinite;
+  filter: blur(120px);
+  animation: aura-pulse 12s ease-in-out infinite;
   will-change: transform, opacity;
 }
 @utility shimmer-text {
   background: linear-gradient(
     90deg,
-    oklch(0.55 0.02 70) 0%,
-    oklch(0.98 0.01 80) 45%,
-    var(--aura) 55%,
-    oklch(0.55 0.02 70) 100%
+    var(--text-muted) 0%,
+    var(--foreground) 45%,
+    var(--aura) 50%,
+    var(--foreground) 55%,
+    var(--text-muted) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: text-shimmer 5s linear infinite;
+  animation: text-shimmer 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@utility glass-morphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+@utility nike-section {
+  padding: clamp(4rem, 10vw, 12rem) clamp(1.5rem, 5vw, 6rem);
 }
 @utility noise-overlay {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
