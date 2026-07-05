@@ -1,25 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export function GridSnapCursor() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const cursorRef = useRef<HTMLDivElement>(null);
   const gridSize = 32;
 
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
+      if (!cursorRef.current) return;
       const snappedX = Math.round(e.clientX / gridSize) * gridSize;
       const snappedY = Math.round(e.clientY / gridSize) * gridSize;
-      setPos({ x: snappedX, y: snappedY });
+      cursorRef.current.style.transform = `translate(${snappedX - 16}px, ${snappedY - 16}px)`;
     };
-    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mousemove", handleMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMove);
   }, []);
 
   return (
     <div
-      className="fixed top-0 left-0 size-8 border border-aura/40 pointer-events-none z-[9999] transition-all duration-75 ease-out flex items-center justify-center bg-aura/5"
-      style={{
-        transform: `translate(${pos.x - 16}px, ${pos.y - 16}px)`,
-      }}
+      ref={cursorRef}
+      className="fixed top-0 left-0 size-8 border border-aura/40 pointer-events-none z-[9999] transition-all duration-75 ease-out flex items-center justify-center bg-aura/5 will-change-transform"
     >
       <div className="size-1 bg-aura rounded-full" />
     </div>
@@ -27,52 +26,67 @@ export function GridSnapCursor() {
 }
 
 export function KineticText({ children, className = "" }: { children: string; className?: string }) {
-  const [weights, setWeights] = useState<number[]>([]);
   const textRef = useRef<HTMLDivElement>(null);
+  const charsRef = useRef<{ el: HTMLElement; x: number; y: number }[]>([]);
   const chars = children.split("");
 
+  const updateCache = () => {
+    if (!textRef.current) return;
+    const childrenArray = Array.from(textRef.current.children) as HTMLElement[];
+    charsRef.current = childrenArray.map((el) => {
+      const rect = el.getBoundingClientRect();
+      return {
+        el,
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    });
+  };
+
   useEffect(() => {
-    setWeights(new Array(chars.length).fill(400));
+    updateCache();
+    window.addEventListener("resize", updateCache);
+    return () => window.removeEventListener("resize", updateCache);
   }, [children]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!textRef.current) return;
-    const rect = textRef.current.getBoundingClientRect();
     const mouseX = e.clientX;
     const mouseY = e.clientY;
 
-    const newWeights = chars.map((_, i) => {
-      const charEl = textRef.current?.children[i] as HTMLElement;
-      if (!charEl) return 400;
-      const charRect = charEl.getBoundingClientRect();
-      const charCenterX = charRect.left + charRect.width / 2;
-      const charCenterY = charRect.top + charRect.height / 2;
-
-      const dist = Math.hypot(mouseX - charCenterX, mouseY - charCenterY);
-      const maxDist = 200;
-      const weight = Math.max(100, Math.min(900, 900 - (dist / maxDist) * 800));
-      return weight;
+    charsRef.current.forEach((char) => {
+      const dist = Math.hypot(mouseX - char.x, mouseY - char.y);
+      const maxDist = 150;
+      if (dist < maxDist) {
+        const weight = Math.max(400, Math.min(900, 900 - (dist / maxDist) * 500));
+        char.el.style.fontWeight = weight.toString();
+        char.el.style.color = "var(--aura)";
+      } else {
+        char.el.style.fontWeight = "400";
+        char.el.style.color = "";
+      }
     });
-
-    setWeights(newWeights);
   };
 
   const handleMouseLeave = () => {
-    setWeights(new Array(chars.length).fill(400));
+    charsRef.current.forEach((char) => {
+      char.el.style.fontWeight = "400";
+      char.el.style.color = "";
+    });
   };
 
   return (
     <div
       ref={textRef}
-      className={`flex flex-wrap ${className}`}
+      className={`flex flex-wrap select-none ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onMouseEnter={updateCache}
     >
       {chars.map((char, i) => (
         <span
           key={i}
-          className="transition-[font-weight] duration-200 ease-out whitespace-pre"
-          style={{ fontWeight: weights[i] || 400 }}
+          className="transition-[font-weight] duration-200 ease-out whitespace-pre will-change-[font-weight]"
+          style={{ fontWeight: 400 }}
         >
           {char}
         </span>

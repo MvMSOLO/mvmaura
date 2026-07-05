@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState, useEffect, useRef } from "react";
+import React, { useMemo, useState, useEffect, useRef, memo } from "react";
 import { toast } from "sonner";
 import { Check, Copy, Terminal, X } from "lucide-react";
 import { STACKS, CATEGORIES, SNIPPETS, type Snippet, type StackId, type Category } from "@/data/snippets";
-import { Cutscene } from "@/components/cutscene";
 import { GridSnapCursor, KineticText, ChronoCounter } from "@/components/ui/kinetic-animations";
 
 export const Route = createFileRoute("/")({
@@ -11,7 +10,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [showCutscene, setShowCutscene] = useState(true);
   const [stack, setStack] = useState<StackId>("react");
   const [category, setCategory] = useState<Category>("All");
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -28,14 +26,23 @@ function Index() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        const newlyVisible = new Set<string>();
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute("data-id");
-            if (id) setVisibleItems((prev) => new Set(prev).add(id));
+            if (id) newlyVisible.add(id);
           }
         });
+
+        if (newlyVisible.size > 0) {
+          setVisibleItems((prev) => {
+            const next = new Set(prev);
+            newlyVisible.forEach(id => next.add(id));
+            return next.size === prev.size ? prev : next;
+          });
+        }
       },
-      { threshold: 0.1, rootMargin: "50px" },
+      { threshold: 0.05, rootMargin: "200px" },
     );
 
     const elements = galleryRef.current?.querySelectorAll("[data-id]");
@@ -44,7 +51,7 @@ function Index() {
     return () => observer.disconnect();
   }, [visible]);
 
-  const copySnippet = async (id: string) => {
+  const copySnippet = React.useCallback(async (id: string) => {
     const snip = SNIPPETS.find((s) => s.id === id);
     if (!snip) return;
     try {
@@ -62,7 +69,7 @@ function Index() {
     } catch {
       toast.error("Clipboard unavailable");
     }
-  };
+  }, []);
 
   const copyInstall = async () => {
     if (!deps) return;
@@ -71,9 +78,8 @@ function Index() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden cursor-none">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-aura/30 overflow-x-hidden cursor-none contain-layout">
       <GridSnapCursor />
-      {showCutscene && <Cutscene onComplete={() => setShowCutscene(false)} />}
       <div className="noise-overlay fixed inset-0 pointer-events-none z-40" />
 
       {/* Ambient aura blobs */}
@@ -207,113 +213,17 @@ function Index() {
       {/* Gallery */}
       <main className="px-5 pb-40 relative z-10">
         <div ref={galleryRef} className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visible.map((s, i) => {
-            const isCopied = copiedId === s.id;
-            const featured = i === 0 && category === "All";
-            const isVisible = visibleItems.has(s.id);
-            const { Preview } = s;
-            return (
-              <button
-                key={s.id}
-                data-id={s.id}
-                onClick={() => copySnippet(s.id)}
-                className={
-                  "group relative text-left bg-[color:var(--surface)] ring-1 ring-white/5 rounded-2xl p-4 transition-all hover:ring-white/10 hover:-translate-y-0.5 overflow-hidden bento-matrix-item tactile-depress " +
-                  (isVisible ? "visible " : "") +
-                  (featured ? "sm:col-span-2 lg:col-span-2 " : "") +
-                  (isCopied
-                    ? " ring-aura shadow-[0_0_60px_-10px_var(--aura)] animate-copy-confirm"
-                    : "")
-                }
-                style={{ animationDelay: `${(i % 9) * 0.05}s` }}
-              >
-                {/* hover aura */}
-                <div className="pointer-events-none absolute -inset-24 opacity-0 group-hover:opacity-30 transition-opacity duration-700 aura-radial isometric-shift" />
-
-                {/* Border Draw Reveal (SVG) */}
-                <svg className="absolute inset-0 pointer-events-none size-full">
-                    <rect
-                        x="0" y="0" width="100%" height="100%"
-                        fill="none"
-                        stroke="var(--aura)"
-                        strokeWidth="2"
-                        strokeDasharray="1200"
-                        strokeDashoffset="1200"
-                        className={"transition-opacity duration-300 " + (isVisible ? "opacity-40" : "opacity-0")}
-                        style={{
-                            animation: isVisible ? `border-draw 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none',
-                            animationDelay: `${(i % 9) * 0.05 + 0.2}s`
-                        }}
-                    />
-                </svg>
-
-                <div className="relative flex justify-between items-start mb-5">
-                  <div className="space-y-1">
-                    <h3 className="text-sm font-medium">{s.name}</h3>
-                    <p className="text-[10px] text-text-muted uppercase tracking-widest font-mono">
-                      {s.tag}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    {s.dependencies?.length ? (
-                      <span className="py-1 px-2 bg-[color:var(--surface-2)] ring-1 ring-white/5 rounded text-[10px] font-mono text-aura">
-                        {s.dependencies[0]}
-                        {s.dependencies.length > 1 ? ` +${s.dependencies.length - 1}` : ""}
-                      </span>
-                    ) : (
-                      <span className="py-1 px-2 bg-[color:var(--surface-2)] ring-1 ring-white/5 rounded text-[10px] font-mono text-text-muted">
-                        zero-deps
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div
-                  className={
-                    "relative flex items-center justify-center overflow-hidden bg-background/60 rounded-lg ring-1 ring-black/20 " +
-                    (featured ? "h-56" : "h-40")
-                  }
-                >
-                  {/* Card Background Micro Image */}
-                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                      <pattern
-                        id="card-pattern"
-                        x="0"
-                        y="0"
-                        width="10"
-                        height="10"
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <circle cx="2" cy="2" r="1" fill="currentColor" />
-                      </pattern>
-                      <rect width="100" height="100" fill="url(#card-pattern)" />
-                    </svg>
-                  </div>
-                  <Preview />
-                </div>
-
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-[11px] text-text-muted flex items-center gap-1.5">
-                    {isCopied ? (
-                      <>
-                        <Check className="size-3 text-aura" />
-                        <span className="text-aura">Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="size-3" />
-                        Tap card to copy
-                      </>
-                    )}
-                  </span>
-                  <span className="text-[10px] font-mono text-text-muted uppercase">
-                    {s.category}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
+          {visible.map((s, i) => (
+            <SnippetCard
+              key={s.id}
+              snippet={s}
+              isCopied={copiedId === s.id}
+              featured={i === 0 && category === "All"}
+              isVisible={visibleItems.has(s.id)}
+              onCopy={copySnippet}
+              index={i}
+            />
+          ))}
 
           {visible.length === 0 && (
             <div className="col-span-full py-24 text-center text-text-muted">
@@ -378,3 +288,118 @@ function Index() {
     </div>
   );
 }
+
+interface SnippetCardProps {
+  snippet: Snippet;
+  isCopied: boolean;
+  featured: boolean;
+  isVisible: boolean;
+  onCopy: (id: string) => void;
+  index: number;
+}
+
+const SnippetCard = memo(({ snippet: s, isCopied, featured, isVisible, onCopy, index: i }: SnippetCardProps) => {
+  const { Preview } = s;
+  return (
+    <div
+      data-id={s.id}
+      onClick={() => onCopy(s.id)}
+      className={
+        "group relative text-left bg-[color:var(--surface)] ring-1 ring-white/5 rounded-2xl p-4 transition-all hover:ring-white/10 hover:-translate-y-0.5 overflow-hidden bento-matrix-item tactile-depress cursor-pointer " +
+        (isVisible ? "visible " : "") +
+        (featured ? "sm:col-span-2 lg:col-span-2 " : "") +
+        (isCopied
+          ? " ring-aura shadow-[0_0_60px_-10px_var(--aura)] animate-copy-confirm"
+          : "")
+      }
+      style={{ animationDelay: `${(i % 9) * 0.05}s` }}
+    >
+      {/* hover aura */}
+      <div className="pointer-events-none absolute -inset-24 opacity-0 group-hover:opacity-30 transition-opacity duration-700 aura-radial isometric-shift" />
+
+      {/* Border Draw Reveal (SVG) */}
+      <svg className="absolute inset-0 pointer-events-none size-full">
+          <rect
+              x="0" y="0" width="100%" height="100%"
+              fill="none"
+              stroke="var(--aura)"
+              strokeWidth="2"
+              strokeDasharray="1200"
+              strokeDashoffset="1200"
+              className={"transition-opacity duration-300 " + (isVisible ? "opacity-40" : "opacity-0")}
+              style={{
+                  animation: isVisible ? `border-draw 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards` : 'none',
+                  animationDelay: `${(i % 9) * 0.05 + 0.2}s`
+              }}
+          />
+      </svg>
+
+      <div className="relative flex justify-between items-start mb-5">
+        <div className="space-y-1">
+          <h3 className="text-sm font-medium">{s.name}</h3>
+          <p className="text-[10px] text-text-muted uppercase tracking-widest font-mono">
+            {s.tag}
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5">
+          {s.dependencies?.length ? (
+            <span className="py-1 px-2 bg-[color:var(--surface-2)] ring-1 ring-white/5 rounded text-[10px] font-mono text-aura">
+              {s.dependencies[0]}
+              {s.dependencies.length > 1 ? ` +${s.dependencies.length - 1}` : ""}
+            </span>
+          ) : (
+            <span className="py-1 px-2 bg-[color:var(--surface-2)] ring-1 ring-white/5 rounded text-[10px] font-mono text-text-muted">
+              zero-deps
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div
+        className={
+          "relative flex items-center justify-center overflow-hidden bg-background/60 rounded-lg ring-1 ring-black/20 " +
+          (featured ? "h-56" : "h-40")
+        }
+      >
+        {/* Card Background Micro Image */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <pattern
+              id={`card-pattern-${s.id}`}
+              x="0"
+              y="0"
+              width="10"
+              height="10"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="2" cy="2" r="1" fill="currentColor" />
+            </pattern>
+            <rect width="100" height="100" fill={`url(#card-pattern-${s.id})`} />
+          </svg>
+        </div>
+        <Preview />
+      </div>
+
+      <div className="mt-4 flex items-center justify-between">
+        <span className="text-[11px] text-text-muted flex items-center gap-1.5">
+          {isCopied ? (
+            <>
+              <Check className="size-3 text-aura" />
+              <span className="text-aura">Copied</span>
+            </>
+          ) : (
+            <>
+              <Copy className="size-3" />
+              Tap card to copy
+            </>
+          )}
+        </span>
+        <span className="text-[10px] font-mono text-text-muted uppercase">
+          {s.category}
+        </span>
+      </div>
+    </div>
+  );
+});
+
+SnippetCard.displayName = "SnippetCard";

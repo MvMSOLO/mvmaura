@@ -110,9 +110,9 @@ export function AuraStarfield() {
           key={i}
           className="absolute size-0.5 bg-white rounded-full animate-pulse"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 2}s`,
+            left: `${((i * 13.37) % 1) * 100}%`,
+            top: `${((i * 42.69) % 1) * 100}%`,
+            animationDelay: `${((i * 7.11) % 1) * 2}s`,
           }}
         />
       ))}
@@ -311,7 +311,7 @@ export function ParticleCircle() {
           className="absolute size-1 bg-aura rounded-full"
           style={{
             transform: `rotate(${i * 18}deg) translateY(-40px)`,
-            opacity: Math.random(),
+            opacity: (i * 0.13) % 1,
             animation: `orbit-fade 2s infinite ease-in-out`,
             animationDelay: `${i * 0.1}s`,
           }}
@@ -352,12 +352,12 @@ export function WarpDriveBg() {
             key={i}
             className="absolute bg-white rounded-full animate-[warp_2s_linear_infinite]"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${((i * 13.37) % 1) * 100}%`,
+              top: `${((i * 42.69) % 1) * 100}%`,
               width: "1px",
-              height: `${20 + Math.random() * 50}px`,
-              opacity: Math.random(),
-              animationDelay: `${Math.random() * 2}s`,
+              height: `${20 + ((i * 17.17) % 1) * 50}px`,
+              opacity: (i * 0.13) % 1,
+              animationDelay: `${((i * 7.11) % 1) * 2}s`,
             }}
           />
         ))}
@@ -1021,7 +1021,7 @@ export function PixelLoader() {
   return (
     <div className="grid grid-cols-3 gap-0.5 animate-pulse">
       {Array.from({ length: 9 }).map((_, i) => (
-        <div key={i} className="size-2 bg-aura" style={{ opacity: Math.random() }} />
+        <div key={i} className="size-2 bg-aura" style={{ opacity: (i * 0.17) % 1 }} />
       ))}
     </div>
   );
@@ -1466,10 +1466,10 @@ export function ParticleField() {
           key={i}
           className="absolute size-1 bg-aura/40 rounded-full animate-float-particle"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${5 + Math.random() * 10}s`,
+            left: `${((i * 13.37) % 1) * 100}%`,
+            top: `${((i * 42.69) % 1) * 100}%`,
+            animationDelay: `${((i * 7.11) % 1) * 5}s`,
+            animationDuration: `${5 + ((i * 3.33) % 1) * 10}s`,
           }}
         />
       ))}
@@ -1480,7 +1480,7 @@ export function ParticleField() {
         @keyframes float-particle {
           0% { transform: translate(0, 0) opacity(0); }
           50% { opacity: 1; }
-          100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); opacity: 0; }
+          100% { transform: translate(30px, -20px); opacity: 0; }
         }
       `}</style>
     </div>
@@ -1694,11 +1694,11 @@ export function CosmicResonance() {
   const particles = useMemo(() => {
     return Array.from({ length: 120 }).map((_, i) => ({
       id: i,
-      baseRadius: 40 + Math.random() * 60,
-      speed: 0.005 + Math.random() * 0.01,
-      phase: Math.random() * Math.PI * 2,
-      size: 0.5 + Math.random() * 1.5,
-      color: Math.random() > 0.5 ? 'var(--aura)' : '#fff',
+      baseRadius: 40 + ((i * 13.37) % 1) * 60,
+      speed: 0.005 + ((i * 42.69) % 1) * 0.01,
+      phase: ((i * 7.11) % 1) * Math.PI * 2,
+      size: 0.5 + ((i * 17.17) % 1) * 1.5,
+      color: (i % 2 === 0) ? 'var(--aura)' : '#fff',
     }));
   }, []);
 
@@ -1706,9 +1706,9 @@ export function CosmicResonance() {
     return Array.from({ length: 12 }).map((_, i) => {
       const points = Array.from({ length: 8 }).map((_, j) => {
         const angle = (j / 8) * Math.PI * 2;
-        return { angle, r: 80 + Math.random() * 40 };
+        return { angle, r: 80 + ((j * 13.37) % 1) * 40 };
       });
-      return { id: i, points, rotSpeed: (Math.random() - 0.5) * 0.01 };
+      return { id: i, points, rotSpeed: (((i * 42.69) % 1) - 0.5) * 0.01 };
     });
   }, []);
 
@@ -2729,9 +2729,9 @@ export function AuraMasterpiece() {
           id: `${i}-${j}`,
           angle: (j / count) * Math.PI * 2,
           radius: 40 + i * 8,
-          size: 0.5 + Math.random() * 2,
-          speed: 0.002 + Math.random() * 0.005,
-          offset: Math.random() * 100,
+          size: 0.5 + ((j * 13.37) % 1) * 2,
+          speed: 0.002 + ((j * 42.69) % 1) * 0.005,
+          offset: ((j * 7.11) % 1) * 100,
         });
       }
       layers.push(ring);
@@ -3608,4 +3608,618 @@ export function AuraMasterpiece() {
       </div>
     </div>
   );
+}
+
+// --- UNIQUE BATCH V4 ---
+
+export function StructuralRefraction() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center bg-zinc-950 overflow-hidden rounded-xl">
+      <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="relative size-32 border border-white/10 group cursor-none">
+        <div className="absolute inset-0 bg-aura/20 blur-2xl group-hover:bg-aura/40 transition-colors" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-aura to-transparent animate-[marquee-x_3s_linear_infinite]" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-aura to-transparent animate-[marquee-x_3s_linear_infinite_reverse]" />
+        <div className="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-transparent via-aura to-transparent animate-[marquee-y_3s_linear_infinite]" />
+        <div className="absolute top-0 right-0 h-full w-px bg-gradient-to-b from-transparent via-aura to-transparent animate-[marquee-y_3s_linear_infinite_reverse]" />
+        <div className="absolute inset-4 border border-white/5 backdrop-blur-xl flex items-center justify-center">
+          <span className="text-[10px] font-mono tracking-[0.3em] text-white/50 uppercase">Refract</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+export function DataStreamAura() {
+  return (
+    <div className="relative w-full h-full bg-black font-mono text-[8px] overflow-hidden flex items-center justify-center">
+      <div className="grid grid-cols-8 gap-x-4 opacity-40">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="flex flex-col animate-[marquee-y_10s_linear_infinite]" style={{ animationDelay: `${i * -1.2}s` }}>
+            {[...Array(20)].map((_, j) => (
+              <span key={j} className={j % 3 === 0 ? "text-aura" : "text-white/20"}>
+                {(j % 2 === 0 ? "1" : "0")}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+      <div className="relative z-10 px-3 py-1 bg-aura text-black font-bold uppercase tracking-tighter italic">Stream Active</div>
+    </div>
+  );
+}
+
+
+export function KineticTypography() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-zinc-900 group">
+      <h2 className="text-4xl font-black italic tracking-tighter text-white transition-all duration-500 group-hover:skew-x-[-12deg] group-hover:scale-110">
+        <span className="inline-block hover:text-aura transition-colors duration-300">A</span>
+        <span className="inline-block hover:text-aura transition-colors duration-300">U</span>
+        <span className="inline-block hover:text-aura transition-colors duration-300">R</span>
+        <span className="inline-block hover:text-aura transition-colors duration-300">A</span>
+      </h2>
+    </div>
+  );
+}
+
+
+export function TactileGrid() {
+  return (
+    <div className="w-full h-full bg-zinc-950 p-4 grid grid-cols-4 grid-rows-4 gap-1">
+      {[...Array(16)].map((_, i) => (
+        <div key={i} className="relative bg-white/[0.02] border border-white/[0.05] rounded-sm group hover:border-aura/40 transition-colors">
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-aura/5 transition-opacity" />
+          <div className="absolute bottom-1 right-1 size-1 bg-white/10 rounded-full group-hover:bg-aura animate-pulse" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+export function MechanicalCounter() {
+  const [val, setVal] = React.useState(742);
+  React.useEffect(() => {
+    const i = setInterval(() => setVal(v => (v + 1) % 1000), 3000);
+    return () => clearInterval(i);
+  }, []);
+  return (
+    <div className="flex gap-1 font-mono text-3xl font-bold bg-black p-4 rounded-lg border border-white/5">
+      {val.toString().padStart(3, '0').split('').map((d, i) => (
+        <div key={i} className="w-8 h-12 bg-zinc-900 border border-white/10 flex items-center justify-center overflow-hidden relative">
+          <div className="animate-[slide-up-in_0.5s_cubic-bezier(0.16,1,0.3,1)]" key={val}>{d}</div>
+          <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)] pointer-events-none" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+export function VectorFlow() {
+  return (
+    <div className="w-full h-full bg-background relative overflow-hidden flex items-center justify-center">
+      <svg className="w-full h-full absolute inset-0 opacity-20">
+        <pattern id="vector-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+          <circle cx="0" cy="0" r="1" fill="var(--aura)" />
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#vector-grid)" />
+      </svg>
+      <div className="relative size-24">
+        <div className="absolute inset-0 border-2 border-aura rounded-full animate-ping opacity-20" />
+        <div className="absolute inset-2 border border-aura/40 rounded-full animate-[spin_10s_linear_infinite]" />
+        <div className="absolute inset-0 flex items-center justify-center font-display italic text-aura">V4</div>
+      </div>
+    </div>
+  );
+}
+
+
+export function GlitchPanel() {
+  return (
+    <div className="w-full h-full bg-zinc-900 flex items-center justify-center p-6">
+      <div className="relative w-full h-full border border-white/10 overflow-hidden group">
+        <div className="absolute inset-0 bg-aura/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute top-2 left-2 text-[8px] font-mono text-white/40 uppercase tracking-widest">System_Status</div>
+        <div className="absolute bottom-2 right-2 text-[8px] font-mono text-aura uppercase tracking-widest">Active</div>
+        <div className="w-full h-full flex flex-col items-center justify-center gap-1">
+          <div className="h-1 w-2/3 bg-white/5 rounded-full" />
+          <div className="h-1 w-1/2 bg-aura/20 rounded-full" />
+          <div className="h-1 w-3/4 bg-white/5 rounded-full" />
+        </div>
+        <div className="absolute inset-0 bg-aura/20 translate-x-full group-hover:animate-[marquee-x_0.2s_infinite] opacity-0 group-hover:opacity-100" />
+      </div>
+    </div>
+  );
+}
+
+
+export function IsometricShift() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-black [perspective:1000px]">
+      <div className="size-20 bg-aura/10 border border-aura/40 [transform:rotateX(45deg)_rotateZ(45deg)] relative group hover:scale-110 transition-transform duration-500">
+        <div className="absolute -top-4 -left-4 size-full bg-aura/5 border border-aura/20 translate-z-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
+        <div className="absolute -top-8 -left-8 size-full bg-aura/5 border border-white/5 translate-z-8 transition-transform group-hover:translate-x-4 group-hover:translate-y-4" />
+      </div>
+    </div>
+  );
+}
+
+
+export function BlurPortal() {
+  return (
+    <div className="w-full h-full bg-zinc-950 flex items-center justify-center overflow-hidden">
+      <div className="relative size-32 rounded-full border border-white/10 flex items-center justify-center">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-aura/20 to-transparent animate-spin" />
+        <div className="size-24 rounded-full bg-background backdrop-blur-3xl z-10 border border-white/5" />
+        <div className="absolute size-4 bg-aura blur-xl animate-pulse" />
+      </div>
+    </div>
+  );
+}
+
+
+export function NoiseButton() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-zinc-900">
+      <button className="relative px-8 py-3 bg-black border border-white/10 text-xs font-mono tracking-widest uppercase overflow-hidden group">
+        <span className="relative z-10 text-white/70 group-hover:text-aura transition-colors">Initialize</span>
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
+        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      </button>
+    </div>
+  );
+}
+
+
+// --- UNIQUE BATCH V4 PT 2 ---
+
+export function ChronosGrid() {
+  return (
+    <div className="w-full h-full bg-black p-2 grid grid-cols-8 gap-1">
+      {[...Array(64)].map((_, i) => (
+        <div
+          key={i}
+          className="aspect-square bg-aura/20 border border-white/5 transition-all duration-1000"
+          style={{ opacity: ((i * 13.37) % 1) }}
+        >
+          <div className="w-full h-full animate-pulse bg-aura/10" style={{ animationDelay: `${i * 0.05}s` }} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+export function AtmosphericNebula() {
+  return (
+    <div className="w-full h-full bg-zinc-950 overflow-hidden relative">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-48 bg-aura/20 blur-[100px] animate-pulse" />
+      <div className="absolute top-1/3 left-1/3 size-32 bg-blue-500/10 blur-[80px] animate-bounce" style={{ animationDuration: '10s' }} />
+      <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="size-px bg-white shadow-[0_0_20px_2px_white] animate-ping" />
+      </div>
+    </div>
+  );
+}
+
+
+export function LiquidBorder() {
+  return (
+    <div className="relative p-[2px] overflow-hidden rounded-2xl group">
+      <div className="absolute inset-0 bg-gradient-to-r from-aura via-transparent to-aura animate-[spin_4s_linear_infinite] opacity-40 group-hover:opacity-100 transition-opacity" />
+      <div className="relative bg-zinc-900 rounded-2xl px-6 py-3 flex items-center justify-center">
+        <span className="text-xs font-mono text-white/50 group-hover:text-white transition-colors tracking-widest uppercase">Fluid_Frame</span>
+      </div>
+    </div>
+  );
+}
+
+
+export function KineticVariableWeight() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-zinc-950 p-4">
+      <h3 className="text-4xl font-black text-white flex gap-1">
+        {"AURA".split('').map((c, i) => (
+          <span key={i} className="hover:font-thin transition-all duration-300 cursor-default">{c}</span>
+        ))}
+      </h3>
+    </div>
+  );
+}
+
+
+export function CyberStencil() {
+  return (
+    <div className="w-full h-full bg-white flex items-center justify-center overflow-hidden">
+      <div className="relative">
+        <h1 className="text-8xl font-black tracking-tighter bg-black text-white px-4 mix-blend-multiply">AURA</h1>
+        <div className="absolute inset-0 bg-aura animate-[marquee-x_2s_linear_infinite] mix-blend-screen opacity-50" />
+      </div>
+    </div>
+  );
+}
+
+
+export function StopMotionGrain() {
+  return (
+    <div className="w-full h-full bg-zinc-900 relative overflow-hidden flex items-center justify-center">
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 animate-[marquee-x_0.1s_steps(2)_infinite]" />
+      <div className="relative z-10 size-16 border-2 border-white/20 flex items-center justify-center">
+         <div className="size-4 bg-aura animate-[marquee-y_0.5s_steps(4)_infinite]" />
+      </div>
+    </div>
+  );
+}
+
+
+export function SlitScanText() {
+  return (
+    <div className="h-12 overflow-hidden flex flex-col items-center justify-center bg-black group px-4">
+       <div className="flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] group-hover:-translate-y-full">
+         <span className="h-12 flex items-center text-xl font-mono text-white/40 uppercase tracking-widest italic">Aura_Protocol</span>
+         <span className="h-12 flex items-center text-xl font-mono text-aura uppercase tracking-widest italic">Active_State</span>
+       </div>
+    </div>
+  );
+}
+
+
+export function BentoMatrixStagger() {
+  return (
+    <div className="grid grid-cols-3 grid-rows-3 gap-1 w-32 h-32">
+      {[...Array(9)].map((_, i) => (
+        <div
+          key={i}
+          className="bg-white/5 border border-white/10 animate-[pulse_2s_infinite]"
+          style={{ animationDelay: `${i * 0.1}s` }}
+        >
+          <div className="w-full h-full hover:bg-aura/20 transition-colors" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+export function HardEdgeIsometric() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-zinc-900">
+      <div className="size-20 bg-black border border-white/20 [transform:skewX(-15deg)_rotateX(45deg)] relative overflow-hidden group">
+        <div className="absolute top-0 left-0 w-full h-full bg-aura/20 -translate-y-full group-hover:translate-y-0 transition-transform duration-300 steps(4)" />
+        <div className="absolute inset-2 border border-white/5 flex items-center justify-center text-[8px] font-mono text-white/20 uppercase">
+          Static_3D
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// Batch V4 Unique Previews
+
+export function DataFlowBg() {
+  return (
+    <div className="relative w-full h-full bg-black overflow-hidden rounded-xl">
+      <div className="absolute inset-0 opacity-20">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute h-px bg-aura animate-[marquee-x_4s_linear_infinite]"
+            style={{
+              top: `${i * 20}%`,
+              width: '100%',
+              opacity: 0.5,
+              animationDelay: `${i * 0.7}s`,
+            }}
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-[10px] font-mono text-aura uppercase tracking-[0.4em]">Data_Stream_Active</span>
+      </div>
+    </div>
+  );
+}
+
+export function GlassPortal() {
+  return (
+    <div className="perspective-[800px] w-full h-full flex items-center justify-center">
+      <div className="size-24 bg-white/5 border border-white/10 rounded-full animate-[spin_8s_linear_infinite] preserve-3d">
+        <div className="absolute inset-0 bg-aura opacity-10 blur-xl rounded-full" />
+        <div className="absolute inset-4 border-t border-aura/40 rounded-full" />
+      </div>
+    </div>
+  );
+}
+
+export function ElasticBento() {
+  return (
+    <div className="grid grid-cols-3 grid-rows-2 gap-1 w-40 h-24 group">
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="bg-surface-2 border border-white/5 rounded-sm transition-all duration-500 group-hover:scale-[0.9] hover:!scale-110 hover:bg-aura/20 hover:z-10"
+        />
+      ))}
+    </div>
+  );
+}
+
+export function SlitScanHero() {
+  return (
+    <div className="relative h-12 overflow-hidden bg-black px-4 flex items-center">
+      <div className="text-4xl font-black italic tracking-tighter text-white/10">AURA</div>
+      <div className="absolute inset-y-0 left-0 w-1/2 bg-aura animate-[slit-sweep_4s_ease-in-out_infinite] mix-blend-difference" />
+      <style>{`
+        @keyframes slit-sweep {
+          0%, 100% { transform: translateX(-100%); }
+          50% { transform: translateX(200%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export function AuraCircuit() {
+  return (
+    <div className="w-full h-full bg-zinc-950 relative overflow-hidden">
+      <svg className="size-full opacity-30">
+        <path
+          d="M 0 50 H 50 V 100 M 50 50 H 150 V 20 M 150 20 H 200"
+          fill="none"
+          stroke="var(--aura)"
+          strokeWidth="1"
+          strokeDasharray="200"
+          strokeDashoffset="200"
+          className="animate-[border-draw_3s_linear_infinite]"
+        />
+        <circle cx="50" cy="50" r="2" fill="var(--aura)" />
+        <circle cx="150" cy="20" r="2" fill="var(--aura)" />
+      </svg>
+    </div>
+  );
+}
+
+export function LiquidTab() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="flex bg-surface-2 p-1 rounded-full relative overflow-hidden">
+      {[0, 1, 2].map(i => (
+        <button
+          key={i}
+          onClick={() => setActive(i)}
+          className="relative z-10 px-4 py-1 text-[10px] font-bold uppercase transition-colors"
+          style={{ color: active === i ? 'black' : 'rgba(255,255,255,0.4)' }}
+        >
+          Tab {i + 1}
+        </button>
+      ))}
+      <div
+        className="absolute inset-y-1 bg-aura rounded-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+        style={{
+          left: `${4 + active * 54}px`,
+          width: '50px',
+        }}
+      />
+    </div>
+  );
+}
+
+export function MagneticLink() {
+  return (
+    <a href="#" className="group relative text-2xl font-display italic">
+      <span className="relative z-10 group-hover:text-aura transition-colors">Hover Me</span>
+      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-aura transition-all duration-300 group-hover:w-full" />
+      <div className="absolute -inset-2 bg-aura/0 group-hover:bg-aura/5 rounded-lg transition-colors scale-75 group-hover:scale-100" />
+    </a>
+  );
+}
+
+export function CyberStencilV2() {
+  return (
+    <div className="bg-white flex items-center justify-center p-4 rounded-lg overflow-hidden">
+      <h2 className="text-5xl font-black italic tracking-tighter mix-blend-multiply bg-black text-white px-2">V4.0</h2>
+      <div className="absolute inset-0 bg-aura opacity-20 animate-pulse pointer-events-none" />
+    </div>
+  );
+}
+
+export function ParticleWave() {
+  return (
+    <div className="flex gap-1 items-end h-16">
+      {[...Array(12)].map((_, i) => (
+        <div
+          key={i}
+          className="w-1 bg-aura/40 rounded-full animate-[float-y_1.5s_infinite_ease-in-out]"
+          style={{
+            height: `${20 + Math.sin(i * 0.5) * 30}px`,
+            animationDelay: `${i * 0.1}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function GlitchCard() {
+  return (
+    <div className="relative w-40 h-24 bg-surface-2 border border-white/10 rounded-xl overflow-hidden group">
+      <div className="absolute inset-0 bg-red-500/10 -translate-x-full group-hover:translate-x-full transition-transform duration-[0.1s] ease-linear" />
+      <div className="absolute inset-0 bg-cyan-500/10 translate-x-full group-hover:-translate-x-full transition-transform duration-[0.1s] ease-linear" />
+      <div className="flex items-center justify-center h-full font-mono text-[10px] opacity-40 group-hover:opacity-100 transition-opacity">
+        ERR_SIGNAL_V4
+      </div>
+    </div>
+  );
+}
+
+export function AuraMasterpieceV2() {
+    return (
+        <div className="relative size-full bg-black flex items-center justify-center rounded-xl overflow-hidden group">
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,var(--aura)_0%,transparent_70%)] animate-pulse" />
+            <svg viewBox="0 0 200 200" className="size-32 animate-[spin_20s_linear_infinite]">
+                <defs>
+                    <linearGradient id="g-v2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="var(--aura)" />
+                        <stop offset="100%" stopColor="transparent" />
+                    </linearGradient>
+                </defs>
+                {[...Array(8)].map((_, i) => (
+                    <circle
+                        key={i}
+                        cx="100" cy="100" r={20 + i * 10}
+                        fill="none"
+                        stroke="url(#g-v2)"
+                        strokeWidth="0.5"
+                        strokeDasharray={`${10 + i * 5} ${20}`}
+                        style={{ transform: `rotate(${i * 45}deg)`, transformOrigin: 'center' }}
+                    />
+                ))}
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center font-display italic text-aura/60 text-xs">Aura Pack</div>
+        </div>
+    );
+}
+
+export function HardEdgeFloating() {
+    return (
+        <div className="relative size-20 bg-zinc-900 border border-white/20 [transform:rotateX(45deg)_rotateY(-15deg)] animate-[hard-float_4s_steps(4)_infinite]">
+            <div className="absolute inset-0 bg-aura/20 backdrop-blur-sm" />
+            <div className="absolute -top-4 -right-4 size-8 bg-aura border border-aura animate-pulse" />
+            <style>{`
+                @keyframes hard-float {
+                    0%, 100% { transform: rotateX(45deg) rotateY(-15deg) translateY(0); }
+                    50% { transform: rotateX(45deg) rotateY(-15deg) translateY(-20px); }
+                }
+            `}</style>
+        </div>
+    );
+}
+
+export function NeonGrid() {
+    return (
+        <div className="w-full h-full bg-black relative overflow-hidden p-2 grid grid-cols-8 gap-1 opacity-40">
+            {[...Array(32)].map((_, i) => (
+                <div key={i} className="h-4 bg-aura/5 border border-aura/20 animate-pulse" style={{ animationDelay: `${i * 0.05}s` }} />
+            ))}
+        </div>
+    );
+}
+
+export function ShimmerBorderButton() {
+    return (
+        <button className="relative px-8 py-3 bg-zinc-950 rounded-full group overflow-hidden border border-white/5">
+            <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#000_0%,#000_40%,var(--aura)_50%,#000_60%,#000_100%)] opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="relative z-10 text-xs font-mono uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">Orbit</span>
+        </button>
+    );
+}
+
+export function KineticVariableStretch() {
+    return (
+        <div className="flex gap-1 group">
+            {"STRETCH".split('').map((c, i) => (
+                <span key={i} className="text-4xl font-black italic text-white transition-all duration-500 group-hover:scale-y-[2] group-hover:text-aura">{c}</span>
+            ))}
+        </div>
+    );
+}
+
+export function ProceduralNoiseLoader() {
+    return (
+        <div className="relative size-16 bg-zinc-900 rounded-lg overflow-hidden border border-white/5">
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 animate-[noise-grain_0.2s_steps(2)_infinite]" />
+            <div className="absolute inset-2 border-2 border-aura rounded-sm animate-spin [animation-duration:2s]" />
+        </div>
+    );
+}
+
+export function HolographicBadge() {
+    return (
+        <div className="px-4 py-1 bg-white/5 border border-white/10 rounded-full relative group overflow-hidden">
+            <span className="text-[10px] font-mono text-white/60 group-hover:text-white transition-colors uppercase">Authorized</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-aura to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+        </div>
+    );
+}
+
+export function AuraRadialReveal() {
+    return (
+        <div className="relative size-32 rounded-full overflow-hidden group">
+            <div className="absolute inset-0 bg-zinc-900" />
+            <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-20 transition-opacity" />
+            <div className="absolute inset-0 [clip-path:circle(0%_at_center)] group-hover:[clip-path:circle(100%_at_center)] transition-all duration-700 bg-[radial-gradient(circle_at_center,var(--aura)_0%,transparent_70%)]" />
+            <div className="absolute inset-0 flex items-center justify-center text-[8px] font-mono text-white/20 uppercase tracking-[2em]">Core</div>
+        </div>
+    );
+}
+
+export function MagneticSocialDock() {
+    return (
+        <div className="flex gap-2 p-2 bg-surface rounded-2xl border border-white/5">
+            {[1, 2, 3].map(i => (
+                <div key={i} className="size-10 bg-surface-2 rounded-xl flex items-center justify-center hover:scale-125 transition-transform hover:bg-aura hover:text-black cursor-pointer">
+                    <div className="size-4 border-2 border-current rounded-sm" />
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export function HardEdgeIsometricV2() {
+    return (
+        <div className="relative size-24 bg-black border border-white/20 [transform:skewX(-15deg)_rotateX(45deg)] group overflow-hidden">
+            <div className="absolute inset-0 bg-aura opacity-0 group-hover:opacity-20 transition-opacity" />
+            <div className="absolute top-0 left-0 w-full h-full border-b border-aura/40 translate-y-[-100%] group-hover:translate-y-0 transition-transform duration-500 steps(5)" />
+        </div>
+    );
+}
+
+export function AuraNoiseButton() {
+    return (
+        <button className="relative px-8 py-3 bg-zinc-950 border border-white/10 rounded-lg group overflow-hidden">
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
+            <span className="relative z-10 text-xs font-mono uppercase tracking-widest group-hover:text-aura transition-colors">Fragment</span>
+        </button>
+    );
+}
+
+export function BentoMatrixStaggerV2() {
+    return (
+        <div className="grid grid-cols-4 grid-rows-3 gap-1 w-40 h-28">
+            {[...Array(12)].map((_, i) => (
+                <div key={i} className="bg-white/5 border border-white/5 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }}>
+                    <div className="size-full hover:bg-aura/10 transition-colors" />
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export function ScanTextRevealV2() {
+    return (
+        <div className="relative group overflow-hidden px-6 py-2 bg-black/60 border border-white/10">
+            <div className="absolute inset-0 bg-aura/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+            <span className="relative z-10 text-xl font-display italic tracking-widest text-white/40 group-hover:text-white transition-colors">AUTHORIZED</span>
+        </div>
+    );
+}
+
+export function DataStreamHeroV2() {
+    return (
+        <div className="w-full h-full bg-black relative flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 opacity-20 flex flex-wrap gap-2 p-2">
+                {[...Array(20)].map((_, i) => (
+                    <div key={i} className="h-2 w-12 bg-white/10 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
+                ))}
+            </div>
+            <div className="relative z-10 size-16 border-2 border-aura/40 rounded-full animate-ping" />
+        </div>
+    );
 }
