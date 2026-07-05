@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 "use client";
 
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";

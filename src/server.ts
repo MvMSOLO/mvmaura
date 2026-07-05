@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";

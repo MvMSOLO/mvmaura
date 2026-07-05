@@ -1,3 +1,5 @@
+<!-- LOVABLE TOMONIDAN KODLANDI -->
+<!-- JULES ORQALI YANGILANDI -->
 # MVMAURA — Reja
 
 Foydalanuvchi tanlagan "Laboratory amber dark" yo'nalishida animatsion paketlar kutubxonasini quramiz. Sayt bitta sahifa (SPA) — top da stack tanlagich, ostida animatsiya galereyasi, kartaga bosilsa kod clipboardga ko'chiriladi, kerak bo'lsa `npm install ...` uchun terminal panel ko'rinadi.

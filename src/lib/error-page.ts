@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 export function renderErrorPage(): string {
   return `<!doctype html>
 <html lang="en">
