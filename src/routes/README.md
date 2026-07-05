@@ -1,3 +1,5 @@
+<!-- LOVABLE TOMONIDAN KODLANDI -->
+<!-- JULES ORQALI YANGILANDI -->
 # Routes
 
 TanStack Start uses **file-based routing**. Every `.tsx` file in this directory

@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import { GripVertical } from "lucide-react";
 import { Group, Panel, Separator } from "react-resizable-panels";
 

@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 // Every preview fills its parent card slot (h-40) and is purely visual.

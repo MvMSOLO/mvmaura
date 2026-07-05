@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { toast } from "sonner";

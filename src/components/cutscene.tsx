@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import { useEffect, useState } from "react";
 
 export function Cutscene({ onComplete }: { onComplete: () => void }) {

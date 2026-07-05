@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 type LovableErrorOptions = {
   mechanism?: "manual" | "onerror" | "unhandledrejection" | "react_error_boundary";
   handled?: boolean;

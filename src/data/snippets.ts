@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import type { ComponentType } from "react";
 import {
   ShimmerText,

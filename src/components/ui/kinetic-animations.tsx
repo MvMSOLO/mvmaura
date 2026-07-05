@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import React, { useEffect, useState, useRef } from "react";
 
 export function GridSnapCursor() {

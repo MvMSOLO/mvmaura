@@ -1,3 +1,5 @@
+// LOVABLE TOMONIDAN KODLANDI
+// JULES ORQALI YANGILANDI
 import * as React from "react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 
